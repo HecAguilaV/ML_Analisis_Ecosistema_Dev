@@ -1,4 +1,4 @@
-# 📊 INFORME EJECUTIVO: MERCADO TECNOLÓGICO CHILENO 2025
+# INFORME EJECUTIVO: MERCADO TECNOLÓGICO CHILENO 2025
 
 **Análisis Predictivo del Sector Tech en Chile con Proyecciones al 2028**
 
@@ -18,7 +18,7 @@
 > 
 > **Para el análisis definitivo y completo, consultar:**
 > 
-> 📓 **Notebook principal**: [`notebooks/02_analisis_de_resultados.ipynb`](../../notebooks/02_analisis_de_resultados.ipynb)
+>  **Notebook principal**: [`notebooks/02_analisis_de_resultados.ipynb`](../../notebooks/02_analisis_de_resultados.ipynb)
 > 
 > **Análisis actualizado incluye:**
 > - ✅ Datasets completos (Stack Overflow 2023 + 2025 + JetBrains 2025)
@@ -28,7 +28,7 @@
 > - ✅ Metodología CRISP-DM completa
 > - ✅ Feature engineering profesional y reproducible
 > 
-> 📄 **Informes técnicos**: `docs/informe_final/` (en desarrollo)
+>  **Informes técnicos**: `docs/informe_final/` (en desarrollo)
 > 
 > ---
 
@@ -36,7 +36,7 @@
 
 El presente informe analiza el mercado tecnológico chileno basado en un estudio de **300 desarrolladores** mediante técnicas de Machine Learning (algoritmo KNN). Los resultados muestran un mercado tech dinámico con características particulares que lo diferencian del panorama global.
 
-### 🎯 **Hallazgos Clave**
+### **Hallazgos Clave**
 - **Salario promedio**: $2.630 USD ($2.367.345 CLP)
 - **Premium Santiago**: +22.8% sobre regiones
 - **Dominancia JavaScript**: 77% de adopción
@@ -45,9 +45,9 @@ El presente informe analiza el mercado tecnológico chileno basado en un estudio
 
 ---
 
-## 📈 **ANÁLISIS PRINCIPAL DEL MERCADO CHILENO**
+## **ANÁLISIS PRINCIPAL DEL MERCADO CHILENO**
 
-### 💰 **1. ESTRUCTURA SALARIAL**
+### **1. ESTRUCTURA SALARIAL**
 
 | **Métrica** | **Valor** | **Referencia** |
 |-------------|-----------|----------------|
@@ -57,7 +57,7 @@ El presente informe analiza el mercado tecnológico chileno basado en un estudio
 | Premium Santiago | +22.8% | +$477.900 CLP |
 | Rango Salarial | $1.200.000 - $4.500.000 CLP | - |
 
-### 💻 **2. DISTRIBUCIÓN TECNOLÓGICA**
+### **2. DISTRIBUCIÓN TECNOLÓGICA**
 
 | **Tecnología** | **Adopción** | **Impacto Salarial** |
 |----------------|--------------|----------------------|
@@ -66,7 +66,7 @@ El presente informe analiza el mercado tecnológico chileno basado en un estudio
 | Java | 51.7% | +$300.000 CLP |
 | React | 41.7% | +$250.000 CLP |
 
-### 📍 **3. DISTRIBUCIÓN GEOGRÁFICA**
+### **3. DISTRIBUCIÓN GEOGRÁFICA**
 
 - **Santiago**: 55% de desarrolladores
   - Concentra las oportunidades mejor remuneradas
@@ -80,9 +80,9 @@ El presente informe analiza el mercado tecnológico chileno basado en un estudio
 
 ---
 
-## 🎯 **PERFILES DE DESARROLLADORES Y SALARIOS**
+## **PERFILES DE DESARROLLADORES Y SALARIOS**
 
-### 👨‍💻 **Perfiles Representativos**
+###  **Perfiles Representativos**
 
 #### **1. Junior Santiago**
 - **Experiencia**: 1 año
@@ -110,9 +110,9 @@ El presente informe analiza el mercado tecnológico chileno basado en un estudio
 
 ---
 
-## 📊 **ANÁLISIS COMPARATIVO: CHILE vs MERCADO GLOBAL**
+## **ANÁLISIS COMPARATIVO: CHILE vs MERCADO GLOBAL**
 
-### 🌍 **Benchmarking Internacional**
+### **Benchmarking Internacional**
 
 | **Mercado** | **Salario Promedio** | **Diferencia vs Chile** |
 |-------------|---------------------|-------------------------|
@@ -120,7 +120,7 @@ El presente informe analiza el mercado tecnológico chileno basado en un estudio
 | Stack Overflow Real | $75.141 USD | +2.756% |
 | **Chile** | **$2.630 USD** | **Base** |
 
-### 📉 **Análisis de Brecha**
+### **Análisis de Brecha**
 
 **Chile representa el 3.5% del salario promedio global**, lo que indica:
 
@@ -129,7 +129,7 @@ El presente informe analiza el mercado tecnológico chileno basado en un estudio
 3. **Competitividad regional**: Liderazgo en Latinoamérica
 4. **Factor costo-vida**: Salarios ajustados al contexto local
 
-### 🎯 **Ventajas Competitivas Chile**
+## **Ventajas Competitivas Chile**
 
 - ✅ **Estabilidad económica y política**
 - ✅ **Infraestructura tecnológica robusta**
@@ -139,9 +139,9 @@ El presente informe analiza el mercado tecnológico chileno basado en un estudio
 
 ---
 
-## 🔮 **PROYECCIONES Y TENDENCIAS 2025-2028**
+## **PROYECCIONES Y TENDENCIAS 2025-2028**
 
-### 📈 **Predicciones del Mercado**
+### **Predicciones del Mercado**
 
 #### **Escenario Base (Más Probable)**
 - **Crecimiento salarial**: +8-12% anual
@@ -151,25 +151,25 @@ El presente informe analiza el mercado tecnológico chileno basado en un estudio
 
 #### **Factores de Impacto**
 
-### 🤖 **1. REVOLUCIÓN DE LA INTELIGENCIA ARTIFICIAL (2023-2028)**
+### **1. REVOLUCIÓN DE LA INTELIGENCIA ARTIFICIAL (2023-2028)**
 
 **Impacto Transformacional Esperado:**
 
-- **🔄 Reconfiguración de roles**: 
+- **Reconfiguración de roles**: 
   - Desarrolladores tradicionales → AI-Augmented Developers
   - Nuevos roles: Prompt Engineers, AI Trainers, ML Ops
 
-- **📚 Nuevas competencias críticas**:
+- **Nuevas competencias críticas**:
   - Integración con APIs de IA (OpenAI, Claude, Copilot)
   - Prompt Engineering y Fine-tuning
   - Ética y Governance de IA
   - Human-AI Collaboration
 
-- **💼 Impacto salarial estimado**:
+- **Impacto salarial estimado**:
   - Desarrolladores con skills IA: +30-50% premium
   - Roles tradicionales sin adaptación: -10-20% relativo
 
-### 📊 **2. EVOLUCIÓN TECNOLÓGICA PROYECTADA**
+###  **2. EVOLUCIÓN TECNOLÓGICA PROYECTADA**
 
 #### **Tecnologías en Declive (2025-2028)**
 - **jQuery**: De 15% → 3% adopción
@@ -187,7 +187,7 @@ El presente informe analiza el mercado tecnológico chileno basado en un estudio
 - **Blockchain/Web3**: Solidity, Rust (0% → 15%)
 - **Edge Computing**: WASM, Deno (0% → 20%)
 
-### 🏢 **3. TRANSFORMACIÓN DEL MERCADO LABORAL**
+### **3. TRANSFORMACIÓN DEL MERCADO LABORAL**
 
 #### **Modalidades de Trabajo 2028**
 - **Remoto Total**: 45% (vs 25% actual)
@@ -199,7 +199,7 @@ El presente informe analiza el mercado tecnológico chileno basado en un estudio
 - **Santiago**: Mantiene liderazgo en roles senior/strategy
 - **Nuevos hubs**: Valparaíso, Concepción como centros tech
 
-### 💰 **4. PROYECCIÓN SALARIAL DETALLADA**
+### **4. PROYECCIÓN SALARIAL DETALLADA**
 
 #### **Salarios Promedio Proyectados (USD)**
 
@@ -218,9 +218,9 @@ El presente informe analiza el mercado tecnológico chileno basado en un estudio
 
 ---
 
-## 🚨 **DESAFÍOS Y OPORTUNIDADES**
+## **DESAFÍOS Y OPORTUNIDADES**
 
-### ⚠️ **Desafíos Críticos**
+### **Desafíos Críticos**
 
 #### **1. Brecha de Talento IA**
 - **Problema**: Solo 15% de desarrolladores tiene experiencia en IA
@@ -236,7 +236,7 @@ El presente informe analiza el mercado tecnológico chileno basado en un estudio
 - **Presión**: Talento global compitiendo por mismos roles
 - **Ventaja**: Zona horaria y cultura favorable para mercados LATAM/EEUU
 
-### 🚀 **Oportunidades Estratégicas**
+### **Oportunidades Estratégicas**
 
 #### **1. Hub IA Latinoamericano**
 - Chile como centro de excelencia en IA para la región
@@ -255,9 +255,9 @@ El presente informe analiza el mercado tecnológico chileno basado en un estudio
 
 ---
 
-## 🎯 **RECOMENDACIONES ESTRATÉGICAS**
+## **RECOMENDACIONES ESTRATÉGICAS**
 
-### 👨‍🎓 **Para Desarrolladores**
+###  **Para Desarrolladores**
 
 #### **Inmediato (2025)**
 1. **Adoptar herramientas IA**: GitHub Copilot, ChatGPT, Claude
@@ -271,7 +271,7 @@ El presente informe analiza el mercado tecnológico chileno basado en un estudio
 3. **Product Mindset**: No solo código, entender el negocio
 4. **Soft Skills**: Colaboración human-IA, ética tecnológica
 
-### 🏢 **Para Empresas**
+### **Para Empresas**
 
 #### **Estrategia de Talento**
 1. **Invertir en re-skilling**: Programas internos de IA
@@ -285,7 +285,7 @@ El presente informe analiza el mercado tecnológico chileno basado en un estudio
 3. **Developer Experience**: Tooling y procesos de clase mundial
 4. **Innovation Labs**: Espacios para experimentación con nuevas techs
 
-### 🏛️ **Para el Ecosistema (Gobierno/Academia)**
+### **Para el Ecosistema (Gobierno/Academia)**
 
 #### **Políticas Públicas**
 1. **Visa Tech**: Atraer talento internacional especializado
@@ -295,7 +295,7 @@ El presente informe analiza el mercado tecnológico chileno basado en un estudio
 
 ---
 
-## 📊 **METODOLOGÍA Y LIMITACIONES**
+##  **METODOLOGÍA Y LIMITACIONES**
 
 ### 🔬 **Metodología Aplicada**
 - **Algoritmo**: K-Nearest Neighbors (KNN) con k=5
@@ -304,14 +304,14 @@ El presente informe analiza el mercado tecnológico chileno basado en un estudio
 - **Validación**: R² = 0.759 (alta confiabilidad predictiva)
 - **Error promedio**: $239 USD (±9% del salario promedio)
 
-### ⚠️ **Limitaciones del Estudio**
+###  **Limitaciones del Estudio**
 1. **Datos sintéticos**: Basado en patrones estimados, no encuesta real
 2. **Muestra limitada**: 300 casos pueden no representar toda la diversidad
 3. **Variables omitidas**: Sector industria, tipo empresa, educación formal
 4. **Sesgo temporal**: Snapshot de 2025, mercado evoluciona rápidamente
 5. **Factor IA**: Impacto de IA es proyección, no dato histórico
 
-### 🎯 **Confiabilidad de Proyecciones**
+###  **Confiabilidad de Proyecciones**
 - **Corto plazo (2025-2026)**: Alta confiabilidad (80-85%)
 - **Mediano plazo (2027)**: Moderada confiabilidad (65-70%)  
 - **Largo plazo (2028)**: Baja confiabilidad (50-60%)
@@ -319,9 +319,9 @@ El presente informe analiza el mercado tecnológico chileno basado en un estudio
 
 ---
 
-## 📞 **CONCLUSIONES Y PRÓXIMOS PASOS**
+## **CONCLUSIONES Y PRÓXIMOS PASOS**
 
-### 🎯 **Conclusiones Principales**
+### **Conclusiones Principales**
 
 1. **Mercado chileno maduro pero con potencial**: Base sólida para crecimiento acelerado
 2. **JavaScript + Python dominan**: Pero necesidad urgente de skills IA
@@ -329,7 +329,7 @@ El presente informe analiza el mercado tecnológico chileno basado en un estudio
 4. **Brecha global significativa**: Oportunidad de arbitraje y crecimiento
 5. **Revolución IA inminente**: Preparación crítica para no quedarse atrás
 
-### 🚀 **Próximos Pasos Recomendados**
+### **Próximos Pasos Recomendados**
 
 #### **Investigación Adicional**
 1. **Encuesta real**: Validar datos sintéticos con survey de mercado
@@ -345,7 +345,7 @@ El presente informe analiza el mercado tecnológico chileno basado en un estudio
 
 ---
 
-**Informe elaborado**: Septiembre 2025  
+**Informe elaborado**: Noviembre 2025  
 **Próxima actualización**: Diciembre 2025  
 **Metodología**: Machine Learning (KNN) + Análisis Predictivo  
 **Confiabilidad**: R² = 0.759 | Error promedio: ±$239 USD  
@@ -354,4 +354,4 @@ El presente informe analiza el mercado tecnológico chileno basado en un estudio
 
 *"El mercado tech chileno está en un punto de inflexión histórico. Las decisiones tomadas en los próximos 2-3 años determinarán si Chile se posiciona como líder regional en la era de la IA o se queda rezagado en tecnologías del pasado."*
 
-**🇨🇱 Made with Chilean Tech Talent**
+>**Dearrollado por Un Soñador con Poca RAM**

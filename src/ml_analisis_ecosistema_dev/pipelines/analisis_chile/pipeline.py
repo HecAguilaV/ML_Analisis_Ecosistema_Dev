@@ -12,19 +12,19 @@ Este pipeline implementa análisis comparativo usando modelos globales entrenado
 from kedro.pipeline import Pipeline, node, pipeline
 
 from .nodes import (
-    cargar_datos_raw_chile,
-    procesar_datos_chile,
-    cargar_modelos_entrenados,
-    generar_predicciones_chile,
     analisis_comparativo_chile_global,
-    exportar_reporte_comparativo
+    cargar_datos_raw_chile,
+    cargar_modelos_entrenados,
+    exportar_reporte_comparativo,
+    generar_predicciones_chile,
+    procesar_datos_chile,
 )
 
 
 def create_pipeline(**kwargs) -> Pipeline:
     """
     Crea el pipeline de análisis comparativo Chile vs Global - FASE 1.
-    
+
     Returns:
         Pipeline de Kedro con todos los nodos de análisis comparativo
     """
@@ -37,7 +37,6 @@ def create_pipeline(**kwargs) -> Pipeline:
                 outputs="chile_datos_raw",
                 name="cargar_datos_raw_chile",
             ),
-            
             # 2. Procesar datos de Chile con pipeline global
             node(
                 func=procesar_datos_chile,
@@ -45,7 +44,6 @@ def create_pipeline(**kwargs) -> Pipeline:
                 outputs="chile_datos_procesados",
                 name="procesar_datos_chile",
             ),
-            
             # 3. Cargar modelos entrenados
             node(
                 func=cargar_modelos_entrenados,
@@ -53,19 +51,17 @@ def create_pipeline(**kwargs) -> Pipeline:
                 outputs="modelos_cargados",
                 name="cargar_modelos",
             ),
-            
             # 4. Generar predicciones para Chile
             node(
                 func=generar_predicciones_chile,
                 inputs=[
                     "chile_datos_procesados",
                     "regresion_model",  # modelo de regresión
-                    "clasificacion_model"  # modelo de clasificación
+                    "clasificacion_model",  # modelo de clasificación
                 ],
                 outputs="chile_predicciones",
                 name="generar_predicciones_chile",
             ),
-            
             # 5. Análisis comparativo Chile vs Global
             node(
                 func=analisis_comparativo_chile_global,
@@ -73,12 +69,11 @@ def create_pipeline(**kwargs) -> Pipeline:
                     "chile_predicciones",
                     "datos_para_modelado",
                     "regresion_model",
-                    "clasificacion_model"
+                    "clasificacion_model",
                 ],
                 outputs="chile_reporte_comparativo",
                 name="analisis_comparativo",
             ),
-            
             # 6. Exportar reporte en formato tabular
             node(
                 func=exportar_reporte_comparativo,

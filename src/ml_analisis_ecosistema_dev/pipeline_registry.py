@@ -2,6 +2,9 @@
 
 from kedro.pipeline import Pipeline
 
+from ml_analisis_ecosistema_dev.pipelines.analisis_chile.pipeline import (
+    create_pipeline as analisis_chile_pipeline,
+)
 from ml_analisis_ecosistema_dev.pipelines.clasificacion.pipeline import (
     create_pipeline as clasificacion_pipeline,
 )
@@ -10,9 +13,6 @@ from ml_analisis_ecosistema_dev.pipelines.procesamiento_de_datos import (
 )
 from ml_analisis_ecosistema_dev.pipelines.regresion.pipeline import (
     create_pipeline as regresion_pipeline,
-)
-from ml_analisis_ecosistema_dev.pipelines.analisis_chile.pipeline import (
-    create_pipeline as analisis_chile_pipeline,
 )
 
 

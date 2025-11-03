@@ -23,13 +23,7 @@ __pycache__/
 .env.*
 
 # Archivos temporales de Airflow
-[airflow-*
-[auth]
-[internal]
-CACHED
-CANCELED
-ERROR
-main
+airflow-*
 
 # Ruff (Code Formatter)
 .ruff_cache/

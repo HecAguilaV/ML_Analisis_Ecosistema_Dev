@@ -12,3 +12,4 @@ imbalanced-learn~=0.12.0
 dvc[gcs]
 gcsfs
 google-cloud-storage
+apache-airflow==2.8.0

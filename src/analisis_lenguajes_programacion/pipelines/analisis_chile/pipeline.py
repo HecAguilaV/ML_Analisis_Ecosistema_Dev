@@ -9,17 +9,17 @@ from kedro.pipeline import Pipeline, node
 from kedro.pipeline.modular_pipeline import pipeline
 
 from .nodes import (
-    cargar_y_preparar_datos,
     analizar_distribucion_global,
-    generar_reporte_preliminar,
+    cargar_y_preparar_datos,
     exportar_estadisticas_basicas,
+    generar_reporte_preliminar,
 )
 
 
 def create_pipeline(**kwargs) -> Pipeline:
     """
     Crea el pipeline de análisis del mercado chileno.
-    
+
     Returns:
         Pipeline de Kedro con todos los nodos de análisis
     """

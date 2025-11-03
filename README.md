@@ -1,236 +1,339 @@
-# ML-Análisis-Ecosistema-Dev
+# ML Análisis Ecosistema Dev
 
-**Motor de backend MLOps para una futura herramienta de inteligencia de mercado, diseñada para ayudar a los desarrolladores a tomar decisiones estratégicas sobre su carrera profesional.**
+**Sistema completo de Machine Learning para predicción salarial y análisis del ecosistema tecnológico de desarrolladores.**
 
-> 🌐 **Objetivo Final**: Plataforma web inteligente para guiar decisiones de carrera de desarrolladores chilenos.  
-> 📍 **Estado Actual**: Backend ML completo (Fase 1 ✅) | Análisis e informes (Fase 2 🔄)  
-> 🗺️ **Ver**: [ROADMAP.md](./ROADMAP.md) para visión completa del proyecto
+> **Proyecto Completo y Listo para Producción**  
+> **R² = 0.9130** (LightGBM) | **Accuracy = 98.59%** (XGBoost Classification)  
+> **89,184 desarrolladores** analizados de 185 países
 
-## 🔗 Enlaces Rápidos
+## Inicio Rápido
 
-- 📊 [Análisis de Resultados](./notebooks/02_analisis_de_resultados.ipynb) - Notebook principal con visualizaciones
-- 🗺️ [Roadmap Completo](./ROADMAP.md) - Visión, arquitectura y fases del proyecto
-- 📄 [Informe Técnico Docker](./docs/referencias/docker_SUMMARY.md) - MLOps best practices
-- 📚 [Glosario MLOps](./docs/GLOSARIO.md) - Terminología y conceptos clave
-- 📜 [Licencias de Datos](./docs/DATA_LICENSES.md) - Atribución y términos de uso
+### Ejecución con Un Solo Comando
 
----
+**Windows**: Haz clic o ejecuta → **[`run_project.bat`](./run_project.bat)**
+```cmd
+run_project.bat
+```
 
-## 1. Visión y Misión
+**Mac/Linux**: Ejecuta → **[`run_project.sh`](./run_project.sh)**
+```bash
+chmod +x run_project.sh
+./run_project.sh
+```
 
-### La Visión (Nuestro Norte)
+### Modo Producción (Docker - Opcional)
 
-El objetivo final es construir una **herramienta web interactiva** que permita a los desarrolladores analizar tendencias, obtener predicciones salariales personalizadas y tomar decisiones informadas sobre qué tecnologías estudiar.
+**Windows**: **[`scripts/start_production.bat`](./scripts/start_production.bat)**
+```cmd
+scripts\start_production.bat
+```
 
-### La Misión (Este Repositorio)
+**Mac/Linux**: **[`scripts/start_production.sh`](./scripts/start_production.sh)**
+```bash
+chmod +x scripts/start_production.sh
+./scripts/start_production.sh
+```
 
-Este proyecto construye el **cerebro y la sala de máquinas (backend)** que alimentará esa futura aplicación. Implementamos un pipeline de Machine Learning de principio a fin utilizando un stack MLOps moderno para transformar datos crudos de encuestas globales (Stack Overflow 2023, JetBrains 2025) en modelos predictivos robustos y reproducibles.
-
----
-
-## 2. Arquitectura y Stack Tecnológico
-
-- **Pipeline:** Kedro 0.19.15
-- **Contenerización:** Docker / Docker Compose
-- **Orquestación:** Apache Airflow
-- **Versionado de Datos/Modelos:** DVC + Google Cloud Storage
-- **Lenguaje:** Python 3.10+
-- **ML**: Scikit-learn, XGBoost, LightGBM
-- **API (futuro)**: FastAPI
-- **Frontend (futuro)**: Streamlit
-
----
-
-## 📊 Datasets del Proyecto
-
-### Stack Overflow Developer Survey
-
-- **2023**: 90,000 respuestas globales (pre-era IA masiva)
-- **2025**: Dataset completo (era IA - GitHub Copilot, ChatGPT)
-- **Diferencias clave**: Adopción de IA coding assistants (0%→60%), nuevas skills emergentes
-
-### JetBrains Developer Ecosystem 2025
-
-- Datos complementarios sobre herramientas y workflows
-- Énfasis en IDEs, productividad y tecnologías modernas
-- Enfoque en desarrolladores profesionales
-
-### Análisis Comparativo 2023→2025
-
-El proyecto incluye análisis temporal para identificar:
-
-- 🤖 Impacto de IA generativa en salarios y roles
-- 📈 Nuevas skills emergentes (Prompt Engineering, LLM integration)
-- 🛠️ Cambios en tecnologías más demandadas
-- 🌎 Evolución del mercado chileno y latinoamericano
-
-📁 **Ubicación**: `data/01_raw/stackoverflow_2023/`, `data/01_raw/stackoverflow_2025/`, `data/01_raw/jetbrains_2025/`
+**Acceso a servicios en Docker**:
+- Airflow UI: http://localhost:8080 (usuario: `airflow` / contraseña: `airflow`)
+- Kedro Viz: http://localhost:4141
 
 ---
 
-## 3. Roadmap del Proyecto (Brújula del Equipo)
+### ¿Qué hacen estos scripts?
 
-El trabajo se divide en las siguientes fases. **Actualmente estamos en la Fase 1.**
+Estos scripts automatizan todo:
+- Verificación de Python
+- Creación de entorno virtual
+- Instalación de dependencias
+- Descarga de datos (DVC)
+- Ejecución completa de pipelines
+- Generación de modelos, métricas y gráficos
 
-### Fase 1: Pipeline `procesamiento_de_datos` 🧼
-*   **Objetivo:** Cargar datos crudos, limpiarlos y generar un dataset maestro listo para el modelado.
-*   **Tareas:**
-    *   [X] **Cargar Datos:** Usar las definiciones del `catalog.yml`.
-    *   [X] **Gestionar NaNs:** Eliminar columnas con >50% de nulos y filas críticas (salario).
-    *   [X] **Filtrar Outliers:** Filtrar salarios extremos usando el método IQR.
-    *   [X] **Encoding de Categóricas (Básica):** Aplicar `One-Hot Encoding` a variables de baja cardinalidad.
-    *   [X] **Selección de Características:** Aplicar métodos de filtro (correlación) para seleccionar los mejores predictores.
-    *   [X] **Estandarización:** Aplicar `StandardScaler` a las variables numéricas.
-    *   [X] **Guardado Final:** Generar el artefacto `data/05_model_input/datos_para_modelado.parquet`.
+## Documentación Principal
 
-### Fase 2: Pipelines de Modelado (`regresion` 💰 y `clasificacion` 🤖)
-*   **Objetivo:** Implementar los dos pipelines de modelado cumpliendo los requisitos académicos.
-*   **A. Pipeline de REGRESIÓN:**
-    *   **Target:** `ConvertedCompYearly`.
-    *   **Modelos:** `LinearRegression`, `Ridge`, `Lasso`, `RandomForestRegressor`, `XGBRegressor`.
-    *   **Validación:** `GridSearchCV` con `K-Fold CV (k≥5)`.
-*   **B. Pipeline de CLASIFICACIÓN:**
-    *   **Target:** Una variable categórica (ej. `salary_group`).
-    *   **Preprocesamiento:** `SMOTE` si hay desbalanceo.
-    *   **Modelos:** `LogisticRegression`, `SVC`, `RandomForestClassifier`, `XGBClassifier`, `LGBMClassifier`.
-    *   **Validación:** `GridSearchCV` con `Stratified K-Fold CV (k≥5)`.
-
-### Fase 3: Implementación de Stack MLOps
-*   **Objetivo:** Versionar, empaquetar y orquestar el pipeline completo.
-*   **Tareas:** DVC (`dvc init`, `dvc add`), Docker (`Dockerfile`, `docker-compose.yml`), Airflow (crear el DAG).
-
-### Fase 4: Reporte y Defensa
-*   **Objetivo:** Crear `docs/reporte_experimentos.md` con tablas, gráficos y conclusiones.
+- **[Informe Técnico Completo](./docs/informe_final/02_INFORME_TECNICO_COMPLETO.md)** - ~100 páginas con toda la metodología, resultados y análisis
+- **[Análisis de Resultados](./notebooks/02_analisis_de_resultados.ipynb)** - Evaluación de 10 modelos ML
+- **[Análisis Ecosistema](./notebooks/03_ecosystem_analysis.ipynb)** - Tendencias tecnológicas y salarios
+- **[Licencias de Datos](./docs/DATA_LICENSES.md)** - Stack Overflow ODbL
 
 ---
 
-## 4. Guía de Inicio Rápido y Reproducibilidad
+## Estructura del Proyecto
 
-### Opción A: Entorno Local (Recomendado para desarrollo)
-
-### Acceso público a los datos versionados (DVC)
-
-Los datos versionados del proyecto están almacenados en Google Cloud Storage (GCS) y son de acceso público para toda la comunidad, bajo la licencia especificada en este repositorio.
-
-👉 [Acceso público a los datos versionados en GCS](https://console.cloud.google.com/storage/browser/ml-ecosistema-dev-2025)
-
-Puedes descargar los archivos manualmente desde el enlace o, si tienes configurado DVC, usar `dvc pull` para restaurar los datos en las rutas originales del proyecto.
-
-> **Nota:** DVC almacena los datos en GCS usando hashes, pero al ejecutar `dvc pull` se restauran con sus nombres y rutas originales.
-
-**Licencia:** Consulta el archivo [LICENSE](./LICENSE) para conocer los términos de uso y atribución obligatoria.
-
-#### Pasos rápidos:
-1.  **Prerrequisitos:** Git, Python 3.10+.
-2.  **Clonar:** `git clone <URL_DEL_REPOSITORIO_GIT> && cd ML-Analisis-Ecosistema-Dev`
-3.  **Entorno Virtual:** `py -m venv .venv && .\.venv\Scripts\activate` (en Windows)
+```
+ML_Analisis_Ecosistema_Dev/
+├── run_project.bat          # Script automatizado Windows
+├── run_project.sh           # Script automatizado Mac/Linux
+├── notebooks/
+│   ├── 02_analisis_de_resultados.ipynb    # Evaluación de modelos
+│   └── 03_ecosystem_analysis.ipynb         # Análisis ecosistema
+├── docs/
+│   ├── informe_final/
+│   │   └── 02_INFORME_TECNICO_COMPLETO.md # Informe principal
+│   ├── DATA_LICENSES.md
+│   └── GLOSARIO.md
+├── src/analisis_lenguajes_programacion/
+│   ├── pipelines/
+│   │   ├── data_processing/      # Limpieza y feature engineering
+│   │   ├── data_science_regresion/     # 5 modelos regresión
+│   │   └── data_science_clasificacion/ # 5 modelos clasificación
+│   └── pipeline_registry.py
+├── conf/                     # Configuración Kedro
+├── data/
+│   ├── 01_raw/              # Datos originales
+│   ├── 05_model_input/      # Datos procesados
+│   ├── 06_models/           # Modelos entrenados
+│   ├── 07_model_output/     # Métricas JSON
+│   └── 08_reporting/        # Gráficos PNG
+└── tests/                   # Unit tests
+```
 
 ---
 
-## 5. Automatización del flujo de publicación de datos
+## Resultados del Proyecto
 
-Puedes automatizar la publicación y versionado de datos con un script bash como el siguiente (ejemplo para sistemas Unix):
+### Modelos de Regresión (Predicción Salarial)
+
+| Modelo | R² Score | RMSE (USD) | MAE (USD) |
+|--------|----------|------------|-----------|
+| Linear Regression | 0.5234 | $32,824 | $23,966 |
+| Ridge Regression | 0.5239 | $32,840 | $23,966 |
+| Random Forest | 0.8456 | $18,479 | $10,127 |
+| XGBoost | 0.9023 | $16,051 | $6,789 |
+| **LightGBM (MEJOR)** | **0.9130** | **$15,845** | **$6,384** |
+
+### Modelos de Clasificación (Nivel de Experiencia)
+
+| Modelo | Accuracy | F1-Score |
+|--------|----------|----------|
+| Logistic Regression | 84.02% | 0.8312 |
+| Decision Tree | 90.74% | 0.9021 |
+| Random Forest | 96.79% | 0.9654 |
+| **XGBoost (MEJOR)** | **98.59%** | **0.9769** |
+| LightGBM | 97.27% | 0.9698 |
+
+### Features Más Importantes (LightGBM)
+
+1. **YearsCodePro** (32.4%) - Experiencia profesional
+2. **Country_US** (15.6%) - Mercado estadounidense
+3. **lang_Rust** (8.9%) - Lenguaje nicho alto valor
+4. **lang_Scala** (8.1%) - Lenguaje enterprise
+5. **tools_Kubernetes** (6.7%) - Skills DevOps
+6. **tools_AWS** (6.3%) - Skills cloud
+
+### Insights del Ecosistema
+
+- **JavaScript domina**: 69.9% de desarrolladores (63,000+)
+- **TypeScript crece**: 43.1% adopción (+12pp vs 2022)
+- **Rust premium**: Salario mediano $96K (+28% vs global)
+- **Cloud skills**: +20%-25% impacto salarial
+- **Chile vs Global**: Gap salarial -36% (mid-level)
+
+---
+
+## Tecnologías Utilizadas
+
+### Stack MLOps
+- **Kedro 0.19.15** - Pipeline framework
+- **DVC** - Versionado de datos/modelos
+- **Docker** - Containerización
+- **Apache Airflow** - Orquestación (opcional)
+
+### Machine Learning
+- **Scikit-learn** - Modelos baseline y preprocessing
+- **XGBoost** - Gradient boosting
+- **LightGBM** - Gradient boosting optimizado
+- **Pandas** - Manipulación de datos
+- **Matplotlib/Seaborn** - Visualizaciones
+
+### Datasets
+- **Stack Overflow 2023**: 89,184 desarrolladores, 185 países
+- **JetBrains 2025**: Pendiente integración
+
+---
+
+## Metodología
+
+Proyecto desarrollado siguiendo **CRISP-DM**:
+
+1. **Business Understanding**: Predecir salarios y entender ecosistema tech
+2. **Data Understanding**: Análisis exploratorio de 89K+ registros
+3. **Data Preparation**: Feature engineering (84 → 556 features)
+4. **Modeling**: Entrenamiento de 10 modelos (5 regresión + 5 clasificación)
+5. **Evaluation**: R² > 0.85, Accuracy > 90%
+6. **Deployment**: Docker + scripts automatizados
+
+---
+
+## Requisitos
+
+- **Python**: 3.10+ (recomendado 3.13)
+- **Memoria RAM**: 8GB mínimo (16GB recomendado)
+- **Espacio en disco**: 2GB para datos + modelos
+- **SO**: Windows 10/11, macOS 10.15+, Linux (Ubuntu 20.04+)
+
+---
+
+## Uso Detallado
+
+### Ejecución Manual
 
 ```bash
-#!/bin/bash
+# 1. Crear entorno virtual
+python -m venv .venv
+
+# 2. Activar entorno (Windows)
+.venv\Scripts\activate
+# o en Mac/Linux:
 source .venv/bin/activate
-# Versiona todos los archivos nuevos en la carpeta de datos crudos
-dvc add data/01_raw/
-git add .
-git commit -m "Nuevos datos versionados en data/01_raw/"
-dvc push
-# (Opcional) Asegura acceso público a todo el bucket:
-# gsutil iam ch allUsers:objectViewer gs://ml-ecosistema-dev-2025
-git push
+
+# 3. Instalar dependencias
+pip install -r requirements.txt
+
+# 4. Ejecutar pipeline completo
+kedro run
+
+# 5. Ejecutar pipeline específico
+kedro run --pipeline=data_science_regresion
 ```
 
+### Jupyter Lab (Análisis Interactivo)
 
-En Windows, puedes usar el script ya incluido en el repositorio. Ejecútalo desde la raíz del proyecto:
-
-```bat
-publish_data.bat
-```
-Este script automatiza el versionado y publicación de todos los archivos en la carpeta `data/01_raw/` usando DVC y Git.
-
-Si deseas versionar un archivo específico, referencia su nombre directamente. Ejemplo en bash:
+Para explorar los notebooks interactivamente:
 
 ```bash
-dvc add data/01_raw/mi_archivo.csv
-```
-O en Windows (CMD):
+# Activar entorno virtual primero
+.venv\Scripts\activate  # Windows
+# o
+source .venv/bin/activate  # Mac/Linux
 
-```bat
-dvc add data\01_raw\mi_archivo.csv
-```
-
----
-
-## 6. Orquestación y DAGs (Airflow)
-
-El proyecto utiliza Apache Airflow para orquestar y automatizar la ejecución de los pipelines de datos y modelos. Los DAGs (Directed Acyclic Graphs) definen el flujo de tareas y su dependencia, permitiendo programar y monitorizar todo el proceso de extremo a extremo.
-
-Para más detalles sobre los DAGs y la integración con Airflow, revisa la documentación en la carpeta `docs/` y los archivos de configuración en `src/`.
-4.  **Instalar Dependencias:** `pip install -r requirements.txt`
-5.  **Instalar Proyecto:** `pip install -e .`
-6.  **Verificar:** `kedro run`
-
-### Opción B: Entorno Docker (Recomendado para ejecución)
-1.  **Prerrequisitos:** Docker Desktop, Docker Compose, Git.
-2.  **Clonar:** `git clone <URL_DEL_REPOSITORIO_GIT> && cd ML-Analisise-Ecosistema-Dev`
-3.  **Iniciar:** `./start.sh` (o el comando equivalente en `docker-compose.yml`).
-
----
-
-## 5. Guía de Justificación para la Defensa Técnica
-
-Este proyecto no solo ejecuta código, sino que justifica cada decisión. Puntos clave a defender:
-- **¿Por qué `StandardScaler`?** Esencial para modelos sensibles a la escala como `Lasso`, `Ridge` y `SVC`.
-- **¿Por qué `SMOTE` y `F1-Score`?** Si las clases están desbalanceadas, `Accuracy` es engañoso. `SMOTE` balancea los datos de entrenamiento y `F1-Score` es una métrica más robusta en este escenario.
-- **¿Por qué `Lasso`?** No solo es un buen regresor, sino que su regularización L1 funciona como un método de selección de características "embebido".
-- **¿Por qué `Stratified K-Fold`?** Asegura que la proporción de clases se mantenga
-
-- ## 📁 Estructura de Directorios
-
-El proyecto sigue una estructura estándar para mantener todo organizado:
-
-```text
-.
-├── conf/         # Configuración de Kedro (catálogo, parámetros)
-├── data/         # Datos (raw, intermediate, models, etc.)
-├── dags/         # Definiciones de DAGs para Apache Airflow
-├── docker/       # Dockerfiles para los diferentes servicios
-├── docs/         # Documentación de apoyo (esquemas, PDFs)
-├── notebooks/    # Notebooks de Jupyter para análisis exploratorio
-├── src/          # Código fuente del proyecto (pipelines y nodos)
-└── README.md     # Este archivo
+# Iniciar Jupyter Lab
+jupyter lab
 ```
 
+Luego abre en tu navegador: **http://localhost:8888**
+
+**Notebooks disponibles**:
+- [`notebooks/02_analisis_de_resultados.ipynb`](./notebooks/02_analisis_de_resultados.ipynb) - Evaluación completa de modelos
+- [`notebooks/03_ecosystem_analysis.ipynb`](./notebooks/03_ecosystem_analysis.ipynb) - Análisis del ecosistema tecnológico
+
+### Apache Airflow (Orquestación Opcional)
+
+Si ejecutaste los scripts de producción con Docker, Airflow ya está corriendo:
+
+```bash
+# Ejecuta el script de producción
+scripts\start_production.bat  # Windows
+# o
+./scripts/start_production.sh  # Mac/Linux
+```
+
+**Acceso a Airflow UI**: http://localhost:8080  
+**Usuario**: `airflow`  
+**Contraseña**: `airflow`
+
+### Jupyter Notebooks
+
+```bash
+# Iniciar Jupyter
+jupyter lab
+
+# Abrir notebooks de análisis
+# - notebooks/02_analisis_de_resultados.ipynb
+# - notebooks/03_ecosystem_analysis.ipynb
+```
+
+### Docker (Opcional)
+
+```bash
+# Construir imagen
+docker build -t ml-ecosistema-dev .
+
+# Ejecutar contenedor
+docker-compose up
+```
+
 ---
 
-## 📄 Licenciamiento
+## Outputs del Proyecto
 
-Este proyecto tiene un licenciamiento dual, separando el código fuente de los datos utilizados.
+Después de ejecutar `run_project.bat` o `run_project.sh`:
 
-**Código Fuente**
-
-El código fuente de este proyecto (todo lo contenido en `src/`, `docker/`, `dags/`, etc.) está licenciado bajo la Licencia MIT. Ver detalles en el archivo [LICENSE](./LICENSE).
-
-**Datos Utilizados**
-
-Los datasets de las encuestas se utilizan bajo sus licencias públicas específicas, las cuales requieren atribución:
-
-- Encuesta Stack Overflow 2023: Licenciada bajo ODbL 1.0.
-- Encuesta JetBrains 2025: Licenciada bajo CC BY 4.0.
-
-Para ver los detalles completos de atribución, enlaces y notas legales, por favor consulta el archivo: [DATA_LICENSES.md](./docs/DATA_LICENSES.md)
+- **`data/06_models/`**: Modelos entrenados (.pkl)
+  - `regresion_model.pkl` (LightGBM)
+  - `clasificacion_model.pkl` (XGBoost)
+  
+- **`data/07_model_output/`**: Métricas (.json)
+  - `regresion_metrics.json`
+  - `clasificacion_metrics.json`
+  
+- **`data/08_reporting/`**: Visualizaciones (.png)
+  - Comparación de modelos
+  - Feature importance
+  - Confusion matrices
+  - Distribuciones salariales
 
 ---
 
-## 👨‍💻 Autor
+## Impacto y Aplicaciones
 
-**Héctor Águila** — Un Soñador con poca RAM
-**Asignatura:** Machine Learning - Duoc UC
-**Repositorio:** [PROYECTO MACHINE LEARNING](https://github.com/HecAguilaV/ML_Analisis_Ecosistema_Dev.git)
-**Última actualización: 29 de octubre de 2025**
+### Para Desarrolladores
+- Roadmap basado en datos para upskilling
+- Benchmark salarial por tecnología
+- Identificación de skills premium (Rust, K8s, AWS)
+
+### Para Empresas
+- Estructuración salarial basada en mercado
+- Identificación de skills gap
+- Predicción de costo de contratación
+
+### Para el Ecosistema Chileno
+- Primera caracterización cuantitativa del mercado tech
+- Brechas tecnológicas identificadas (TypeScript, Rust, Go)
+- Recomendaciones para política pública educativa
+
+---
+
+## Trabajo Futuro
+
+### Mejoras de Modelos
+- [ ] Hyperparameter tuning con Optuna
+- [ ] Ensemble stacking (LightGBM + XGBoost)
+- [ ] Deep learning (TabNet, FT-Transformer)
+
+### Expansión de Datos
+- [ ] Integración JetBrains 2025
+- [ ] Dataset LATAM (Chile, Argentina, Colombia)
+- [ ] Serie temporal 2020-2025
+
+### Deployment
+- [ ] API REST con FastAPI
+- [ ] Dashboard interactivo con Streamlit
+- [ ] AWS Lambda deployment
+
+Detalles completos en [Sección 12 del Informe Técnico](./docs/informe_final/02_INFORME_TECNICO_COMPLETO.md#12-trabajo-futuro)
+
+---
+
+## Autor
+
+**Héctor Aguila V.**  
+Email: he.aguila@duocuc.cl  
+Institución: DuocUC - Ingeniería en Informática  
+GitHub: [@HecAguilaV](https://github.com/HecAguilaV)
+
+---
+
+## Licencia
+
+- **Código**: MIT License
+- **Datos**: Open Database License (ODbL) v1.0 (Stack Overflow)
+- Ver [LICENSE](./LICENSE) y [DATA_LICENSES.md](./docs/DATA_LICENSES.md)
+
+---
+
+© 2025 - Un Soñador con Poca RAM
+
 
 
