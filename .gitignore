@@ -12,20 +12,26 @@ conf/**/*credentials*
 logs/
 
 # Ignore the CONTENTS of the data folder, but allow DVC and gitkeep files
-# Ignorar datos RAW y temporales, pero MANTENER outputs procesados
+# DVC gestiona todos los artefactos ML (modelos, métricas, datos procesados)
 data/01_raw/**
 data/02_intermediate/**
 data/03_primary/**
 data/04_feature/**
 data/05_model_input/**
+data/06_models/**
+data/07_model_output/**
+data/08_reporting/**
 
-# MANTENER estos (son importantes para la defensa):
-# data/06_models/**       - Modelos entrenados
-# data/07_model_output/** - Métricas y resultados
-# data/08_reporting/**    - Reportes generados
-
+# PERMITIR solo archivos DVC (punteros) y .gitkeep
 !data/**/*.dvc
 !data/**/.gitkeep
+
+# IMPORTANTE: NO rastrear archivos ML generados (DVC se encarga de ellos)
+*.pkl
+*.parquet
+*.json
+!conf/**/*.json
+!docs/**/*.json
 
 # also keep all .gitkeep files
 !.gitkeep
@@ -169,3 +175,17 @@ venv.bak/
 
 # mlflow local runs
 mlruns/*
+
+##########################
+# AIRFLOW TEMPORAL FILES
+[airflow-*
+[auth]
+[internal]
+CACHED
+CANCELED
+ERROR
+main
+
+##########################
+# RUFF (Code Formatter)
+.ruff_cache/
