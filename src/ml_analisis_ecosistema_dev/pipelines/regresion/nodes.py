@@ -1,7 +1,4 @@
 
-"""
-Nodos para el pipeline de regresión.
-"""
 import logging
 import pandas as pd
 from typing import Dict, Any, List
@@ -12,6 +9,8 @@ from sklearn.linear_model import LinearRegression, Ridge, Lasso
 from sklearn.ensemble import RandomForestRegressor
 from xgboost import XGBRegressor
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
+from sklearn.preprocessing import PolynomialFeatures # Importar
+from sklearn.feature_selection import SelectKBest, f_regression # Nuevas importaciones
 
 logger = logging.getLogger(__name__)
 
@@ -51,7 +50,7 @@ def _get_model_instance(model_name: str, params: Dict[str, Any]):
         "XGBRegressor": XGBRegressor(random_state=params.get("random_state")),
     }
     if model_name not in model_map:
-        raise ValueError(f"Modelo '{model_name}' no soportado.")
+        raise ValueError(f"Modelo \'{model_name}\' no soportado.")
     return model_map[model_name]
 
 def train_model_with_grid_search(
@@ -61,7 +60,7 @@ def train_model_with_grid_search(
     params: Dict[str, Any]
 ) -> Any:
     """
-    Entrena un modelo de regresión usando GridSearchCV para encontrar los mejores hiperparámetros.
+    Entrena un modelo de regresión usando GridSearchCV para encontrar los mejores hiperperámetros.
 
     Args:
         X_train: DataFrame de características de entrenamiento.
@@ -142,3 +141,93 @@ def report_and_select_best_model(
         "best_regression_model": best_model,
         "regression_metrics_report": metrics_report
     }
+
+def create_polynomial_features(X_train: pd.DataFrame, X_test: pd.DataFrame, parameters: Dict[str, Any]) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """
+    Creates polynomial features for the training and testing data.
+
+    Args:
+        X_train: Training features.
+        X_test: Testing features.
+        parameters: Dictionary containing parameters, including the polynomial degree.
+
+    Returns:
+        A tuple containing the transformed training and testing dataframes.
+    """
+    degree = parameters.get("degree", 2)
+    poly = PolynomialFeatures(degree=degree, include_bias=False)
+
+    # Asegurarse de que los datos sean de tipo float para PolynomialFeatures
+    X_train_numeric = X_train.astype(float)
+    X_test_numeric = X_test.astype(float)
+
+    X_train_poly = poly.fit_transform(X_train_numeric)
+    X_test_poly = poly.transform(X_test_numeric)
+
+    poly_feature_names = poly.get_feature_names_out(X_train.columns)
+
+    X_train_poly_df = pd.DataFrame(X_train_poly, columns=poly_feature_names, index=X_train.index)
+    X_test_poly_df = pd.DataFrame(X_test_poly, columns=poly_feature_names, index=X_test.index)
+
+    logger.info(f"Created {len(poly_feature_names)} polynomial features with degree {degree}.")
+
+    return X_train_poly_df, X_test_poly_df
+
+def evaluate_poly_model(model: Any, X_test: pd.DataFrame, y_test: pd.Series) -> Dict[str, float]:
+    """
+    Evaluates a single regression model and returns its metrics.
+
+    Args:
+        model: Trained regression model.
+        X_test: Test features.
+        y_test: Test target.
+
+    Returns:
+        A dictionary containing the model\'s metrics (R^2, RMSE, MAE).
+    """
+    y_pred = model.predict(X_test)
+    
+    rmse = np.sqrt(mean_squared_error(y_test, y_pred))
+    mae = mean_absolute_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+    
+    model_name = type(model).__name__
+    logger.info(f"--- Evaluation for Polynomial Model: {model_name} ---")
+    logger.info(f"  - R^2: {r2:.4f}")
+    logger.info(f"  - RMSE: {rmse:.4f}")
+    logger.info(f"  - MAE: {mae:.4f}")
+    logger.info("--- End of Report ---")
+
+    return {f"metrics_{model_name}_poly": {"r2": r2, "rmse": rmse, "mae": mae}}
+
+def select_top_features(X_train: pd.DataFrame, y_train: pd.Series, X_test: pd.DataFrame, params: Dict[str, Any]) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """
+    Selects the top K features based on correlation with the target variable.
+
+    Args:
+        X_train: Training features.
+        y_train: Training target.
+        X_test: Testing features.
+        params: Dictionary containing parameters, including 'num_features_to_select'.
+
+    Returns:
+        A tuple containing the selected training and testing dataframes.
+    """
+    num_features = params.get("num_features_to_select", 50)
+    
+    # Asegurarse de que X_train y y_train no tengan NaNs para SelectKBest
+    # Aunque el preprocesamiento debería manejarlos, es una buena práctica defensiva
+    X_train_clean = X_train.fillna(X_train.mean(numeric_only=True))
+    y_train_clean = y_train.fillna(y_train.mean()) # O eliminar filas, dependiendo de la estrategia
+
+    selector = SelectKBest(f_regression, k=num_features)
+    selector.fit(X_train_clean, y_train_clean)
+    
+    selected_features = X_train.columns[selector.get_support()]
+    
+    X_train_selected = X_train[selected_features]
+    X_test_selected = X_test[selected_features]
+    
+    logger.info(f"Selected top {num_features} features for polynomial transformation.")
+    
+    return X_train_selected, X_test_selected

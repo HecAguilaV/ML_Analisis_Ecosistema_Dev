@@ -57,18 +57,22 @@ datos_para_modelado:
   type: pandas.ParquetDataset
   filepath: data/05_model_input/datos_para_modelado.parquet
 
-# --- Datasets para Regresión ---
+# --- Datasets para Regresión (persistidos en disco para uso en pipeline polinomial) ---
 X_train:
-  type: kedro.io.MemoryDataset
+  type: pandas.ParquetDataset
+  filepath: data/05_model_input/X_train.parquet
 
 X_test:
-  type: kedro.io.MemoryDataset
+  type: pandas.ParquetDataset
+  filepath: data/05_model_input/X_test.parquet
 
 y_train:
-  type: kedro.io.MemoryDataset
+  type: pickle.PickleDataset
+  filepath: data/05_model_input/y_train.pkl
 
 y_test:
-  type: kedro.io.MemoryDataset
+  type: pickle.PickleDataset
+  filepath: data/05_model_input/y_test.pkl
 
 regresion_model:
   type: kedro_datasets.pickle.PickleDataset
@@ -77,6 +81,23 @@ regresion_model:
 metrics:
   type: kedro_datasets.json.JSONDataset
   filepath: data/08_reporting/metrics.json
+
+# --- Datasets para Regresión Polinomial ---
+X_train_poly:
+  type: pandas.ParquetDataset
+  filepath: data/04_feature/X_train_poly.parquet
+
+X_test_poly:
+  type: pandas.ParquetDataset
+  filepath: data/04_feature/X_test_poly.parquet
+
+ridge_poly_model_poly:
+  type: pickle.PickleDataset
+  filepath: data/06_models/ridge_poly_model_poly.pkl
+
+metrics_ridge_poly:
+  type: json.JSONDataset
+  filepath: data/08_reporting/metrics_ridge_poly.json
 
 # --- Datasets para Clasificación ---
 data_with_target:

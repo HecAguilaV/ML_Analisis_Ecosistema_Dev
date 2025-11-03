@@ -29,3 +29,14 @@ COPY . /opt/airflow/kedro_project
 ENV KEDRO_PROJECT_PATH=/opt/airflow/kedro_project
 
 # Puedes añadir más configuraciones si es necesario
+
+# Instalar Jupyter y Kedro-Viz (ya están en requirements.txt, pero aseguramos instalación y acceso directo)
+RUN pip install --no-cache-dir jupyterlab notebook kedro-viz
+
+# Exponer puertos para Jupyter y Kedro-Viz
+EXPOSE 8888
+EXPOSE 4141
+
+# Comando de ayuda para lanzar JupyterLab o Kedro-Viz manualmente:
+# Para JupyterLab: jupyter lab --ip=0.0.0.0 --port=8888 --allow-root --no-browser
+# Para Kedro-Viz: kedro viz --host 0.0.0.0 --port 4141

@@ -1,7 +1,6 @@
 from airflow import DAG
-from airflow.providers.standard.operators.bash import BashOperator
+from airflow.operators.bash import BashOperator
 from datetime import datetime
-import os
 
 # Define la ruta base de tu proyecto Kedro
 # Asegúrate de que esta ruta sea la correcta en tu entorno
@@ -29,6 +28,13 @@ with DAG(
         dag=dag,
     )
 
+    # Tarea para ejecutar el pipeline de regresión polinomial
+    run_regression_poly = BashOperator(
+        task_id="run_regression_polinomial_pipeline",
+        bash_command=f"cd {KEDRO_PROJECT_PATH} && kedro run --pipeline=regresion_polinomial",
+        dag=dag,
+    )
+
     # Tarea para ejecutar el pipeline de clasificación
     run_classification = BashOperator(
         task_id="run_classification_pipeline",
@@ -38,4 +44,4 @@ with DAG(
 
     # Definir las dependencias de las tareas:
     # El procesamiento debe terminar antes de que los modelos de regresión y clasificación puedan ejecutarse.
-    run_processing >> [run_regression, run_classification]
+    run_processing >> [run_regression, run_regression_poly, run_classification]

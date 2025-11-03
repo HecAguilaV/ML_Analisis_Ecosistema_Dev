@@ -189,6 +189,8 @@ services:
         condition: service_healthy
       airflow-init:
         condition: service_completed_successfully
+    ports:
+      - "8888:8888"
 
   airflow-triggerer:
     <<: *airflow-common
@@ -328,6 +330,17 @@ services:
       timeout: 10s
       retries: 5
       start_period: 30s
+    restart: always
+    depends_on:
+      <<: *airflow-common-depends-on
+      airflow-init:
+        condition: service_completed_successfully
+
+  kedro-viz:
+    <<: *airflow-common
+    command: bash -c "cd /opt/airflow/kedro_project && kedro viz --host=0.0.0.0 --port=4141 --no-browser"
+    ports:
+      - "4141:4141"
     restart: always
     depends_on:
       <<: *airflow-common-depends-on

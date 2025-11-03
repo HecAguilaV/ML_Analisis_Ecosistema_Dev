@@ -1,4 +1,3 @@
-
 """
 Pipeline para el entrenamiento y evaluación de modelos de regresión.
 """
@@ -10,8 +9,8 @@ from .nodes import (
     report_and_select_best_model,
 )
 
+
 def create_pipeline(**kwargs) -> Pipeline:
-    
     # Parámetros para todo el pipeline de regresión
     regression_params = "params:regression_pipeline"
 
@@ -37,39 +36,39 @@ def create_pipeline(**kwargs) -> Pipeline:
         name="split_data_node",
     )
 
-    # 2. Nodos de entrenamiento para cada modelo
+    # 2. Nodos de entrenamiento para cada modelo (ahora usan X_train y X_test directamente)
     training_nodes = []
     for model_name in model_names:
         training_nodes.append(
             node(
                 func=train_model_with_grid_search,
                 inputs=[
-                    "X_train",
+                    "X_train",  # Usa X_train directamente
                     "y_train",
-                    f"params:regression_pipeline.models.{model_name}.model_name", # Pasamos el nombre del modelo
+                    f"params:regression_pipeline.models.{model_name}.model_name",
                     regression_params,
                 ],
-                outputs=f"{model_name}_model", # Salida única para el modelo entrenado
+                outputs=f"{model_name}_model",
                 name=f"train_{model_name}_node",
             )
         )
 
-    # 3. Nodo para evaluar, reportar y seleccionar el mejor modelo
-    # Se crea un diccionario plano de inputs para el nodo final
+    # 3. Nodo para evaluar, reportar y seleccionar el mejor modelo (ahora usa X_test directamente)
     report_inputs = {f"{name}_model": f"{name}_model" for name in model_names}
-    report_inputs["X_test"] = "X_test"
+    report_inputs["X_test"] = "X_test"  # Usa X_test directamente
     report_inputs["y_test"] = "y_test"
 
     report_and_select_node = node(
         func=report_and_select_best_model,
         inputs=report_inputs,
         outputs={
-            "best_regression_model": "regresion_model", # Coincide con catalog.yml
-            "regression_metrics_report": "metrics", # Coincide con catalog.yml
+            "best_regression_model": "regresion_model",
+            "regression_metrics_report": "metrics",
         },
         name="report_and_select_best_model_node",
     )
 
+    # Solo pipeline de regresión normal (sin nodos polinomiales)
     return pipeline(
         [
             split_data_node,
@@ -77,4 +76,3 @@ def create_pipeline(**kwargs) -> Pipeline:
             report_and_select_node,
         ]
     )
-

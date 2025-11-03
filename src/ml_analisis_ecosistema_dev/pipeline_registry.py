@@ -22,10 +22,20 @@ def register_pipelines() -> dict[str, Pipeline]:
     processing_pipeline = dp_pipeline()
     reg_pipeline = regresion_pipeline()
     clasif_pipeline = clasificacion_pipeline()
+    # Importar aquí para evitar dependencias circulares
+    from ml_analisis_ecosistema_dev.pipelines.regresion_polinomial.pipeline import (
+        create_pipeline as reg_poli_pipeline,
+    )
+
+    reg_poli = reg_poli_pipeline()
+
+    # Pipeline completo: ejecuta todo en orden
+    pipeline_completo = processing_pipeline + reg_pipeline + clasif_pipeline + reg_poli
 
     return {
-        "__default__": processing_pipeline,
+        "__default__": pipeline_completo,  # Ahora ejecuta TODO
         "procesamiento_de_datos": processing_pipeline,
         "regresion": reg_pipeline,
         "clasificacion": clasif_pipeline,
+        "regresion_polinomial": reg_poli,
     }

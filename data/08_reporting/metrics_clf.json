@@ -1,0 +1,30 @@
+{
+  "LogisticRegression_classifier": {
+    "accuracy": 0.8390265196987886,
+    "f1_score": 0.7280103263876083,
+    "precision": 0.7586471944657955,
+    "recall": 0.6997518610421837,
+    "roc_auc": 0.8973848655693195
+  },
+  "RandomForestClassifier_classifier": {
+    "accuracy": 0.9252428244024883,
+    "f1_score": 0.8723681758896963,
+    "precision": 0.9194815396700707,
+    "recall": 0.8298475717830557,
+    "roc_auc": 0.9791738002285199
+  },
+  "XGBClassifier_classifier": {
+    "accuracy": 0.9691149186947506,
+    "f1_score": 0.9477570611039321,
+    "precision": 0.9888289676425269,
+    "recall": 0.9099610067352003,
+    "roc_auc": 0.9910230586902238
+  },
+  "LGBMClassifier_classifier": {
+    "accuracy": 0.9849394303175816,
+    "f1_score": 0.9751351351351352,
+    "precision": 0.991572004397215,
+    "recall": 0.9592343140730237,
+    "roc_auc": 0.9977488966105562
+  }
+}

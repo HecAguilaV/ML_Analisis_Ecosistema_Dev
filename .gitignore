@@ -12,7 +12,18 @@ conf/**/*credentials*
 logs/
 
 # Ignore the CONTENTS of the data folder, but allow DVC and gitkeep files
-data/
+# Ignorar datos RAW y temporales, pero MANTENER outputs procesados
+data/01_raw/**
+data/02_intermediate/**
+data/03_primary/**
+data/04_feature/**
+data/05_model_input/**
+
+# MANTENER estos (son importantes para la defensa):
+# data/06_models/**       - Modelos entrenados
+# data/07_model_output/** - Métricas y resultados
+# data/08_reporting/**    - Reportes generados
+
 !data/**/*.dvc
 !data/**/.gitkeep
 
