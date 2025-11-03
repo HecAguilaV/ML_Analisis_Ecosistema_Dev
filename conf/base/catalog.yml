@@ -91,9 +91,9 @@ X_test_poly:
   type: pandas.ParquetDataset
   filepath: data/04_feature/X_test_poly.parquet
 
-ridge_poly_model_poly:
+ridge_poly_model:
   type: pickle.PickleDataset
-  filepath: data/06_models/ridge_poly_model_poly.pkl
+  filepath: data/06_models/ridge_poly_model.pkl
 
 metrics_ridge_poly:
   type: json.JSONDataset
