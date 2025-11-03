@@ -21,3 +21,16 @@ __pycache__/
 *.egg-info/
 .env
 .env.*
+
+# Archivos temporales de Airflow
+[airflow-*
+[auth]
+[internal]
+CACHED
+CANCELED
+ERROR
+main
+
+# Ruff (Code Formatter)
+.ruff_cache/
+ruff.toml

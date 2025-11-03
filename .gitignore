@@ -187,5 +187,10 @@ ERROR
 main
 
 ##########################
+# AIRFLOW CONFIG (Contiene Fernet key)
+config/
+!config/.gitkeep
+
+##########################
 # RUFF (Code Formatter)
 .ruff_cache/

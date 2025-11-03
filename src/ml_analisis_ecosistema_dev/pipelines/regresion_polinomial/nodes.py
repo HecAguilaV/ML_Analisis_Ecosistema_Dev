@@ -3,12 +3,13 @@ This is a boilerplate pipeline 'regresion_polinomial'
 generated using Kedro 0.19.12
 """
 
-import pandas as pd
-from sklearn.preprocessing import PolynomialFeatures
 import logging
+from typing import Any
+
 import numpy as np
-from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
-from typing import Any, Dict
+import pandas as pd
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+from sklearn.preprocessing import PolynomialFeatures
 
 logger = logging.getLogger(__name__)
 
@@ -55,7 +56,7 @@ def create_polynomial_features(
 
 def evaluate_poly_model(
     model: Any, X_test: pd.DataFrame, y_test: pd.Series
-) -> Dict[str, float]:
+) -> dict[str, float]:
     """
     Evaluates a single regression model and returns its metrics.
 

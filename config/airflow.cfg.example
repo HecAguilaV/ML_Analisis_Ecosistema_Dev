@@ -1,0 +1,20 @@
+# ================================================================================
+# AIRFLOW CONFIGURATION EXAMPLE
+# ================================================================================
+# Este es un archivo de ejemplo. Para usarlo:
+# 1. Copia este archivo: cp config/airflow.cfg.example config/airflow.cfg
+# 2. Genera una nueva Fernet key:
+#    python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"
+# 3. Reemplaza GENERATE_YOUR_OWN_FERNET_KEY con la key generada
+# ================================================================================
+
+[core]
+# Fernet key para encriptar passwords en la base de datos
+# IMPORTANTE: Genera tu propia key, NO uses este ejemplo
+fernet_key = GENERATE_YOUR_OWN_FERNET_KEY
+
+# Resto de configuración de Airflow
+# (Agregar otras configuraciones necesarias aquí)
+
+
+

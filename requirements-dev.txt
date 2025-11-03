@@ -1,0 +1,22 @@
+# ============================================
+# DEPENDENCIAS DE DESARROLLO
+# Solo para desarrollo local, NO para Docker
+# ============================================
+
+# Code Formatting & Linting
+ruff>=0.14.0
+
+# Jupyter para notebooks
+jupyter>=1.0.0
+ipython>=8.0.0
+
+# Testing (si usas tests)
+pytest>=7.0.0
+pytest-cov>=4.0.0
+
+# Kedro Viz (visualización - no necesario en producción)
+kedro-viz>=9.0.0
+
+# Documentation (si generas docs)
+# sphinx>=4.0.0
+# sphinx-rtd-theme>=1.0.0

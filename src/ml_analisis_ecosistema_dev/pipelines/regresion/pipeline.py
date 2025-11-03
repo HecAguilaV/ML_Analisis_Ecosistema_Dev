@@ -3,10 +3,11 @@ Pipeline para el entrenamiento y evaluación de modelos de regresión.
 """
 
 from kedro.pipeline import Pipeline, node, pipeline
+
 from .nodes import (
+    report_and_select_best_model,
     split_data,
     train_model_with_grid_search,
-    report_and_select_best_model,
 )
 
 
@@ -27,12 +28,12 @@ def create_pipeline(**kwargs) -> Pipeline:
     split_data_node = node(
         func=split_data,
         inputs=["datos_para_modelado", regression_params],
-        outputs=dict(
-            X_train="X_train",
-            X_test="X_test",
-            y_train="y_train",
-            y_test="y_test",
-        ),
+        outputs={
+            "X_train": "X_train",
+            "X_test": "X_test",
+            "y_train": "y_train",
+            "y_test": "y_test",
+        },
         name="split_data_node",
     )
 
