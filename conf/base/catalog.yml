@@ -7,6 +7,13 @@ datos_crudos_so_2023:
   load_args:
     encoding: 'utf-8-sig'
 
+# --- Stack Overflow 2025 ---
+datos_crudos_so_2025:
+  type: pandas.CSVDataset
+  filepath: data/01_raw/stackoverflow_2025/survey_results_public.csv
+  load_args:
+    encoding: 'utf-8-sig'
+
 # --- JetBrains 2025 ---
 datos_crudos_jb_2025_external:
   type: pandas.CSVDataset
@@ -22,6 +29,9 @@ datos_crudos_jb_2025_narrow:
     encoding: 'utf-8-sig'
 
 # --- Datasets Intermedios (En Memoria) ---
+datos_combinados_so_2023_2025:
+  type: kedro.io.MemoryDataset
+
 datos_intermedios_so_2023:
   type: kedro.io.MemoryDataset
 
@@ -126,3 +136,36 @@ metrics_clf:
 classification_confusion_matrices:
   type: kedro_datasets.json.JSONDataset
   filepath: data/08_reporting/classification_confusion_matrices.json
+
+# --- Pipeline de Análisis Chile - FASE 1 (Comparativo) ---
+# Datasets para análisis comparativo Chile vs Global usando modelos entrenados
+
+# 1. Datos raw de Chile (cargados desde fuentes)
+analisis_chile.chile_datos_raw:
+  type: kedro.io.MemoryDataset
+
+# 2. Datos de Chile procesados con pipeline global
+analisis_chile.chile_datos_procesados:
+  type: kedro.io.MemoryDataset
+
+# 3. Modelos entrenados (cargados desde regresión y clasificación)
+analisis_chile.modelos_cargados:
+  type: kedro.io.MemoryDataset
+
+# 4. Predicciones para desarrolladores chilenos
+analisis_chile.chile_predicciones:
+  type: pandas.ParquetDataset
+  filepath: data/07_model_output/chile_predicciones.parquet
+
+# 5. Reporte comparativo Chile vs Global (JSON completo)
+analisis_chile.chile_reporte_comparativo:
+  type: kedro_datasets.json.JSONDataset
+  filepath: data/08_reporting/chile_reporte_comparativo.json
+
+# 6. Tabla comparativa (resumen ejecutivo)
+analisis_chile.chile_tabla_comparativa:
+  type: pandas.CSVDataset
+  filepath: data/08_reporting/chile_tabla_comparativa.csv
+  save_args:
+    index: false
+    encoding: utf-8-sig

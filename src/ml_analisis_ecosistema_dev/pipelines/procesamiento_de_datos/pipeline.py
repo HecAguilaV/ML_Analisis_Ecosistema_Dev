@@ -7,6 +7,7 @@ from kedro.pipeline import Pipeline, node
 from .nodes import (
     analizar_y_limpiar_nulos,
     cargar_datos,
+    combinar_stack_overflow_2023_2025,
     eliminar_filas_sin_salario,
     filtrar_outliers_salario,
     preprocesamiento_final_con_allowlist,  # Importar la nueva función final
@@ -36,9 +37,18 @@ def create_pipeline(**kwargs) -> Pipeline:
                 name="cargar_datos_crudos",
             ),
             node(
+                func=combinar_stack_overflow_2023_2025,
+                inputs=[
+                    "datos_crudos_so_2023",
+                    "datos_crudos_so_2025",
+                ],
+                outputs="datos_combinados_so_2023_2025",
+                name="combinar_stack_overflow_datasets",
+            ),
+            node(
                 func=analizar_y_limpiar_nulos,
                 inputs=[
-                    "datos_intermedios_so_2023",
+                    "datos_combinados_so_2023_2025",
                     "datos_intermedios_jb_external",
                     "datos_intermedios_jb_narrow",
                 ],

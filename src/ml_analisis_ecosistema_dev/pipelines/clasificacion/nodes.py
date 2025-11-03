@@ -42,6 +42,12 @@ def create_target_variable(data: pd.DataFrame, params: dict[str, Any]) -> pd.Dat
 def split_data(data: pd.DataFrame, params: dict[str, Any]) -> dict[str, Any]:
     """Divide los datos en conjuntos de entrenamiento y prueba."""
     X = data.drop(columns=[params["target_col"]])
+    
+    # ELIMINAR ResponseId si existe (NO debe ser feature para modelo)
+    if 'ResponseId' in X.columns:
+        X = X.drop(columns=['ResponseId'])
+        logger.info("ResponseId excluido de features de entrenamiento")
+    
     y = data[params["target_col"]]
 
     X_train, X_test, y_train, y_test = train_test_split(

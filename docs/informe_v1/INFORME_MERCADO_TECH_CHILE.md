@@ -4,7 +4,35 @@
 
 ---
 
-## 📋 **RESUMEN EJECUTIVO**
+## Informe de Análisis: Mercado Tecnológico en Chile
+
+> ⚠️ **IMPORTANTE - INFORME HISTÓRICO**
+> 
+> Este documento fue generado durante la **fase exploratoria inicial del proyecto** (Octubre 2025) utilizando una **muestra limitada de 1,000 registros** del dataset Stack Overflow 2023.
+> 
+> **Limitaciones:**
+> - **Datos**: Solo Stack Overflow 2023 (muestra reducida de 1,000 filas del total de 90,000)
+> - **Scope**: Análisis superficial sin feature engineering completo
+> - **Metodología**: Exploración inicial, no validación científica rigurosa
+> - **Cobertura**: Dataset único, sin datos de JetBrains ni Stack Overflow 2025
+> 
+> **Para el análisis definitivo y completo, consultar:**
+> 
+> 📓 **Notebook principal**: [`notebooks/02_analisis_de_resultados.ipynb`](../../notebooks/02_analisis_de_resultados.ipynb)
+> 
+> **Análisis actualizado incluye:**
+> - ✅ Datasets completos (Stack Overflow 2023 + 2025 + JetBrains 2025)
+> - ✅ 10 modelos ML con validación cruzada (k≥5)
+> - ✅ Análisis comparativo 2023→2025 (impacto de IA en el mercado)
+> - ✅ Segmentación del mercado chileno vs LATAM vs Global
+> - ✅ Metodología CRISP-DM completa
+> - ✅ Feature engineering profesional y reproducible
+> 
+> 📄 **Informes técnicos**: `docs/informe_final/` (en desarrollo)
+> 
+> ---
+
+## Resumen Ejecutivo
 
 El presente informe analiza el mercado tecnológico chileno basado en un estudio de **300 desarrolladores** mediante técnicas de Machine Learning (algoritmo KNN). Los resultados muestran un mercado tech dinámico con características particulares que lo diferencian del panorama global.
 

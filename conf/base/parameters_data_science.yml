@@ -11,6 +11,11 @@ preprocessing_params:
     - CodingActivities
     - LearnCode
     - LearnCodeOnline
+    - ToolsTechHaveWorkedWith          # ← DOCKER, KUBERNETES, TERRAFORM, etc.
+    - PlatformHaveWorkedWith           # ← AWS, AZURE, GOOGLE CLOUD, etc.
+    - DatabaseHaveWorkedWith           # ← PostgreSQL, MongoDB, etc.
+    - LanguageHaveWorkedWith           # ← Python, JavaScript, etc.
+    - WebframeHaveWorkedWith           # ← React, Django, Node.js, etc.
 
   standard_categorical_cols:
     - MainBranch
@@ -23,6 +28,7 @@ preprocessing_params:
     - PurchaseInfluence
     - TechList
     - Country
+    - Year                             # ← NUEVO: Para diferenciar 2023 vs 2025
 
 # ==============================================================================
 # CONFIGURACIÓN DEL PIPELINE DE REGRESIÓN

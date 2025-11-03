@@ -2,6 +2,18 @@
 
 **Motor de backend MLOps para una futura herramienta de inteligencia de mercado, diseñada para ayudar a los desarrolladores a tomar decisiones estratégicas sobre su carrera profesional.**
 
+> 🌐 **Objetivo Final**: Plataforma web inteligente para guiar decisiones de carrera de desarrolladores chilenos.  
+> 📍 **Estado Actual**: Backend ML completo (Fase 1 ✅) | Análisis e informes (Fase 2 🔄)  
+> 🗺️ **Ver**: [ROADMAP.md](./ROADMAP.md) para visión completa del proyecto
+
+## 🔗 Enlaces Rápidos
+
+- 📊 [Análisis de Resultados](./notebooks/02_analisis_de_resultados.ipynb) - Notebook principal con visualizaciones
+- 🗺️ [Roadmap Completo](./ROADMAP.md) - Visión, arquitectura y fases del proyecto
+- 📄 [Informe Técnico Docker](./docs/referencias/docker_SUMMARY.md) - MLOps best practices
+- 📚 [Glosario MLOps](./docs/GLOSARIO.md) - Terminología y conceptos clave
+- 📜 [Licencias de Datos](./docs/DATA_LICENSES.md) - Atribución y términos de uso
+
 ---
 
 ## 1. Visión y Misión
@@ -18,11 +30,41 @@ Este proyecto construye el **cerebro y la sala de máquinas (backend)** que alim
 
 ## 2. Arquitectura y Stack Tecnológico
 
-- **Pipeline:** Kedro
+- **Pipeline:** Kedro 0.19.15
 - **Contenerización:** Docker / Docker Compose
 - **Orquestación:** Apache Airflow
-- **Versionado de Datos/Modelos:** DVC
+- **Versionado de Datos/Modelos:** DVC + Google Cloud Storage
 - **Lenguaje:** Python 3.10+
+- **ML**: Scikit-learn, XGBoost, LightGBM
+- **API (futuro)**: FastAPI
+- **Frontend (futuro)**: Streamlit
+
+---
+
+## 📊 Datasets del Proyecto
+
+### Stack Overflow Developer Survey
+
+- **2023**: 90,000 respuestas globales (pre-era IA masiva)
+- **2025**: Dataset completo (era IA - GitHub Copilot, ChatGPT)
+- **Diferencias clave**: Adopción de IA coding assistants (0%→60%), nuevas skills emergentes
+
+### JetBrains Developer Ecosystem 2025
+
+- Datos complementarios sobre herramientas y workflows
+- Énfasis en IDEs, productividad y tecnologías modernas
+- Enfoque en desarrolladores profesionales
+
+### Análisis Comparativo 2023→2025
+
+El proyecto incluye análisis temporal para identificar:
+
+- 🤖 Impacto de IA generativa en salarios y roles
+- 📈 Nuevas skills emergentes (Prompt Engineering, LLM integration)
+- 🛠️ Cambios en tecnologías más demandadas
+- 🌎 Evolución del mercado chileno y latinoamericano
+
+📁 **Ubicación**: `data/01_raw/stackoverflow_2023/`, `data/01_raw/stackoverflow_2025/`, `data/01_raw/jetbrains_2025/`
 
 ---
 

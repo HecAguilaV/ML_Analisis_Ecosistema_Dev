@@ -11,6 +11,14 @@ conf/**/*credentials*
 # ignore everything in the following folders
 logs/
 
+# Ignore scripts temporales y de debug
+scripts/temp/
+scripts/debug/*.py
+!scripts/debug/README.md
+
+# Ignore documentación histórica
+docs/historico/
+
 # Ignore the CONTENTS of the data folder, but allow DVC and gitkeep files
 # DVC gestiona todos los artefactos ML (modelos, métricas, datos procesados)
 data/01_raw/**
