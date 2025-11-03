@@ -1,26 +1,27 @@
-
 """
 Pipeline para el entrenamiento y evaluación de modelos de clasificación.
 """
 
 from kedro.pipeline import Pipeline, node, pipeline
+
 from .nodes import (
     create_target_variable,
+    report_and_select_best_classifier,
     split_data,
     train_classifier_with_grid_search,
-    report_and_select_best_classifier,
 )
 
+
 def create_pipeline(**kwargs) -> Pipeline:
-    
     classification_params = "params:classification_pipeline"
-    
+
     model_names = [
         "LogisticRegression",
         # "SVC", # Eliminado permanentemente por alto costo computacional
         "RandomForestClassifier",
         "XGBClassifier",
         "LGBMClassifier",
+        "GradientBoostingClassifier",
     ]
 
     create_target_node = node(
@@ -33,12 +34,12 @@ def create_pipeline(**kwargs) -> Pipeline:
     split_data_node = node(
         func=split_data,
         inputs=["data_with_target", classification_params],
-        outputs=dict(
-            X_train="X_train_clf",
-            X_test="X_test_clf",
-            y_train="y_train_clf",
-            y_test="y_test_clf",
-        ),
+        outputs={
+            "X_train": "X_train_clf",
+            "X_test": "X_test_clf",
+            "y_train": "y_train_clf",
+            "y_test": "y_test_clf",
+        },
         name="split_data_clf_node",
     )
 
@@ -67,9 +68,9 @@ def create_pipeline(**kwargs) -> Pipeline:
         func=report_and_select_best_classifier,
         inputs=report_inputs,
         outputs={
-            "best_classification_model": "clasificacion_model", # Coincide con catalog.yml
-            "classification_metrics_report": "metrics_clf", # Coincide con catalog.yml
-            "classification_confusion_matrices": "classification_confusion_matrices", # Coincide con catalog.yml
+            "best_classification_model": "clasificacion_model",  # Coincide con catalog.yml
+            "classification_metrics_report": "metrics_clf",  # Coincide con catalog.yml
+            "classification_confusion_matrices": "classification_confusion_matrices",  # Coincide con catalog.yml
         },
         name="report_and_select_best_classifier_node",
     )
