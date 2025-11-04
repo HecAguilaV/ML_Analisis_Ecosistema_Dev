@@ -35,7 +35,7 @@ chmod +x scripts/start_production.sh
 ```
 
 **Acceso a servicios en Docker**:
-- Airflow UI: http://localhost:8080 (usuario: `airflow` / contraseña: `airflow`)
+- Airflow UI: http://localhost:8081 (usuario: `airflow` / contraseña: `airflow`)
 - Kedro Viz: http://localhost:4141
 
 ---
@@ -197,7 +197,7 @@ scripts\start_production.bat  # Windows
 ./scripts/start_production.sh  # Mac/Linux
 ```
 
-**Acceso a Airflow UI**: http://localhost:8080  
+**Acceso a Airflow UI**: http://localhost:8081  
 **Usuario**: `airflow`  
 **Contraseña**: `airflow`
 
@@ -275,13 +275,6 @@ Después de ejecutar `run_project.bat` o `run_project.sh`:
 - [ ] Dataset LATAM (Chile, Argentina, Colombia)
 - [ ] Serie temporal 2020-2025
 
-### Deployment
-- [ ] API REST con FastAPI
-- [ ] Dashboard interactivo con Streamlit
-- [ ] AWS Lambda deployment
-
-Detalles completos en [Sección 12 del Informe Técnico](./docs/informe_final/02_INFORME_TECNICO_COMPLETO.md#12-trabajo-futuro)
-
 ---
 
 ## Autor
@@ -301,7 +294,4 @@ GitHub: [@HecAguilaV](https://github.com/HecAguilaV)
 
 ---
 
-© 2025 - Un Soñador con Poca RAM
-
-
-
+>**© 2025 - Un Soñador con Poca RAM**

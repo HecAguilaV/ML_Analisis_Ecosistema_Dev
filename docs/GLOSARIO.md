@@ -490,3 +490,5 @@ x₁, x₂ → x₁, x₂, x₁², x₁x₂, x₂²
 
 **Última actualización:** Noviembre 2025  
 **Versión del proyecto:** 1.0
+
+>**© 2025 - Un Soñador con Poca RAM**

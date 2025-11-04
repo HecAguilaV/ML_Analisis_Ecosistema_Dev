@@ -354,4 +354,4 @@ El presente informe analiza el mercado tecnológico chileno basado en un estudio
 
 *"El mercado tech chileno está en un punto de inflexión histórico. Las decisiones tomadas en los próximos 2-3 años determinarán si Chile se posiciona como líder regional en la era de la IA o se queda rezagado en tecnologías del pasado."*
 
->**Dearrollado por Un Soñador con Poca RAM**
+>**© 2025 - Un Soñador con Poca RAM**

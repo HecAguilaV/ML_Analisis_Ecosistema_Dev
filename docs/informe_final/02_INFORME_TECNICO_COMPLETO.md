@@ -2134,161 +2134,33 @@ jobs:
 - ✅ **Recomendaciones política pública** (educación tech)
 
 ---
+### 12 Proyección para combinar conocimientos académicos conjuntamente
 
-## 12. Trabajo Futuro
+#### 12.1 **Dashboard Interactivo**
 
-### 12.1 Mejoras de Modelos
-
-#### **Corto Plazo (Q1-Q2 2026)**
-
-1. **Optimización de Hiperparámetros**:
-   - [ ] GridSearchCV exhaustivo en LightGBM (200+ combinaciones)
-   - [ ] Bayesian Optimization para XGBoost (Optuna)
-   - [ ] AutoML comparison (H2O, AutoGluon)
-
-2. **Feature Engineering Avanzado**:
-   - [ ] **Embeddings de tecnologías**: Word2Vec sobre "tech stacks"
-   - [ ] **Interacciones explícitas**: lang_Rust × tools_AWS
-   - [ ] **Features temporales**: Años desde release de tecnología
-
-3. **Ensemble Stacking**:
-   ```python
-   # Meta-model combinando mejores modelos
-   base_models = [LightGBM, XGBoost, RandomForest]
-   meta_model = LinearRegression()  # o Neural Network
-   # Esperado: R² > 0.92
-   ```
-
-#### **Mediano Plazo (Q3-Q4 2026)**
-
-4. **Deep Learning**:
-   - [ ] **Neural Network tabular**: TabNet, FT-Transformer
-   - [ ] **Arquitectura propuesta**:
-     ```
-     Input (556 features)
-           ↓
-     Dense(256) + BatchNorm + Dropout(0.3)
-           ↓
-     Dense(128) + BatchNorm + Dropout(0.2)
-           ↓
-     Dense(64) + BatchNorm
-           ↓
-     Output (1 - salario)
-     ```
-   - [ ] Target: R² > 0.93
-
-5. **Modelos por Segmento**:
-   - [ ] Modelo Junior (0-3 años): Optimizado para rango $30K-$60K
-   - [ ] Modelo Mid-Level (3-8 años): Rango $60K-$100K
-   - [ ] Modelo Senior+ (8+ años): Rango $100K-$200K
-   - Beneficio: RMSE -30% por especialización
-
-### 12.2 Expansión de Datos
-
-#### **Integración JetBrains 2025**
-
-6. **Análisis Temporal 2023 vs 2025**:
-   - [ ] Adopción herramientas IA (GitHub Copilot, ChatGPT)
-   - [ ] Cambios en lenguajes dominantes
-   - [ ] Impacto IA en salarios
-
-7. **Nuevas Variables JetBrains**:
-   - [ ] Horas código/semana
-   - [ ] Uso de IA en desarrollo
-   - [ ] Satisfacción con tecnologías
-
-#### **Expansión Geográfica**
-
-8. **Dataset LATAM**:
-   - [ ] Partnerships con empresas locales (Chile, Argentina, Colombia)
-   - [ ] Target: >1,000 registros por país
-   - [ ] Modelos específicos por mercado
-
-9. **Serie Temporal**:
-   - [ ] Stack Overflow 2020-2025 (5 años)
-   - [ ] Análisis tendencias: ARIMA, Prophet
-   - [ ] Predicción 2026: ¿Qué tecnologías crecerán?
-
-### 12.3 Deployment en Producción
-
-#### **API REST**
-
-10. **FastAPI Service**:
-    ```python
-    # Endpoints
-    POST /api/v1/predict/salary
-    {
-      "years_experience": 5,
-      "languages": ["Python", "TypeScript"],
-      "tools": ["Docker", "AWS"],
-      "country": "Chile"
-    }
-    →
-    {
-      "predicted_salary": 68234,
-      "confidence_interval": [55000, 81000],
-      "model": "LightGBM",
-      "version": "2.0"
-    }
-    ```
-
-11. **Model Serving**:
-    - [ ] Deploy en AWS Lambda (serverless)
-    - [ ] Cache con Redis (predicciones frecuentes)
-    - [ ] Rate limiting (1000 req/day gratis, luego $0.01/req)
-
-#### **Dashboard Interactivo**
-
-12. **Streamlit App**:
+1. **Streamlit App**:
     - [ ] Comparador salarial interactivo
     - [ ] Simulador de carrera (¿Si aprendo Rust?)
     - [ ] Análisis de brecha Chile vs Global
     - [ ] Visualizaciones dinámicas por país
 
-13. **Features Dashboard**:
+2. **Features Dashboard**:
     - [ ] **Salary Calculator**: Input skills → Output salary
     - [ ] **Tech Roadmap**: ¿Qué aprender para maximizar salario?
     - [ ] **Market Trends**: Tecnologías crecientes vs declinantes
     - [ ] **Country Comparison**: Chile vs Argentina vs Colombia
 
-### 12.4 Investigación Académica
 
-#### **Papers Planificados**
-
-14. **Paper 1**: "Predicting Developer Salaries Using Machine Learning: A Comparative Study of 10 Algorithms"
-    - Target: NeurIPS Workshop on ML for Industry
-    - Deadline: Mayo 2026
-
-15. **Paper 2**: "Technology Skills Gap in Latin America: A Data-Driven Analysis of Chile's Software Market"
-    - Target: IEEE Latin America Transactions
-    - Deadline: Agosto 2026
-
-16. **Paper 3**: "Temporal Evolution of Programming Language Popularity and Salary Impact (2020-2025)"
-    - Target: ACM Conference on Knowledge Discovery and Data Mining (KDD)
-    - Deadline: Febrero 2027
-
-#### **Colaboraciones**
-
-17. **Universidad**:
-    - [ ] Colaboración con Dept. Ciencias de la Computación DuocUC
-    - [ ] Dataset para cursos de ML (con anonimización)
-    - [ ] Tesistas: Expansión a otros países LATAM
-
-18. **Industria**:
-    - [ ] Partnership con empresas tech (BCI, Cornershop, NotCo)
-    - [ ] Validación modelos con datos internos (anonimizados)
-    - [ ] Benchmark salarial industria
-
-### 12.5 Extensiones
+### 12.2 Extensiones
 
 #### **Análisis Cualitativo**
 
-19. **Entrevistas en Profundidad**:
+1. **Entrevistas en Profundidad**:
     - [ ] 50 desarrolladores chilenos (todos niveles)
     - [ ] Preguntas: ¿Cómo deciden qué tecnologías aprender?
     - [ ] Análisis: NLP sobre transcripciones
 
-20. **Survey Complementario**:
+2. **Survey Complementario**:
     - [ ] 500+ desarrolladores chilenos
     - [ ] Variables adicionales:
       - Soft skills percibidas
@@ -2298,12 +2170,12 @@ jobs:
 
 #### **Causalidad**
 
-21. **Experimento Natural**:
+1. **Experimento Natural**:
     - [ ] Identificar desarrolladores que aprendieron Rust 2023-2025
     - [ ] Análisis Difference-in-Differences (DiD)
     - [ ] Pregunta: ¿Aprender Rust causa aumento salarial?
 
-22. **Propensity Score Matching**:
+2. **Propensity Score Matching**:
     - [ ] Matching developers con/sin skills cloud
     - [ ] Control: años experiencia, educación, país
     - [ ] Efecto causal: Skills cloud → Salario
@@ -2360,56 +2232,41 @@ jobs:
    - Docker Inc. (2023). _Docker Development Best Practices_.
    - URL: https://docs.docker.com/develop/dev-best-practices/
 
-### 13.4 Literatura Académica
 
-10. **Salary Prediction Studies**
-    - Zhang et al. (2020). _A Machine Learning Approach to Predicting Software Developer Salaries_. IEEE TSE.
-    - Li et al. (2021). _Feature Importance in Predicting IT Professional Salaries: A Cross-Country Analysis_. ICIS.
+### 13.4 Recursos Adicionales
 
-11. **Technology Adoption**
-    - Rogers, E. M. (2003). _Diffusion of Innovations_ (5th ed.). Free Press.
-    - Venkatesh et al. (2003). _User Acceptance of Information Technology: Toward a Unified View_. MIS Quarterly, 27(3), 425-478.
-
-12. **Skills Gap Analysis**
-    - Hoffman & Burks (2020). _Skills Gap in the IT Industry: Evidence from Job Postings_. Labour Economics.
-    - World Economic Forum (2023). _The Future of Jobs Report 2023_.
-
-### 13.5 Recursos Adicionales
-
-13. **Kedro Tutorials Seguidos**
+1. **Kedro Tutorials Seguidos**
     - Official Kedro Tutorial: https://docs.kedro.org/en/stable/tutorial/spaceflights_tutorial.html
     - Real-world ML project with Kedro: https://kedro.org/blog/
 
-14. **ML Best Practices**
+2. **ML Best Practices**
     - Google. (2023). _Rules of Machine Learning: Best Practices for ML Engineering_.
     - URL: https://developers.google.com/machine-learning/guides/rules-of-ml
 
-15. **Reproducible Research**
-    - Donoho, D. (2017). _50 Years of Data Science_. Journal of Computational and Graphical Statistics.
-    - Peng, R. D. (2011). _Reproducible Research in Computational Science_. Science, 334(6060), 1226-1227.
 
-### 13.6 Herramientas
 
-16. **DVC (Data Version Control)**
+### 13.5 Herramientas
+
+1. **DVC (Data Version Control)**
     - Documentación: https://dvc.org/doc
     - GitHub: https://github.com/iterative/dvc
 
-17. **Docker**
+2. **Docker**
     - Documentación: https://docs.docker.com/
     - Whitepaper interno: `docs/referencias/docker_SUMMARY.md`
 
-18. **Jupyter**
+3. **Jupyter**
     - Project Jupyter: https://jupyter.org/
     - Notebook best practices: https://jupyter-notebook.readthedocs.io/
 
-### 13.7 Código del Proyecto
+### 13.6 Código del Proyecto
 
-19. **Repositorio GitHub**
+1. **Repositorio GitHub**
     - URL: https://github.com/HecAguilaV/ML_Analisis_Ecosistema_Dev
     - Licencia: MIT License
     - Branch principal: `main`
 
-20. **Notebooks de Análisis**
+2. **Notebooks de Análisis**
     - `02_analisis_de_resultados.ipynb`: Evaluación completa de modelos
     - `03_ecosystem_analysis.ipynb`: Análisis del panorama tecnológico
     - Ubicación: `notebooks/`
@@ -2428,20 +2285,10 @@ jobs:
 
 ---
 
-## 🏆 Agradecimientos
 
-- **Stack Overflow** por datos abiertos del Developer Survey 2023
-- **JetBrains** por datos del Developer Ecosystem Survey 2025
-- **Kedro/QuantumBlack** por framework MLOps open source
-- **Comunidad Python** por scikit-learn, pandas, matplotlib
-- **Microsoft Research** por LightGBM
-- **DMLC** por XGBoost
-- **Profesores DuocUC** por guía y feedback
 
+**FIN DEL INFORME TÉCNICO COMPLETO**
+
+> Este informe debe consolidarse con **`02_INFORME_TECNICO_COMPLETO.md` (Parte 1)** para obtener el documento completo
 ---
-
-**FIN DEL INFORME TÉCNICO COMPLETO - PARTE 2**
-
-> Este informe debe consolidarse con **`02_INFORME_TECNICO_COMPLETO.md` (Parte 1)** para obtener el documento completo de 13 secciones.
-
----
+>**© 2025 - Un Soñador con Poca RAM**
