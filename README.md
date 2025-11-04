@@ -59,38 +59,6 @@ Estos scripts automatizan todo:
 
 ---
 
-## Estructura del Proyecto
-
-```
-ML_Analisis_Ecosistema_Dev/
-├── run_project.bat          # Script automatizado Windows
-├── run_project.sh           # Script automatizado Mac/Linux
-├── notebooks/
-│   ├── 02_analisis_de_resultados.ipynb    # Evaluación de modelos
-│   └── 03_ecosystem_analysis.ipynb         # Análisis ecosistema
-├── docs/
-│   ├── informe_final/
-│   │   └── 02_INFORME_TECNICO_COMPLETO.md # Informe principal
-│   ├── DATA_LICENSES.md
-│   └── GLOSARIO.md
-├── src/analisis_lenguajes_programacion/
-│   ├── pipelines/
-│   │   ├── data_processing/      # Limpieza y feature engineering
-│   │   ├── data_science_regresion/     # 5 modelos regresión
-│   │   └── data_science_clasificacion/ # 5 modelos clasificación
-│   └── pipeline_registry.py
-├── conf/                     # Configuración Kedro
-├── data/
-│   ├── 01_raw/              # Datos originales
-│   ├── 05_model_input/      # Datos procesados
-│   ├── 06_models/           # Modelos entrenados
-│   ├── 07_model_output/     # Métricas JSON
-│   └── 08_reporting/        # Gráficos PNG
-└── tests/                   # Unit tests
-```
-
----
-
 ## Resultados del Proyecto
 
 ### Modelos de Regresión (Predicción Salarial)
