@@ -275,6 +275,7 @@ Después de ejecutar `run_project.bat` o `run_project.sh`:
 - [ ] Dataset LATAM (Chile, Argentina, Colombia)
 - [ ] Serie temporal 2020-2025
 
+### Dashboard Interactivo
 ---
 
 ## Autor
