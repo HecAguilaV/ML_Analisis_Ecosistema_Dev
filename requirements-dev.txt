@@ -1,0 +1,58 @@
+# Development dependencies (heavy). Install locally in your venv.
+
+jupyterlab
+kedro-viz
+scikit-learn
+xgboost
+lightgbm
+dvc[gcs]
+gcsfs
+pytest
+ruff
+# Development requirements: jupyter, kedro-viz, data science libs and tooling
+# This file is intended for local venvs or a separate dev container only.
+ipython>=8.10
+jupyterlab>=3.0
+notebook
+kedro[jupyter]~=1.0.0
+kedro-datasets[pandas-csvdataset,pandas-exceldataset,pandas-parquetdataset,plotly-plotlydataset,plotly-jsondataset,matplotlib-matplotlibwriter]>=3.0
+kedro-viz>=6.7.0
+scikit-learn~=1.5.1
+seaborn~=0.12.1
+
+# Heavy ML libraries (install locally or in a dedicated dev container)
+xgboost>=2.0.0
+lightgbm>=4.0.0
+
+# DVC (GCS remote) and related
+dvc[gcs]
+gcsfs
+
+# Dev tooling
+pytest>=7.0.0
+ruff>=0.0.0
+mypy>=1.0.0
+black
+
+# Keep runtime deps minimal in requirements-runtime.txt. This file is for dev use only.# ============================================
+# DEPENDENCIAS DE DESARROLLO
+# Solo para desarrollo local, NO para Docker
+# ============================================
+
+# Code Formatting & Linting
+ruff>=0.14.0
+
+# Jupyter para notebooks
+jupyter>=1.0.0
+ipython>=8.0.0
+
+# Testing (si usas tests)
+pytest>=7.0.0
+pytest-cov>=4.0.0
+
+# Kedro Viz (visualización - no necesario en producción)
+kedro-viz>=9.0.0
+
+# Documentation (si generas docs)
+# sphinx>=4.0.0
+# sphinx-rtd-theme>=1.0.0

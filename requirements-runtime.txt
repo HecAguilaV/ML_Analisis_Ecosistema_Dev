@@ -1,0 +1,7 @@
+--requirement requirements.txt
+
+# If you want a minimal explicit runtime set instead of delegating to requirements.txt,
+# replace the previous line with concrete packages, for example:
+# pandas
+# psycopg2-binary
+# sqlalchemy

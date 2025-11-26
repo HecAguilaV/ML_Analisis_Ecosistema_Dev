@@ -1,0 +1,186 @@
+"""
+Nodos del pipeline de análisis del mercado chileno.
+
+Funciones para procesar y analizar datos del mercado tecnológico en Chile,
+comparándolo con LATAM y el mercado global.
+"""
+
+import pandas as pd
+import numpy as np
+from typing import Dict, Any
+import logging
+
+logger = logging.getLogger(__name__)
+
+
+def cargar_y_preparar_datos(df_procesado: pd.DataFrame) -> pd.DataFrame:
+    """
+    Carga y prepara los datos procesados para análisis.
+    
+    Args:
+        df_procesado: DataFrame con datos ya procesados
+        
+    Returns:
+        DataFrame preparado para análisis
+    """
+    logger.info("Cargando datos procesados para análisis de Chile")
+    logger.info(f"Shape del dataset: {df_procesado.shape}")
+    
+    # Verificar que tenemos datos
+    if df_procesado.empty:
+        raise ValueError("El dataset está vacío")
+    
+    return df_procesado.copy()
+
+
+def analizar_distribucion_global(df: pd.DataFrame) -> Dict[str, Any]:
+    """
+    Analiza la distribución global de salarios y características.
+    
+    Args:
+        df: DataFrame con datos procesados
+        
+    Returns:
+        Diccionario con estadísticas globales
+    """
+    logger.info("Analizando distribución global de salarios")
+    
+    # Identificar columnas de salario
+    salary_cols = [col for col in df.columns if 'salary' in col.lower() or 'comp' in col.lower()]
+    
+    stats = {
+        'total_registros': len(df),
+        'total_columnas': len(df.columns),
+        'columnas_disponibles': list(df.columns[:20]),  # Primeras 20
+    }
+    
+    if salary_cols:
+        salary_col = salary_cols[0]
+        stats['columna_salario'] = salary_col
+        stats['mediana_global'] = float(df[salary_col].median())
+        stats['media_global'] = float(df[salary_col].mean())
+        stats['std_global'] = float(df[salary_col].std())
+        stats['min_global'] = float(df[salary_col].min())
+        stats['max_global'] = float(df[salary_col].max())
+        stats['q25'] = float(df[salary_col].quantile(0.25))
+        stats['q75'] = float(df[salary_col].quantile(0.75))
+    else:
+        logger.warning("No se encontró columna de salario en el dataset")
+        stats['columna_salario'] = None
+    
+    # Estadísticas de tipos de datos (convertir a strings para serialización JSON)
+    tipos_datos_count = df.dtypes.value_counts()
+    stats['tipos_datos'] = {str(dtype): int(count) for dtype, count in tipos_datos_count.items()}
+    
+    logger.info(f"Análisis global completado: {stats['total_registros']:,} registros")
+    
+    return stats
+
+
+def generar_reporte_preliminar(
+    df: pd.DataFrame,
+    stats_globales: Dict[str, Any]
+) -> Dict[str, Any]:
+    """
+    Genera un reporte preliminar del análisis.
+    
+    Args:
+        df: DataFrame con datos procesados
+        stats_globales: Estadísticas globales calculadas
+        
+    Returns:
+        Diccionario con reporte preliminar
+    """
+    logger.info("Generando reporte preliminar")
+    
+    reporte = {
+        'titulo': 'Análisis Preliminar del Mercado Tech',
+        'fecha_generacion': pd.Timestamp.now().strftime('%Y-%m-%d %H:%M:%S'),
+        'estadisticas_globales': stats_globales,
+        'mensaje': 'Análisis preliminar completado. Dataset procesado solo contiene features numéricas.',
+        'recomendacion': 'Para análisis geográfico detallado, usar el dataset raw con columnas de país.',
+        'proximo_paso': 'Crear notebook 04_segmentacion_mercado_chile.ipynb con datos raw'
+    }
+    
+    # Análisis de features
+    numeric_cols = df.select_dtypes(include=[np.number]).columns
+    reporte['total_features_numericas'] = len(numeric_cols)
+    reporte['sample_features'] = list(numeric_cols[:15])
+    
+    # Información sobre valores nulos
+    null_counts = df.isnull().sum()
+    reporte['columnas_con_nulos'] = int((null_counts > 0).sum())
+    reporte['porcentaje_completitud'] = float((1 - df.isnull().sum().sum() / (df.shape[0] * df.shape[1])) * 100)
+    
+    logger.info("Reporte preliminar generado exitosamente")
+    
+    return reporte
+
+
+def exportar_estadisticas_basicas(
+    df: pd.DataFrame,
+    stats_globales: Dict[str, Any]
+) -> pd.DataFrame:
+    """
+    Exporta estadísticas básicas en formato tabular.
+    
+    Args:
+        df: DataFrame con datos procesados
+        stats_globales: Estadísticas globales
+        
+    Returns:
+        DataFrame con estadísticas formateadas
+    """
+    logger.info("Exportando estadísticas básicas")
+    
+    # Crear tabla de resumen
+    estadisticas = []
+    
+    # Información general
+    estadisticas.append({
+        'Categoría': 'Dataset',
+        'Métrica': 'Total de registros',
+        'Valor': f"{stats_globales['total_registros']:,}"
+    })
+    
+    estadisticas.append({
+        'Categoría': 'Dataset',
+        'Métrica': 'Total de columnas',
+        'Valor': f"{stats_globales['total_columnas']:,}"
+    })
+    
+    # Estadísticas de salario si existen
+    if stats_globales.get('columna_salario'):
+        estadisticas.extend([
+            {
+                'Categoría': 'Salario Global',
+                'Métrica': 'Mediana',
+                'Valor': f"${stats_globales['mediana_global']:,.0f}"
+            },
+            {
+                'Categoría': 'Salario Global',
+                'Métrica': 'Media',
+                'Valor': f"${stats_globales['media_global']:,.0f}"
+            },
+            {
+                'Categoría': 'Salario Global',
+                'Métrica': 'Desviación Estándar',
+                'Valor': f"${stats_globales['std_global']:,.0f}"
+            },
+            {
+                'Categoría': 'Salario Global',
+                'Métrica': 'Rango',
+                'Valor': f"${stats_globales['min_global']:,.0f} - ${stats_globales['max_global']:,.0f}"
+            },
+            {
+                'Categoría': 'Salario Global',
+                'Métrica': 'IQR (Q25-Q75)',
+                'Valor': f"${stats_globales['q25']:,.0f} - ${stats_globales['q75']:,.0f}"
+            }
+        ])
+    
+    df_estadisticas = pd.DataFrame(estadisticas)
+    
+    logger.info(f"Tabla de estadísticas generada con {len(estadisticas)} métricas")
+    
+    return df_estadisticas

@@ -1,0 +1,171 @@
+# conf/base/catalog.yml
+
+# --- Stack Overflow 2023 ---
+datos_crudos_so_2023:
+  type: pandas.CSVDataset
+  filepath: data/01_raw/stackoverflow_2023/stack_overflow_survey_results_public.csv
+  load_args:
+    encoding: 'utf-8-sig'
+
+# --- Stack Overflow 2025 ---
+datos_crudos_so_2025:
+  type: pandas.CSVDataset
+  filepath: data/01_raw/stackoverflow_2025/survey_results_public.csv
+  load_args:
+    encoding: 'utf-8-sig'
+
+# --- JetBrains 2025 ---
+datos_crudos_jb_2025_external:
+  type: pandas.CSVDataset
+  filepath: data/01_raw/jetbrains_2025/developer_ecosystem_2025_external.csv
+  load_args:
+    encoding: 'utf-8-sig'
+
+datos_crudos_jb_2025_narrow:
+  type: pandas.CSVDataset
+  filepath: data/01_raw/jetbrains_2025/developer_ecosystem_2025_external_narrow.csv.zip
+  load_args:
+    compression: zip
+    encoding: 'utf-8-sig'
+
+# --- Datasets Intermedios (En Memoria) ---
+datos_combinados_so_2023_2025:
+  type: kedro.io.MemoryDataset
+
+datos_intermedios_so_2023:
+  type: kedro.io.MemoryDataset
+
+datos_intermedios_jb_external:
+  type: kedro.io.MemoryDataset
+
+datos_intermedios_jb_narrow:
+  type: kedro.io.MemoryDataset
+
+datos_primarios_so_2023:
+  type: kedro.io.MemoryDataset
+
+datos_primarios_jb_external:
+  type: kedro.io.MemoryDataset
+
+datos_primarios_jb_narrow:
+  type: kedro.io.MemoryDataset
+
+datos_con_salario_so_2023:
+  type: kedro.io.MemoryDataset
+
+datos_sin_outliers_so_2023:
+  type: kedro.io.MemoryDataset
+
+datos_codificados_so_2023:
+  type: kedro.io.MemoryDataset
+
+datos_features_seleccionados_so_2023:
+  type: kedro.io.MemoryDataset
+
+# --- Dataset Final para Modelado ---
+datos_para_modelado:
+  type: pandas.ParquetDataset
+  filepath: data/05_model_input/datos_para_modelado.parquet
+
+# --- Datasets para Regresión (persistidos en disco para uso en pipeline polinomial) ---
+X_train:
+  type: pandas.ParquetDataset
+  filepath: data/05_model_input/X_train.parquet
+
+X_test:
+  type: pandas.ParquetDataset
+  filepath: data/05_model_input/X_test.parquet
+
+y_train:
+  type: pickle.PickleDataset
+  filepath: data/05_model_input/y_train.pkl
+
+y_test:
+  type: pickle.PickleDataset
+  filepath: data/05_model_input/y_test.pkl
+
+regresion_model:
+  type: kedro_datasets.pickle.PickleDataset
+  filepath: data/06_models/regresion_model.pkl
+
+metrics:
+  type: kedro_datasets.json.JSONDataset
+  filepath: data/08_reporting/metrics.json
+
+# --- Datasets para Regresión Polinomial ---
+X_train_poly:
+  type: pandas.ParquetDataset
+  filepath: data/04_feature/X_train_poly.parquet
+
+X_test_poly:
+  type: pandas.ParquetDataset
+  filepath: data/04_feature/X_test_poly.parquet
+
+ridge_poly_model:
+  type: pickle.PickleDataset
+  filepath: data/06_models/ridge_poly_model.pkl
+
+metrics_ridge_poly:
+  type: json.JSONDataset
+  filepath: data/08_reporting/metrics_ridge_poly.json
+
+# --- Datasets para Clasificación ---
+data_with_target:
+  type: kedro.io.MemoryDataset
+
+X_train_clf:
+  type: kedro.io.MemoryDataset
+
+X_test_clf:
+  type: kedro.io.MemoryDataset
+
+y_train_clf:
+  type: kedro.io.MemoryDataset
+
+y_test_clf:
+  type: kedro.io.MemoryDataset
+
+clasificacion_model:
+  type: kedro_datasets.pickle.PickleDataset
+  filepath: data/06_models/clasificacion_model.pkl
+
+metrics_clf:
+  type: kedro_datasets.json.JSONDataset
+  filepath: data/08_reporting/metrics_clf.json
+
+classification_confusion_matrices:
+  type: kedro_datasets.json.JSONDataset
+  filepath: data/08_reporting/classification_confusion_matrices.json
+
+# --- Pipeline de Análisis Chile - FASE 1 (Comparativo) ---
+# Datasets para análisis comparativo Chile vs Global usando modelos entrenados
+
+# 1. Datos raw de Chile (cargados desde fuentes)
+analisis_chile.chile_datos_raw:
+  type: kedro.io.MemoryDataset
+
+# 2. Datos de Chile procesados con pipeline global
+analisis_chile.chile_datos_procesados:
+  type: kedro.io.MemoryDataset
+
+# 3. Modelos entrenados (cargados desde regresión y clasificación)
+analisis_chile.modelos_cargados:
+  type: kedro.io.MemoryDataset
+
+# 4. Predicciones para desarrolladores chilenos
+analisis_chile.chile_predicciones:
+  type: pandas.ParquetDataset
+  filepath: data/07_model_output/chile_predicciones.parquet
+
+# 5. Reporte comparativo Chile vs Global (JSON completo)
+analisis_chile.chile_reporte_comparativo:
+  type: kedro_datasets.json.JSONDataset
+  filepath: data/08_reporting/chile_reporte_comparativo.json
+
+# 6. Tabla comparativa (resumen ejecutivo)
+analisis_chile.chile_tabla_comparativa:
+  type: pandas.CSVDataset
+  filepath: data/08_reporting/chile_tabla_comparativa.csv
+  save_args:
+    index: false
+    encoding: utf-8-sig

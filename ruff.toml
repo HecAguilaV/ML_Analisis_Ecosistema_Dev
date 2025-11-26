@@ -1,0 +1,64 @@
+# Configuración de Ruff para ML_Analisis_Ecosistema_Dev
+# Documentación: https://docs.astral.sh/ruff/
+
+# ============ CONFIGURACIÓN GENERAL ============
+line-length = 88  # Estándar PEP 8
+target-version = "py311"  # Python 3.11+
+
+# ============ REGLAS ACTIVADAS ============
+[lint]
+select = [
+    "E",     # pycodestyle errors
+    "W",     # pycodestyle warnings
+    "F",     # pyflakes (imports no usados, variables sin usar)
+    "I",     # isort (organizar imports alfabéticamente)
+    "N",     # pep8-naming (convenciones de nombres)
+    "UP",    # pyupgrade (sintaxis moderna de Python)
+    "B",     # flake8-bugbear (errores comunes)
+    "C4",    # flake8-comprehensions (list/dict comprehensions)
+    "SIM",   # flake8-simplify (simplificar código)
+]
+
+# Ignorar reglas específicas si son demasiado estrictas
+ignore = [
+    "E501",  # line-too-long (ya está limitado por line-length)
+    "B008",  # function-call-in-default-argument (común en Kedro)
+    "N803",  # argument-name (X_train, X_test son estándar en ML)
+    "N806",  # variable-name-lowercase (X, IQR, Q1 son convenciones estadísticas)
+    "W293",  # blank-line-contains-whitespace (común en strings multilínea)
+]
+
+# ============ EXCLUSIONES ============
+exclude = [
+    ".git",
+    ".venv",
+    "__pycache__",
+    "build",
+    "dist",
+    "*.egg-info",
+    "data/",       # Ignorar carpeta de datos
+    "notebooks/",  # Notebooks tienen su propio formato
+]
+
+# ============ CONFIGURACIÓN DE ISORT (imports) ============
+[lint.isort]
+known-first-party = ["analisis_lenguajes_programacion"]
+section-order = ["future", "standard-library", "third-party", "first-party", "local-folder"]
+
+# ============ CONFIGURACIÓN DE FORMATO ============
+[format]
+quote-style = "double"  # Comillas dobles por defecto
+indent-style = "space"   # Espacios, no tabs
+line-ending = "auto"     # Detectar automáticamente (CRLF en Windows, LF en Linux/Mac)
+
+# ============ ARCHIVOS POR DIRECTORIO ============
+[lint.per-file-ignores]
+"__init__.py" = ["F401"]  # Permitir imports no usados en __init__.py (común en paquetes)
+"tests/*" = ["S101"]      # Permitir 'assert' en tests
+"notebooks/*" = [
+    "E402",  # Imports no al inicio (normal en notebooks con magic commands)
+    "F821",  # Variables no definidas (catalog, pipelines se cargan con %reload_kedro)
+    "B007",  # Variables de loop no usadas (común en unpacking)
+    "B905",  # zip() sin strict (compatibilidad Python <3.10)
+    "C408",  # dict() vs literal (preferencia de estilo)
+]

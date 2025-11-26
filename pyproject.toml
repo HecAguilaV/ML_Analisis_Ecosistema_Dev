@@ -1,0 +1,37 @@
+[build-system]
+requires = [ "setuptools",]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+requires-python = ">=3.10, <3.12"
+name = "ml_analisis_ecosistema_dev"
+readme = "README.md"
+dynamic = [ "version",]
+dependencies = [ "ipython>=8.10", "jupyterlab>=3.0", "notebook", "kedro[jupyter]", "kedro-datasets[pandas-parquetdataset, pickle-pickledataset, json-jsondataset]>=3.0", "kedro-viz>=6.7.0", "scikit-learn~=1.5.1", "seaborn~=0.12.1",]
+
+[project.scripts]
+ml-analisis-ecosistema-dev = "ml_analisis_ecosistema_dev.__main__:main"
+
+
+[tool.kedro]
+package_name = "ml_analisis_ecosistema_dev"
+project_name = "ML_Analisis_Ecosistema_Dev"
+kedro_init_version = "0.19.12"
+tools = "['Data Structure']"
+example_pipeline = "True"
+source_dir = "src"
+
+[project.entry-points."kedro.hooks"]
+
+
+[tool.setuptools.dynamic.version]
+attr = "ml_analisis_ecosistema_dev.__version__"
+
+
+[tool.setuptools.packages.find]
+where = [ "src",]
+namespaces = false
+
+[tool.kedro_telemetry]
+project_id = "7e710d82cb994934885c6d48513378e4"

@@ -1,0 +1,113 @@
+# =======================================================
+# DVC PIPELINE - ML Análisis Ecosistema Dev
+# =======================================================
+# Este archivo define las etapas del pipeline de ML
+# y cómo se relacionan los datos, código y modelos.
+#
+# Ejecutar: dvc repro
+# Ver DAG:  dvc dag
+# =======================================================
+
+stages:
+  # =====================================================
+  # STAGE 1: Procesamiento de Datos
+  # =====================================================
+  procesamiento_datos:
+    cmd: python -m kedro run --pipeline=procesamiento_de_datos
+    deps:
+      # Datos de entrada
+      - data/01_raw
+      # Código del pipeline
+      - src/ml_analisis_ecosistema_dev/pipelines/procesamiento_de_datos/nodes.py
+      - src/ml_analisis_ecosistema_dev/pipelines/procesamiento_de_datos/pipeline.py
+      # Configuración
+      - conf/base/parameters_data_processing.yml
+    outs:
+      # Datos procesados listos para modelado
+      - data/05_model_input/datos_para_modelado.parquet:
+          cache: true
+    desc: "Limpia, transforma y prepara datos para modelado"
+
+  # =====================================================
+  # STAGE 2: Pipeline de Regresión
+  # =====================================================
+  regresion:
+    cmd: python -m kedro run --pipeline=regresion
+    deps:
+      # Datos de entrada (depende del stage anterior)
+      - data/05_model_input/datos_para_modelado.parquet
+      # Código del pipeline
+      - src/ml_analisis_ecosistema_dev/pipelines/regresion/nodes.py
+      - src/ml_analisis_ecosistema_dev/pipelines/regresion/pipeline.py
+      # Configuración
+      - conf/base/parameters_data_science.yml
+    outs:
+      # Modelo entrenado
+      - data/06_models/regresion_model.pkl:
+          cache: true
+    metrics:
+      # Métricas (R², RMSE, MAE)
+      - data/08_reporting/metrics.json:
+          cache: false
+    desc: "Entrena 5 modelos de regresión y selecciona el mejor"
+
+  # =====================================================
+  # STAGE 3: Pipeline de Clasificación
+  # =====================================================
+  clasificacion:
+    cmd: python -m kedro run --pipeline=clasificacion
+    deps:
+      # Datos de entrada (depende del stage 1)
+      - data/05_model_input/datos_para_modelado.parquet
+      # Código del pipeline
+      - src/ml_analisis_ecosistema_dev/pipelines/clasificacion/nodes.py
+      - src/ml_analisis_ecosistema_dev/pipelines/clasificacion/pipeline.py
+      # Configuración
+      - conf/base/parameters_data_science.yml
+    outs:
+      # Modelo entrenado
+      - data/06_models/clasificacion_model.pkl:
+          cache: true
+    metrics:
+      # Métricas (F1, Accuracy, ROC-AUC)
+      - data/08_reporting/metrics_clf.json:
+          cache: false
+      # Matriz de confusión
+      - data/08_reporting/classification_confusion_matrices.json:
+          cache: false
+    desc: "Entrena 4 modelos de clasificación con SMOTE y selecciona el mejor"
+
+  # =====================================================
+  # STAGE 4: Pipeline de Regresión Polinomial (Opcional)
+  # =====================================================
+  regresion_polinomial:
+    cmd: python -m kedro run --pipeline=regresion_polinomial
+    deps:
+      # Usa las salidas del pipeline de regresión normal
+      - data/05_model_input/datos_para_modelado.parquet
+      # Código específico
+      - src/ml_analisis_ecosistema_dev/pipelines/regresion_polinomial/nodes.py
+      - src/ml_analisis_ecosistema_dev/pipelines/regresion_polinomial/pipeline.py
+      # Configuración
+      - conf/base/parameters_data_science.yml
+    outs:
+      # Modelo polinomial
+      - data/06_models/ridge_poly_model.pkl:
+          cache: true
+    metrics:
+      # Métricas del modelo polinomial
+      - data/08_reporting/metrics_ridge_poly.json:
+          cache: false
+    desc: "Experimento con características polinomiales (comparativa académica)"
+
+# =======================================================
+# COMANDOS ÚTILES:
+# =======================================================
+# dvc repro               → Ejecutar todo el pipeline
+# dvc repro regresion     → Ejecutar solo regresión
+# dvc dag                 → Ver gráfico de dependencias
+# dvc metrics show        → Ver todas las métricas
+# dvc params diff         → Comparar parámetros entre versiones
+# dvc push                → Subir cache a Google Drive
+# dvc pull                → Descargar cache desde Google Drive
+# =======================================================

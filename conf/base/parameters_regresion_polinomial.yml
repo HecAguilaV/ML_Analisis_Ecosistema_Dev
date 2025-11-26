@@ -1,0 +1,13 @@
+# Parámetros para el pipeline de regresión polinomial
+regresion_polinomial:
+  degree: 2
+  num_features_to_select: 10  # Reducido de 50 a 10 para evitar explosión de memoria
+  model_to_train_poly: "Ridge"
+  cv_folds: 5
+  scoring: "neg_root_mean_squared_error"
+  random_state: 42
+  models:
+    Ridge:
+      model_name: "Ridge"
+      param_grid:
+        alpha: [0.1, 1.0, 10.0]
