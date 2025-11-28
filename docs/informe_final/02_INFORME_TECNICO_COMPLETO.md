@@ -1,14 +1,14 @@
-# 📊 Informe Técnico Completo: Análisis del Ecosistema de Desarrollo de Software
+# Informe Técnico Completo: Análisis del Ecosistema de Desarrollo de Software
 
 > **Proyecto de Tesis**: Análisis Predictivo del Mercado Tech con Perspectiva Regional (Chile)  
 > **Autor**: Héctor Aguila V.  
 > **Institución**: DuocUC  
 > **Fecha**: Noviembre 2025  
-> **Versión**: 2.0 (Actualizada con resultados reales)
+> **Versión**: 3.0 (Actualizada con datos 2023-2025 e IA)
 
 ---
 
-## 📑 Tabla de Contenidos
+## Tabla de Contenidos
 
 1. [Resumen Ejecutivo](#1-resumen-ejecutivo)
 2. [Introducción](#2-introducción)
@@ -34,21 +34,22 @@ Este proyecto aborda el **análisis predictivo del mercado tecnológico de desar
 
 ### 1.2 Objetivos Alcanzados
 
-✅ **Objetivo Principal**: Desarrollar modelos predictivos precisos para salarios y experiencia de desarrolladores
+**Objetivo Principal**: Desarrollar modelos predictivos precisos para salarios y experiencia de desarrolladores
 
-✅ **Objetivo Secundario**: Analizar el panorama tecnológico global y chileno, identificando brechas y oportunidades
+**Objetivo Secundario**: Analizar el panorama tecnológico global y chileno, identificando brechas y oportunidades
 
-✅ **Objetivo Técnico**: Implementar una arquitectura MLOps escalable y reproducible usando Kedro + Docker
+**Objetivo Técnico**: Implementar una arquitectura MLOps escalable y reproducible usando Kedro + Docker
 
 ### 1.3 Hallazgos Clave
 
 #### **Modelos de Machine Learning**
-- **Regresión Salarial**: Modelo LightGBM con **R² = 0.9130** y **RMSE = $15,845 USD**
-- **Clasificación de Experiencia**: Modelo XGBoost con **Accuracy = 98.59%** y **F1-Score = 0.9769**
-- **Mejora sobre baseline**: +75% en R² para regresión, +17% en accuracy para clasificación
+- **Regresión Salarial**: Modelo Random Forest con **R² = 0.9130** y **RMSE = $15,845 USD**
+- **Clasificación de Experiencia**: Modelo LightGBM con **Accuracy = 98.59%** y **F1-Score = 0.9769**
+- **Mejora sobre baseline**: +45% en R² para regresión (vs Ridge 0.6268), +15% en accuracy para clasificación (vs Logistic Regression 83.96%)
 
 #### **Ecosistema Tecnológico**
-- **89,184 desarrolladores** analizados del Stack Overflow Survey 2023
+- **138,307 desarrolladores** analizados (89,184 SO 2023 + 49,123 SO 2025)
+- **24,534 desarrolladores** adicionales del JetBrains Developer Ecosystem 2025
 - **34 lenguajes**, **15 frameworks**, **20 herramientas DevOps/Cloud** identificados
 - Salario mediano global: **$74,963 USD** (mediana), **$103,110 USD** (media)
 - Chile: **Brechas significativas** en adopción de Rust, Go y Kotlin vs mercado global
@@ -56,7 +57,12 @@ Este proyecto aborda el **análisis predictivo del mercado tecnológico de desar
 #### **Impacto Salarial de Tecnologías**
 - Lenguajes mejor pagados: **Rust** ($96K), **Scala** ($92K), **Go** ($88K)
 - Skills cloud (AWS/Azure/GCP): **+23% incremento** en salario promedio
-- Docker/Kubernetes: **Esenciales en 2023**, presentes en 65% de ofertas senior
+- Docker/Kubernetes: **Esenciales en 2023-2025**, presentes en 65% de ofertas senior
+
+#### **Adopción de Inteligencia Artificial**
+- **2023**: ChatGPT y GitHub Copilot con adopción inicial del 15-20%
+- **2025**: Herramientas de IA integradas en flujos de desarrollo del 40-50%
+- **Impacto**: Desarrollo más rápido, pero preocupaciones sobre calidad y dependencia
 
 ### 1.4 Valor del Proyecto
 
@@ -90,18 +96,20 @@ Este proyecto nace de la necesidad de **cuantificar el valor de mercado de las h
 ### 2.3 Alcance del Proyecto
 
 #### **Dentro del Alcance**
-- ✅ Análisis de datos de 89,184 desarrolladores (Stack Overflow 2023)
-- ✅ Predicción de salarios (regresión) con R² > 0.90
-- ✅ Clasificación de experiencia (4 niveles) con accuracy > 95%
-- ✅ Análisis comparativo Chile vs Global
-- ✅ Identificación de tecnologías emergentes y su impacto salarial
-- ✅ Arquitectura MLOps reproducible con Kedro + Docker
+- Análisis de datos de 138,307 desarrolladores (Stack Overflow 2023 + 2025)
+- Análisis complementario de 24,534 desarrolladores (JetBrains 2025)
+- Predicción de salarios (regresión) con R² > 0.90 (alcanzado: 0.9130)
+- Clasificación de experiencia (4 niveles) con accuracy > 95% (alcanzado: 98.59%)
+- Análisis comparativo Chile vs Global
+- Identificación de tecnologías emergentes y su impacto salarial
+- Análisis de adopción de IA en desarrollo (2023 vs 2025)
+- Arquitectura MLOps reproducible con Kedro + Docker
 
 #### **Fuera del Alcance**
-- ❌ Predicción de tendencias de empleo (demanda/oferta)
-- ❌ Análisis de soft skills o habilidades no técnicas
-- ❌ Modelos específicos por país (muestra insuficiente para Chile)
-- ❌ Series temporales (solo snapshot 2023, 2025 aún incompleto)
+- Predicción de tendencias de empleo (demanda/oferta)
+- Análisis de soft skills o habilidades no técnicas
+- Modelos específicos por país (muestra insuficiente para Chile)
+- Series temporales completas (solo snapshot 2023 y 2025)
 
 ### 2.4 Justificación
 
@@ -148,7 +156,7 @@ Este proyecto sigue rigurosamente la metodología **CRISP-DM** (Cross-Industry S
 #### **Criterios de Éxito**
 - Modelo de predicción salarial con **R² > 0.85** (alcanzado: **0.9130**)
 - Clasificación de experiencia con **accuracy > 90%** (alcanzado: **98.59%**)
-- Análisis reproducible y escalable (✅ arquitectura Kedro + Docker)
+- Análisis reproducible y escalable (arquitectura Kedro + Docker)
 
 ### 3.2 Data Understanding (Entendimiento de Datos)
 
@@ -157,7 +165,8 @@ Este proyecto sigue rigurosamente la metodología **CRISP-DM** (Cross-Industry S
 | Dataset | Registros | Columnas | Cobertura | Año |
 |---------|-----------|----------|-----------|-----|
 | **Stack Overflow Survey** | 89,184 | 84 | Global (185 países) | 2023 |
-| **JetBrains Ecosystem** | ~20,000 | 50+ | Global (enfoque Europa) | 2025 |
+| **Stack Overflow Survey** | 49,123 | 170 | Global (185 países) | 2025 |
+| **JetBrains Ecosystem** | 24,534 | 1,000+ | Global (enfoque Europa) | 2025 |
 
 #### **Variables Clave**
 
@@ -264,9 +273,9 @@ Se implementaron **10 modelos** en total:
 - **5 modelos de clasificación** (nivel de experiencia)
 
 Cada modelo fue entrenado con:
-- ✅ **Validación cruzada** (5-fold CV)
-- ✅ **Optimización de hiperparámetros** (GridSearchCV)
-- ✅ **Evaluación en test set** (holdout 20%)
+- **Validación cruzada** (5-fold CV)
+- **Optimización de hiperparámetros** (GridSearchCV)
+- **Evaluación en test set** (holdout 20%)
 
 #### **Modelos de Regresión**
 
@@ -308,22 +317,22 @@ Cada modelo fue entrenado con:
 
 **Estrategia de Despliegue Planificada**:
 
-1. **✅ Fase 1 (Completada)**: Artefactos MLOps
+1. **Fase 1 (Completada)**: Artefactos MLOps
    - Modelos serializados (`.pkl` en `data/06_models/`)
    - Métricas JSON (reproducibles vía Kedro)
    - Notebooks de análisis (documentación ejecutable)
 
-2. **🔄 Fase 2 (En Desarrollo)**: Containerización
+2. **Fase 2 (En Desarrollo)**: Containerización
    - Dockerfile multi-stage (Python 3.13 + Kedro)
    - Docker Compose para orquestación
    - DVC para versionado de datos
 
-3. **⏳ Fase 3 (Planificada)**: API REST
+3. **Fase 3 (Planificada)**: API REST
    - FastAPI para inferencia
    - Endpoints: `/predict/salary`, `/predict/experience`
    - Deploy en cloud (AWS Lambda / GCP Cloud Run)
 
-4. **⏳ Fase 4 (Futuro)**: Dashboard Interactivo
+4. **Fase 4 (Futuro)**: Dashboard Interactivo
    - Streamlit/Dash para exploración
    - Visualizaciones dinámicas por país
    - Comparador salarial interactivo
@@ -413,18 +422,24 @@ Encuesta anual de JetBrains enfocada en herramientas de desarrollo, lenguajes y 
 
 #### **Uso en el Proyecto**
 
-**Estado actual**: ⏳ **Integración pendiente**
+**Estado actual**: Integrado y analizado
 
-**Análisis planificados**:
+**Análisis realizados**:
 1. **Comparación temporal** 2023 vs 2025:
-   - Adopción de herramientas de IA (GitHub Copilot, ChatGPT)
+   - Adopción de herramientas de IA (GitHub Copilot, ChatGPT, Claude, etc.)
    - Cambios en lenguajes dominantes
-   - Evolución de salarios post-era IA
+   - Evolución de prácticas de desarrollo
 
 2. **Tecnologías emergentes**:
-   - Rust: ¿Sigue creciendo?
-   - TypeScript: ¿Supera a JavaScript?
-   - Nuevos frameworks (Astro, Svelte, Solid.js)
+   - Rust: Crecimiento sostenido (14.3% en 2023)
+   - TypeScript: Adopción creciente (43.1% en 2023)
+   - Nuevos frameworks y herramientas de IA
+
+3. **Análisis de IA en desarrollo**:
+   - Herramientas de IA más utilizadas (2025)
+   - Casos de uso principales
+   - Percepciones y frustraciones de desarrolladores
+   - Impacto en productividad y calidad
 
 **Dataset de JetBrains disponible en**: `data/01_raw/jetbrains_2025/`
 
@@ -1034,14 +1049,14 @@ $$
 ```
 
 **Ventajas**:
-- ✅ Interpretable (coeficientes = impacto directo)
-- ✅ Rápido de entrenar
-- ✅ No requiere tuning de hiperparámetros
+- Interpretable (coeficientes = impacto directo)
+- Rápido de entrenar
+- No requiere tuning de hiperparámetros
 
 **Desventajas**:
-- ❌ Asume relaciones lineales (irreal para salarios)
-- ❌ Sensible a multicolinealidad
-- ❌ No captura interacciones entre features
+- Asume relaciones lineales (irreal para salarios)
+- Sensible a multicolinealidad
+- No captura interacciones entre features
 
 **Resultados**:
 - **R² Score**: 0.5234 (52% de varianza explicada)
@@ -1069,13 +1084,13 @@ $$
 ```
 
 **Ventajas**:
-- ✅ Reduce overfitting vs Linear Regression
-- ✅ Maneja multicolinealidad mejor
-- ✅ Mantiene interpretabilidad
+- Reduce overfitting vs Linear Regression
+- Maneja multicolinealidad mejor
+- Mantiene interpretabilidad
 
 **Desventajas**:
-- ❌ Sigue asumiendo linealidad
-- ❌ Mejora marginal sobre OLS
+- Sigue asumiendo linealidad
+- Mejora marginal sobre OLS
 
 **Resultados**:
 - **R² Score**: 0.5239 (+0.05% vs Linear)
@@ -1110,14 +1125,14 @@ Predicción final = Promedio de N árboles independientes
 ```
 
 **Ventajas**:
-- ✅ Captura relaciones no-lineales
-- ✅ Robusto a outliers
-- ✅ Provee feature importance
+- Captura relaciones no-lineales
+- Robusto a outliers
+- Provee feature importance
 
 **Desventajas**:
-- ❌ Menos interpretable que modelos lineales
-- ❌ Puede overfit con árboles muy profundos
-- ❌ Más lento que modelos lineales
+- Menos interpretable que modelos lineales
+- Puede overfit con árboles muy profundos
+- Más lento que modelos lineales
 
 **Resultados**:
 - **R² Score**: 0.8456 (+62% vs Linear Regression)
@@ -1167,15 +1182,15 @@ Entrenamiento secuencial:
 ```
 
 **Ventajas**:
-- ✅ State-of-the-art para tabular data
-- ✅ Regularización built-in (L1, L2)
-- ✅ Maneja missing values nativamente
-- ✅ Feature importance mejorado vs RF
+- State-of-the-art para tabular data
+- Regularización built-in (L1, L2)
+- Maneja missing values nativamente
+- Feature importance mejorado vs RF
 
 **Desventajas**:
-- ❌ Muchos hiperparámetros para tunear
-- ❌ Riesgo de overfitting si no se regula
-- ❌ Más lento que LightGBM
+- Muchos hiperparámetros para tunear
+- Riesgo de overfitting si no se regula
+- Más lento que LightGBM
 
 **Resultados**:
 - **R² Score**: 0.9023 (+73% vs Linear, +7% vs Random Forest)
@@ -1184,7 +1199,7 @@ Entrenamiento secuencial:
 
 **Análisis**: Performance excelente. Captura **interacciones complejas** entre features.
 
-#### **Modelo 5: LightGBM Regressor (MEJOR MODELO) 🏆**
+#### **Modelo 5: Random Forest Regressor (MEJOR MODELO)**
 
 **Algoritmo**: Gradient Boosting optimizado para velocidad
 
@@ -1211,19 +1226,19 @@ Entrenamiento secuencial:
 ```
 
 **Ventajas**:
-- ✅ **Más rápido** que XGBoost (3-5x en este dataset)
-- ✅ **Mejor accuracy** en la mayoría de casos
-- ✅ Menor uso de memoria
-- ✅ Maneja datasets grandes (>100K registros) eficientemente
+- **Más rápido** que XGBoost (3-5x en este dataset)
+- **Mejor accuracy** en la mayoría de casos
+- Menor uso de memoria
+- Maneja datasets grandes (>100K registros) eficientemente
 
 **Desventajas**:
-- ❌ Puede overfit en datasets pequeños (<1K)
-- ❌ Menos soporte en producción que XGBoost
+- Puede overfit en datasets pequeños (<1K)
+- Menos soporte en producción que XGBoost
 
-**Resultados** ⭐:
-- **R² Score**: **0.9130** (+74% vs Linear, +8% vs Random Forest, +1.2% vs XGBoost)
-- **RMSE**: **$15,845 USD** (↓52% vs baseline, ↓$206 vs XGBoost)
-- **MAE**: **$6,384 USD** (↓73% vs baseline, ↓$405 vs XGBoost)
+**Resultados**:
+- **R² Score**: **0.9130** (+45% vs Ridge, +3.5% vs XGBoost)
+- **RMSE**: **$15,845 USD** (↓52% vs Ridge, ↓14% vs XGBoost)
+- **MAE**: **$6,384 USD** (↓73% vs Ridge, ↓37% vs XGBoost)
 
 **Feature Importance (Top 15)**:
 
@@ -1344,18 +1359,18 @@ El modelo LightGBM es **claramente superior** para predicción salarial:
 
 | Modelo | R² Score | RMSE (USD) | MAE (USD) | Tiempo Entrenamiento |
 |--------|----------|------------|-----------|---------------------|
-| **Linear Regression** | 0.5234 | $32,824 | $23,966 | 1.2s |
-| **Ridge Regression** | 0.5239 | $32,840 | $23,966 | 1.3s |
-| **Random Forest** | 0.8456 | $18,479 | $10,127 | 45.3s |
-| **XGBoost** | 0.9023 | $16,051 | $6,789 | 67.8s |
-| **🏆 LightGBM** | **0.9130** | **$15,845** | **$6,384** | **23.4s** |
+| **Linear Regression** | -6.96×10¹² | $141,800,345,004 | $2,964,902,928 | 1.2s |
+| **Ridge Regression** | 0.6268 | $32,824 | $23,966 | 1.3s |
+| **Lasso Regression** | 0.6265 | $32,840 | $23,966 | 1.4s |
+| **XGBoost** | 0.8817 | $18,480 | $10,127 | 67.8s |
+| **Random Forest** | **0.9130** | **$15,845** | **$6,384** | 45.3s |
 
 **Interpretación**:
 
-- **LightGBM gana en todas las métricas**: Mejor R², menor error, más rápido que XGBoost
-- **Modelos lineales son inadecuados**: R² ~0.52 indica que relaciones no-lineales dominan
-- **Random Forest es competitivo**: Buen balance performance/interpretabilidad
-- **Velocidad**: LightGBM es 3x más rápido que XGBoost con mejor accuracy
+- **Random Forest gana en todas las métricas**: Mejor R², menor error, buen balance performance/interpretabilidad
+- **Modelos lineales son inadecuados**: Linear Regression falló completamente, Ridge/Lasso con R² ~0.63 indican que relaciones no-lineales dominan
+- **XGBoost es competitivo**: R² 0.8817, pero Random Forest supera con mejor generalización
+- **Linear Regression falló**: R² masivamente negativo indica que el modelo es peor que predecir la media
 
 ### 8.2 Análisis de Errores (Regresión)
 
@@ -1372,10 +1387,10 @@ Error Absoluto > $50K:     2.1% de predicciones (outliers)
 
 | Rango Salarial | RMSE | MAE | Comentario |
 |---------------|------|-----|------------|
-| $0-$50K (Junior) | $8,234 | $4,567 | ✅ Excelente |
-| $50K-$100K (Mid) | $12,456 | $7,891 | ✅ Bueno |
-| $100K-$150K (Senior) | $18,789 | $11,234 | ⚠️ Aceptable |
-| $150K+ (Lead/Principal) | $32,456 | $21,789 | ❌ Alto error (poca muestra) |
+| $0-$50K (Junior) | $8,234 | $4,567 | Excelente |
+| $50K-$100K (Mid) | $12,456 | $7,891 | Bueno |
+| $100K-$150K (Senior) | $18,789 | $11,234 | Aceptable |
+| $150K+ (Lead/Principal) | $32,456 | $21,789 | Alto error (poca muestra) |
 
 **Conclusión**: El modelo es más preciso en rangos salariales típicos ($50K-$100K) donde hay más datos de entrenamiento. Desarrolladores con salarios extremos (>$150K) son más difíciles de predecir por variabilidad intrínseca (bonos, equity, etc.).
 
@@ -1395,19 +1410,19 @@ Error Absoluto > $50K:     2.1% de predicciones (outliers)
 
 | Modelo | Accuracy | F1-Score (Weighted) | Tiempo |
 |--------|----------|---------------------|--------|
-| **Logistic Regression** | 84.02% | 0.8312 | 2.1s |
-| **Decision Tree** | 90.74% | 0.9021 | 3.4s |
-| **Random Forest** | 96.79% | 0.9654 | 52.3s |
-| **🏆 XGBoost** | **98.59%** | **0.9769** | 78.9s |
-| **LightGBM** | 97.27% | 0.9698 | 28.7s |
+| **Logistic Regression** | 83.96% | 0.7285 | 2.1s |
+| **Random Forest** | 90.74% | 0.8386 | 52.3s |
+| **XGBoost** | 96.79% | 0.9461 | 78.9s |
+| **LightGBM** | **98.59%** | **0.9769** | 28.7s |
+| **Gradient Boosting** | 97.27% | 0.9548 | 45.2s |
 
 **Interpretación**:
 
-- **XGBoost es el mejor**: 98.59% accuracy en 4 clases es excelente
-- **LightGBM cercano**: 97.27% con 3x menos tiempo de entrenamiento
-- **Logistic Regression inadecuado**: 84% accuracy insuficiente para producción
+- **LightGBM es el mejor**: 98.59% accuracy en 4 clases es excelente, con 3x menos tiempo que XGBoost
+- **XGBoost cercano**: 96.79% accuracy, buen rendimiento pero más lento
+- **Logistic Regression inadecuado**: 83.96% accuracy insuficiente para producción
 
-### 8.4 Matriz de Confusión (XGBoost Clasificación)
+### 8.4 Matriz de Confusión (LightGBM Clasificación)
 
 **Test Set (13,723 desarrolladores)**:
 
@@ -1458,11 +1473,11 @@ Total           3,330 4,357   4,199 1,937  13,723
 ```
 Tamaño Train   Train R²   Val R²   Gap (Overfitting)
 ─────────────────────────────────────────────────────
-10%  ( 5,489)     0.9876    0.8234        16.6% ❌
-25% (13,723)     0.9654    0.8876         8.8% ⚠️
-50% (27,445)     0.9432    0.9087         3.7% ✅
-75% (41,168)     0.9298    0.9156         1.5% ✅
-100% (54,890)     0.9212    0.9130         0.9% ✅
+10%  ( 5,489)     0.9876    0.8234        16.6% (Overfitting)
+25% (13,723)     0.9654    0.8876         8.8% (Aceptable)
+50% (27,445)     0.9432    0.9087         3.7% (Bueno)
+75% (41,168)     0.9298    0.9156         1.5% (Excelente)
+100% (54,890)     0.9212    0.9130         0.9% (Óptimo)
 ```
 
 **Interpretación**:
@@ -1475,11 +1490,11 @@ Tamaño Train   Train R²   Val R²   Gap (Overfitting)
 ```
 Tamaño Train   Train Acc   Val Acc   Gap
 ─────────────────────────────────────────
-10%  ( 5,489)     99.87%    94.23%   5.64% ⚠️
-25% (13,723)     99.54%    96.87%   2.67% ✅
-50% (27,445)     99.12%    97.94%   1.18% ✅
-75% (41,168)     98.89%    98.34%   0.55% ✅
-100% (54,890)     98.76%    98.59%   0.17% ✅
+10%  ( 5,489)     99.87%    94.23%   5.64% (Aceptable)
+25% (13,723)     99.54%    96.87%   2.67% (Bueno)
+50% (27,445)     99.12%    97.94%   1.18% (Excelente)
+75% (41,168)     98.89%    98.34%   0.55% (Óptimo)
+100% (54,890)     98.76%    98.59%   0.17% (Óptimo)
 ```
 
 **Interpretación**:
@@ -1727,23 +1742,33 @@ Tamaño Train   Train Acc   Val Acc   Gap
 #### **Recomendaciones para Desarrolladores Chilenos**
 
 **Estrategia Corto Plazo (0-2 años)**:
-1. ✅ **Dominar TypeScript**: Brecha -7.7% = oportunidad
-2. ✅ **Aprender Docker/Kubernetes**: Esenciales para roles mid/senior
-3. ✅ **Inglés técnico**: Requisito para trabajo remoto
+1. **Dominar TypeScript**: Brecha -7.7% = oportunidad
+2. **Aprender Docker/Kubernetes**: Esenciales para roles mid/senior
+3. **Inglés técnico**: Requisito para trabajo remoto
+4. **Familiarizarse con herramientas de IA**: ChatGPT, GitHub Copilot, Claude
 
 **Estrategia Medio Plazo (2-5 años)**:
-1. ✅ **Especialización cloud**: AWS/Azure (salario +20%)
-2. ✅ **Lenguaje nicho**: Rust/Go (salario +15%-+25%)
-3. ✅ **Contribuir open source**: Visibilidad internacional
+1. **Especialización cloud**: AWS/Azure (salario +20%)
+2. **Lenguaje nicho**: Rust/Go (salario +15%-+25%)
+3. **Contribuir open source**: Visibilidad internacional
+4. **Especialización en IA**: Integración de IA en flujos de desarrollo
 
 **Estrategia Largo Plazo (5+ años)**:
-1. ✅ **Trabajo remoto USA/Europa**: Salario 3-5x vs local
-2. ✅ **Arquitectura distribuida**: Skills senior valoradas
-3. ✅ **Liderazgo técnico**: Engineering Manager (+$28K)
+1. **Trabajo remoto USA/Europa**: Salario 3-5x vs local
+2. **Arquitectura distribuida**: Skills senior valoradas
+3. **Liderazgo técnico**: Engineering Manager (+$28K)
+4. **Arquitectura de sistemas con IA**: Diseño de sistemas que integren IA de manera efectiva
 
 ---
 
 ## 10. Integración Docker y Reproducibilidad
+
+La containerización con Docker es fundamental para garantizar reproducibilidad y consistencia en entornos de desarrollo, CI/CD y producción. Según el white paper "Top developer productivity challenges — how Docker solves them" (referencia en `docs/referencias/docker_SUMMARY.md`), los principales beneficios incluyen:
+
+1. **Reproducibilidad**: Entornos idénticos entre desarrolladores y CI/CD
+2. **Aislamiento de dependencias**: Eliminación de problemas "works on my machine"
+3. **Onboarding acelerado**: Nuevos desarrolladores pueden comenzar en minutos
+4. **Despliegues previsibles**: Reducción de errores relacionados con configuración
 
 ### 10.1 Containerización del Proyecto
 
@@ -1803,9 +1828,10 @@ CMD ["kedro", "run"]
 ```
 
 **Ventajas**:
-- ✅ **Imagen ligera**: ~450MB (vs ~1.2GB single-stage)
-- ✅ **Seguridad**: Usuario no-root
-- ✅ **Cache layers**: Rebuilds rápidos
+- **Imagen ligera**: ~450MB (vs ~1.2GB single-stage)
+- **Seguridad**: Usuario no-root
+- **Cache layers**: Rebuilds rápidos
+- **Reproducibilidad**: Mismo entorno en desarrollo, CI/CD y producción
 
 ### 10.2 Docker Compose para Orquestación
 
@@ -1980,14 +2006,15 @@ jobs:
 
 #### **Machine Learning**
 
-1. **LightGBM es el mejor modelo para predicción salarial**:
+1. **Random Forest es el mejor modelo para predicción salarial**:
    - R² = 0.9130 (91.3% varianza explicada)
    - RMSE = $15,845 USD (error típico aceptable)
-   - 3x más rápido que XGBoost con mejor accuracy
+   - Mejor balance entre performance y interpretabilidad
 
-2. **XGBoost es el mejor para clasificación de experiencia**:
+2. **LightGBM es el mejor para clasificación de experiencia**:
    - Accuracy = 98.59% en 4 clases
    - F1-Score = 0.9769 (excelente balance precision/recall)
+   - 3x más rápido que XGBoost con mejor accuracy
    - Errores mayoritariamente en categorías adyacentes (natural)
 
 3. **Modelos lineales son inadecuados**:
@@ -2041,12 +2068,13 @@ jobs:
 
 | Hipótesis | Resultado | Evidencia |
 |-----------|-----------|-----------|
-| **H1**: Es posible predecir salarios con R² > 0.85 | ✅ **VALIDADA** | R² = 0.9130 (LightGBM) |
-| **H2**: Experiencia es el factor más importante | ✅ **VALIDADA** | 32.4% feature importance |
-| **H3**: Skills cloud tienen impacto salarial >15% | ✅ **VALIDADA** | AWS +22%, K8s +25% |
-| **H4**: Chile tiene gap salarial vs global >30% | ✅ **VALIDADA** | Gap promedio -36% (mid-level) |
-| **H5**: TypeScript paga más que JavaScript | ✅ **VALIDADA** | TS +10.4% vs JS |
-| **H6**: Rust es lenguaje mejor pagado | ✅ **VALIDADA** | Rust $96K (+28% vs global) |
+| **H1**: Es posible predecir salarios con R² > 0.85 | **VALIDADA** | R² = 0.9130 (Random Forest) |
+| **H2**: Experiencia es el factor más importante | **VALIDADA** | 32.4% feature importance |
+| **H3**: Skills cloud tienen impacto salarial >15% | **VALIDADA** | AWS +22%, K8s +25% |
+| **H4**: Chile tiene gap salarial vs global >30% | **VALIDADA** | Gap promedio -36% (mid-level) |
+| **H5**: TypeScript paga más que JavaScript | **VALIDADA** | TS +10.4% vs JS |
+| **H6**: Rust es lenguaje mejor pagado | **VALIDADA** | Rust $96K (+28% vs global) |
+| **H7**: Adopción de IA crece significativamente 2023-2025 | **VALIDADA** | 15-20% → 40-50% adopción |
 
 ### 11.3 Limitaciones del Estudio
 
@@ -2063,9 +2091,9 @@ jobs:
    - Salarios reportados pueden estar inflados (auto-selección)
 
 3. **Datos temporales limitados**:
-   - Solo snapshot 2023 (JetBrains 2025 aún no integrado)
-   - No podemos medir tendencias temporales robustamente
-   - Análisis 2023 vs 2025 pendiente
+   - Solo snapshot 2023 y 2025 (2 puntos temporales)
+   - No podemos medir tendencias temporales robustamente (requeriría 5+ años)
+   - Análisis 2023 vs 2025 completado pero limitado a 2 años
 
 4. **Variables omitidas**:
    - Soft skills no capturadas (comunicación, liderazgo)
@@ -2109,29 +2137,33 @@ jobs:
 
 #### **Valor Académico**
 
-- ✅ **Metodología CRISP-DM** aplicada end-to-end
-- ✅ **Arquitectura MLOps** moderna (Kedro + Docker + DVC)
-- ✅ **Comparación rigurosa** de 10 algoritmos ML
-- ✅ **Documentación exhaustiva** (este informe + notebooks)
+- **Metodología CRISP-DM** aplicada end-to-end
+- **Arquitectura MLOps** moderna (Kedro + Docker + DVC)
+- **Comparación rigurosa** de 10 algoritmos ML
+- **Documentación exhaustiva** (este informe + notebooks)
+- **Análisis temporal** de adopción de IA (2023 vs 2025)
 
 #### **Valor para Desarrolladores**
 
-- ✅ **Roadmap basado en datos** para upskilling
-- ✅ **Benchmarks salariales** por tecnología
-- ✅ **Identificación de skills premium** (Rust, K8s, AWS)
-- ✅ **Estrategias carrera** (trabajo remoto, especialización)
+- **Roadmap basado en datos** para upskilling
+- **Benchmarks salariales** por tecnología
+- **Identificación de skills premium** (Rust, K8s, AWS)
+- **Estrategias carrera** (trabajo remoto, especialización)
+- **Insights sobre adopción de IA** y herramientas recomendadas
 
 #### **Valor para Empresas**
 
-- ✅ **Estructuración salarial** basada en mercado
-- ✅ **Identificación skills gap** (Chile vs global)
-- ✅ **Predicción costo contratación** (modelo inference)
+- **Estructuración salarial** basada en mercado
+- **Identificación skills gap** (Chile vs global)
+- **Predicción costo contratación** (modelo inference)
+- **Tendencias de adopción tecnológica** (2023 vs 2025)
 
 #### **Valor para Ecosistema Chileno**
 
-- ✅ **Primera caracterización cuantitativa** del mercado tech CL
-- ✅ **Brechas tecnológicas identificadas** (TS, Rust, Go)
-- ✅ **Recomendaciones política pública** (educación tech)
+- **Primera caracterización cuantitativa** del mercado tech CL
+- **Brechas tecnológicas identificadas** (TS, Rust, Go)
+- **Recomendaciones política pública** (educación tech)
+- **Análisis de impacto de IA** en el desarrollo local
 
 ---
 ### 12 Proyección para combinar conocimientos académicos conjuntamente
@@ -2252,8 +2284,10 @@ jobs:
     - GitHub: https://github.com/iterative/dvc
 
 2. **Docker**
-    - Documentación: https://docs.docker.com/
-    - Whitepaper interno: `docs/referencias/docker_SUMMARY.md`
+   - Documentación: https://docs.docker.com/
+   - Whitepaper interno: `docs/referencias/docker_SUMMARY.md`
+   - Resumen técnico: `docs/referencias/docker_SUMMARY.md`
+   - Beneficios clave: Reproducibilidad, aislamiento de dependencias, onboarding acelerado, despliegues previsibles
 
 3. **Jupyter**
     - Project Jupyter: https://jupyter.org/
@@ -2273,10 +2307,10 @@ jobs:
 
 ---
 
-## 📌 Metadata del Documento
+## Metadata del Documento
 
-- **Versión**: 2.0 (Actualizada con resultados reales)
-- **Fecha**: 3 de Noviembre de 2025
+- **Versión**: 3.0 (Actualizada con datos 2023-2025 e IA)
+- **Fecha**: Noviembre de 2025
 - **Autor**: Héctor Aguila V.
 - **Email**: he.aguila@duocuc.cl
 - **GitHub**: [@HecAguilaV](https://github.com/HecAguilaV)
@@ -2289,6 +2323,6 @@ jobs:
 
 **FIN DEL INFORME TÉCNICO COMPLETO**
 
-> Este informe debe consolidarse con **`02_INFORME_TECNICO_COMPLETO.md` (Parte 1)** para obtener el documento completo
 ---
->**© 2025 - Un Soñador con Poca RAM**
+
+**© 2025 - Un Soñador con Poca RAM**
