@@ -69,6 +69,22 @@ datos_para_modelado:
   type: pandas.ParquetDataset
   filepath: data/05_model_input/datos_para_modelado.parquet
 
+# --- Datasets de Procesamiento de IA ---
+# Datasets intermedios (en memoria)
+datos_ia_so_2023:
+  type: kedro.io.MemoryDataset
+
+datos_ia_so_2025:
+  type: kedro.io.MemoryDataset
+
+datos_ia_jetbrains_2025:
+  type: kedro.io.MemoryDataset
+
+# Dataset consolidado final (persistido en disco)
+datos_ia_consolidados:
+  type: pandas.ParquetDataset
+  filepath: data/03_primary/datos_ia_consolidados.parquet
+
 # --- Datasets para Regresión (persistidos en disco para uso en pipeline polinomial) ---
 X_train:
   type: pandas.ParquetDataset

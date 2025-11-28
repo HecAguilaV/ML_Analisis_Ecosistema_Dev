@@ -3,3 +3,4 @@
     autostage = true
 ['remote "gcs_remote"']
     url = gs://ml-ecosistema-dev-2025
+    credentialpath = conf/bucket-dvc.json

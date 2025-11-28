@@ -12,6 +12,9 @@ from ml_analisis_ecosistema_dev.pipelines.clasificacion.pipeline import (
 from ml_analisis_ecosistema_dev.pipelines.procesamiento_de_datos import (
     create_pipeline as dp_pipeline,
 )
+from ml_analisis_ecosistema_dev.pipelines.procesamiento_ia.pipeline import (
+    create_pipeline as procesamiento_ia_pipeline,
+)
 from ml_analisis_ecosistema_dev.pipelines.regresion.pipeline import (
     create_pipeline as regresion_pipeline,
 )
@@ -33,6 +36,7 @@ def register_pipelines() -> Dict[str, Pipeline]:
 
     reg_poli = reg_poli_pipeline()
     analisis_chile = analisis_chile_pipeline()
+    procesamiento_ia = procesamiento_ia_pipeline()
 
     # Pipeline completo: ejecuta todo en orden
     pipeline_completo = processing_pipeline + reg_pipeline + clasif_pipeline + reg_poli
@@ -40,6 +44,7 @@ def register_pipelines() -> Dict[str, Pipeline]:
     return {
         "__default__": pipeline_completo,  # Ahora ejecuta TODO
         "procesamiento_de_datos": processing_pipeline,
+        "procesamiento_ia": procesamiento_ia,
         "regresion": reg_pipeline,
         "clasificacion": clasif_pipeline,
         "regresion_polinomial": reg_poli,
