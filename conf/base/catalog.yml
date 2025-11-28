@@ -45,10 +45,12 @@ datos_primarios_so_2023:
   type: kedro.io.MemoryDataset
 
 datos_primarios_jb_external:
-  type: kedro.io.MemoryDataset
+  type: pandas.ParquetDataset
+  filepath: data/03_primary/datos_primarios_jb_external.parquet
 
 datos_primarios_jb_narrow:
-  type: kedro.io.MemoryDataset
+  type: pandas.ParquetDataset
+  filepath: data/03_primary/datos_primarios_jb_narrow.parquet
 
 datos_con_salario_so_2023:
   type: kedro.io.MemoryDataset
