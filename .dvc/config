@@ -3,4 +3,4 @@
     autostage = true
 ['remote "gcs_remote"']
     url = gs://ml-ecosistema-dev-2025
-    credentialpath = conf/bucket-dvc.json
+    credentialpath = /Users/hector/Desktop/ML_Analisis_Ecosistema_Dev/conf/bucket-dvc.json
