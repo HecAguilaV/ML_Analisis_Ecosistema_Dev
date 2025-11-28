@@ -187,3 +187,24 @@ analisis_chile.chile_tabla_comparativa:
   save_args:
     index: false
     encoding: utf-8-sig
+
+# --- Modelos y Resultados de Clustering ---
+clustering_kmeans_model:
+  type: kedro_datasets.pickle.PickleDataset
+  filepath: data/06_models/clustering_kmeans_model.pkl
+
+clustering_scaler:
+  type: kedro_datasets.pickle.PickleDataset
+  filepath: data/06_models/clustering_scaler.pkl
+
+datos_con_clusters:
+  type: pandas.ParquetDataset
+  filepath: data/07_model_output/datos_con_clusters.parquet
+
+metrics_clustering:
+  type: kedro_datasets.json.JSONDataset
+  filepath: data/08_reporting/metrics_clustering.json
+
+clustering_model_info:
+  type: kedro_datasets.json.JSONDataset
+  filepath: data/08_reporting/clustering_model_info.json
