@@ -134,15 +134,6 @@ Proyecto desarrollado siguiendo **CRISP-DM**:
 
 ---
 
-## Requisitos
-
-- **Python**: 3.11 (Requerido para compatibilidad)
-- **Memoria RAM**: 8GB mínimo (16GB recomendado)
-- **Espacio en disco**: 2GB para datos + modelos
-- **SO**: Windows 10/11, macOS 10.15+, Linux (Ubuntu 20.04+)
-
----
-
 ## Uso Detallado
 
 ### Ejecución Manual

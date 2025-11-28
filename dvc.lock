@@ -1,119 +1,138 @@
 schema: '2.0'
 stages:
   procesamiento_datos:
-    cmd: .venv\Scripts\python.exe -m kedro run --pipeline=procesamiento_de_datos
+    cmd: python -m kedro run --pipeline=procesamiento_de_datos
     deps:
     - path: conf/base/parameters_data_processing.yml
       hash: md5
       md5: d41d8cd98f00b204e9800998ecf8427e
       size: 0
+      isexec: true
     - path: data/01_raw
       hash: md5
-      md5: 5c7b812c38bb7c45df2c9d110eb7986f.dir
-      size: 434375164
-      nfiles: 9
+      md5: 240bd4fb4f48e587f42503dce5e4700f.dir
+      size: 574843469
+      nfiles: 6
     - path: 
         src/ml_analisis_ecosistema_dev/pipelines/procesamiento_de_datos/nodes.py
       hash: md5
-      md5: c451e06792b164dfa665d0341e8328a0
-      size: 5357
+      md5: 21a6114bfe8a6708627d0816b6f1abb0
+      size: 10179
+      isexec: true
     - path: 
         src/ml_analisis_ecosistema_dev/pipelines/procesamiento_de_datos/pipeline.py
       hash: md5
-      md5: 934217f0c00886c27202691d144a4968
-      size: 2665
+      md5: 2225aa3d691d4be9a4f0293179b357de
+      size: 3043
+      isexec: true
     outs:
     - path: data/05_model_input/datos_para_modelado.parquet
       hash: md5
-      md5: abef061f836a8b7d5b2f2cab3e2a2177
-      size: 1734053
+      md5: be36099d23064efb7ed2c28d009c5875
+      size: 3180365
+      isexec: true
   regresion:
-    cmd: .venv\Scripts\python.exe -m kedro run --pipeline=regresion
+    cmd: python -m kedro run --pipeline=regresion
     deps:
     - path: conf/base/parameters_data_science.yml
       hash: md5
-      md5: fe6d24a21af9e3a9798420157f4c94e7
-      size: 2949
+      md5: 6e834066dbb797b605632ac56cf74d3f
+      size: 3611
+      isexec: true
     - path: data/05_model_input/datos_para_modelado.parquet
       hash: md5
-      md5: abef061f836a8b7d5b2f2cab3e2a2177
-      size: 1734053
+      md5: be36099d23064efb7ed2c28d009c5875
+      size: 3180365
+      isexec: true
     - path: src/ml_analisis_ecosistema_dev/pipelines/regresion/nodes.py
       hash: md5
-      md5: 670d6418a0c67c6c8be6e92dfc98b0e2
-      size: 8436
+      md5: 135323954f648b7129e77e916cfdd3ea
+      size: 8670
+      isexec: true
     - path: src/ml_analisis_ecosistema_dev/pipelines/regresion/pipeline.py
       hash: md5
       md5: e2a8b41856302eb8dc12de23289f790d
       size: 2348
+      isexec: true
     outs:
     - path: data/06_models/regresion_model.pkl
       hash: md5
-      md5: e9d438eadfb5b52ae450c9c80e0466be
-      size: 50285188
+      md5: 9c83fc06cd3e5ab1e26c5d3d3d08f9c2
+      size: 71692529
+      isexec: true
     - path: data/08_reporting/metrics.json
       hash: md5
-      md5: 9fa3227e2ecf2471236f35650667065d
-      size: 634
+      md5: 347a8cece74e8cb74574fbb681eaf55c
+      size: 611
   clasificacion:
-    cmd: .venv\Scripts\python.exe -m kedro run --pipeline=clasificacion
+    cmd: python -m kedro run --pipeline=clasificacion
     deps:
     - path: conf/base/parameters_data_science.yml
       hash: md5
-      md5: 42b0c9c5003db0cbeca49f6a757f74bc
-      size: 3157
+      md5: 6e834066dbb797b605632ac56cf74d3f
+      size: 3611
+      isexec: true
     - path: data/05_model_input/datos_para_modelado.parquet
       hash: md5
-      md5: abef061f836a8b7d5b2f2cab3e2a2177
-      size: 1734053
+      md5: be36099d23064efb7ed2c28d009c5875
+      size: 3180365
+      isexec: true
     - path: src/ml_analisis_ecosistema_dev/pipelines/clasificacion/nodes.py
       hash: md5
-      md5: 9886d1b2f5e0084220e71b0880fa80bd
-      size: 5678
+      md5: 736b5695316adb1b49831a218ad94676
+      size: 5905
+      isexec: true
     - path: src/ml_analisis_ecosistema_dev/pipelines/clasificacion/pipeline.py
       hash: md5
       md5: 650b052a7e729ad65ff41f9b3796be4b
       size: 2649
+      isexec: true
     outs:
     - path: data/06_models/clasificacion_model.pkl
       hash: md5
-      md5: dcae914e195c82857c82f2c14cbacd05
-      size: 27577242
+      md5: 2a2e4945deb207011e087000754e3301
+      size: 75588619
+      isexec: true
     - path: data/08_reporting/classification_confusion_matrices.json
       hash: md5
-      md5: cf384a26335f688b59155f8e61fc469f
-      size: 608
+      md5: 2e622fff617c8dfd74c7cc933426b2dc
+      size: 559
     - path: data/08_reporting/metrics_clf.json
       hash: md5
-      md5: e9676862d2180cdaa9cb33962a13d8e3
-      size: 1135
+      md5: f6526dae8ecc21f06a85cb28bc29c354
+      size: 1098
   regresion_polinomial:
-    cmd: .venv\Scripts\python.exe -m kedro run --pipeline=regresion_polinomial
+    cmd: python -m kedro run --pipeline=regresion_polinomial
     deps:
     - path: conf/base/parameters_data_science.yml
       hash: md5
-      md5: fe6d24a21af9e3a9798420157f4c94e7
-      size: 2949
+      md5: 6e834066dbb797b605632ac56cf74d3f
+      size: 3611
+      isexec: true
     - path: data/05_model_input/datos_para_modelado.parquet
       hash: md5
-      md5: abef061f836a8b7d5b2f2cab3e2a2177
-      size: 1734053
+      md5: be36099d23064efb7ed2c28d009c5875
+      size: 3180365
+      isexec: true
     - path: 
         src/ml_analisis_ecosistema_dev/pipelines/regresion_polinomial/nodes.py
       hash: md5
-      md5: 49c9e073dda969dfec68be8f30e81d3c
-      size: 2665
+      md5: c1142a412965a003771d56a218f01651
+      size: 2678
+      isexec: true
     - path: 
         src/ml_analisis_ecosistema_dev/pipelines/regresion_polinomial/pipeline.py
       hash: md5
       md5: 872219052d34002045332c43efa12835
       size: 2335
+      isexec: true
     outs:
     - path: data/06_models/ridge_poly_model.pkl
       hash: md5
-      md5: 61e079ce68d64561392dbbc8f9c6227a
+      md5: 9dcd0f8b5c672362ff42b5ae82d4b56b
       size: 3796
+      isexec: true
     - path: data/08_reporting/metrics_ridge_poly.json
       hash: md5
-      md5: 72d63e3c7d14092613665ec44f75119e
-      size: 92
+      md5: a2fffa8e7bfc82408910a1faf99c8edf
+      size: 88

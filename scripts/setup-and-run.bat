@@ -435,6 +435,15 @@ timeout /t 30 /nobreak >nul
 REM ============================================================================
 REM RESUMEN FINAL
 REM ============================================================================
+pause
+
+REM ============================================================================
+REM PASO EXTRA: Ejecutar pipeline de Kedro automáticamente
+REM ============================================================================
+echo [11/11] Ejecutando pipeline de Kedro...
+call venv\Scripts\activate.bat
+kedro run
+
 echo.
 echo ============================================
 echo   INSTALACION COMPLETADA CON EXITO
@@ -473,4 +482,3 @@ echo     venv\Scripts\activate.bat
 echo.
 echo Disfruta desarrollando!
 echo.
-pause
