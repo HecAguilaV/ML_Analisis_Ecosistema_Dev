@@ -10,7 +10,7 @@ FASE 1: Análisis comparativo usando modelos globales entrenados.
 
 import logging
 from datetime import datetime
-from typing import Any, Dict, Tuple
+from typing import Any
 
 import numpy as np
 import pandas as pd
@@ -108,7 +108,7 @@ def procesar_datos_chile(
 
 def cargar_modelos_entrenados(
     modelo_regresion: Any, modelo_clasificacion: Any
-) -> Tuple[Any, Any]:
+) -> tuple[Any, Any]:
     """
     Carga los modelos de regresión y clasificación ya entrenados.
 
@@ -233,7 +233,7 @@ def analisis_comparativo_chile_global(
     df_procesado_global: pd.DataFrame,
     modelo_regresion: Any,
     modelo_clasificacion: Any,
-) -> Dict[str, Any]:
+) -> dict[str, Any]:
     """
     Genera análisis comparativo entre Chile y el mercado global.
 
@@ -336,7 +336,7 @@ def analisis_comparativo_chile_global(
                 feature_names.remove(salary_col_global)
 
             top_features = sorted(
-                zip(feature_names[: len(importances)], importances),
+                zip(feature_names[: len(importances)], importances, strict=False),
                 key=lambda x: x[1],
                 reverse=True,
             )[:20]
@@ -398,7 +398,7 @@ def analisis_comparativo_chile_global(
     return reporte
 
 
-def exportar_reporte_comparativo(reporte_comparativo: Dict[str, Any]) -> pd.DataFrame:
+def exportar_reporte_comparativo(reporte_comparativo: dict[str, Any]) -> pd.DataFrame:
     """
     Convierte el reporte comparativo en formato tabular para análisis.
 

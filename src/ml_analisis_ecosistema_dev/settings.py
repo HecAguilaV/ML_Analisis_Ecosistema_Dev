@@ -4,7 +4,7 @@ https://docs.kedro.org/en/stable/kedro_project_setup/settings.html."""
 
 # Instantiated project hooks.
 # For example, after creating a hooks.py and defining a ProjectHooks class there, do
-# from analisis_lenguajes_programacion.hooks import ProjectHooks
+# from ml_analisis_ecosistema_dev.hooks import ProjectHooks
 
 # Hooks are executed in a Last-In-First-Out (LIFO) order.
 # HOOKS = (ProjectHooks(),)

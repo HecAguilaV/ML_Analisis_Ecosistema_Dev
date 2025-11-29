@@ -3,7 +3,7 @@ Nodos para el pipeline de procesamiento de datos, con un enfoque robusto y contr
 """
 
 import logging
-from typing import Any, Dict, Tuple
+from typing import Any
 
 import numpy as np
 import pandas as pd
@@ -16,7 +16,7 @@ def cargar_datos(
     so_2023: pd.DataFrame,
     jb_external: pd.DataFrame,
     jb_narrow: pd.DataFrame,
-) -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     """Carga los datos crudos desde el catálogo."""
     return so_2023, jb_external, jb_narrow
 
@@ -103,7 +103,7 @@ def analizar_y_limpiar_nulos(
     so_2023: pd.DataFrame,
     jb_external: pd.DataFrame,
     jb_narrow: pd.DataFrame,
-) -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     """Analiza y elimina columnas con un alto porcentaje de valores nulos."""
     logger.info("--- Análisis y Limpieza de Nulos por Columna ---")
 
@@ -151,7 +151,7 @@ def filtrar_outliers_salario(df_so: pd.DataFrame, target_col: str) -> pd.DataFra
 
 
 def preprocesamiento_final_con_allowlist(
-    df: pd.DataFrame, params: Dict[str, Any]
+    df: pd.DataFrame, params: dict[str, Any]
 ) -> pd.DataFrame:
     """
     Realiza el preprocesamiento final basándose en una "allowlist" de columnas para evitar errores de memoria y tipo.

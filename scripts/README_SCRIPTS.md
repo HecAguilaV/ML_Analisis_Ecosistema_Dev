@@ -278,7 +278,7 @@ netstat -ano | findstr :8081  # Windows
 # Detener servicios existentes
 docker compose down
 
-# O cambiar puertos en docker-compose.yml
+# O cambiar puertos en docker-compose.yaml
 ```
 
 ### ❌ "Build failed" durante docker compose
@@ -386,7 +386,7 @@ Si encuentras problemas o mejoras para estos scripts:
 - **Caché**: Construcciones posteriores son mucho más rápidas
 
 ### Sobre los puertos
-- Si ya tienes servicios en los puertos 8080, 8081, 4141, o 8888, ajusta `docker-compose.yml`
+- Si ya tienes servicios en los puertos 8080, 8081, 4141, o 8888, ajusta `docker-compose.yaml`
 
 ---
 

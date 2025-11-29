@@ -1,5 +1,5 @@
 import logging
-from typing import Any, Dict, Tuple
+from typing import Any
 
 import numpy as np
 import pandas as pd
@@ -14,7 +14,7 @@ from xgboost import XGBRegressor
 logger = logging.getLogger(__name__)
 
 
-def split_data(data: pd.DataFrame, params: Dict[str, Any]) -> Dict[str, Any]:
+def split_data(data: pd.DataFrame, params: dict[str, Any]) -> dict[str, Any]:
     """Divide los datos en conjuntos de entrenamiento y prueba, asegurando que solo
     se usen columnas numéricas para las características.
 
@@ -47,7 +47,7 @@ def split_data(data: pd.DataFrame, params: Dict[str, Any]) -> Dict[str, Any]:
     }
 
 
-def _get_model_instance(model_name: str, params: Dict[str, Any]):
+def _get_model_instance(model_name: str, params: dict[str, Any]):
     """Retorna una instancia del modelo basado en el nombre."""
     model_map = {
         "LinearRegression": LinearRegression(),
@@ -64,7 +64,7 @@ def _get_model_instance(model_name: str, params: Dict[str, Any]):
 
 
 def train_model_with_grid_search(
-    X_train: pd.DataFrame, y_train: pd.Series, model_name: str, params: Dict[str, Any]
+    X_train: pd.DataFrame, y_train: pd.Series, model_name: str, params: dict[str, Any]
 ) -> Any:
     """
     Entrena un modelo de regresión usando GridSearchCV para encontrar los mejores hiperperámetros.
@@ -107,7 +107,7 @@ def train_model_with_grid_search(
 
 def report_and_select_best_model(
     X_test: pd.DataFrame, y_test: pd.Series, **models
-) -> Dict[str, Any]:
+) -> dict[str, Any]:
     """
     Evalúa múltiples modelos, genera un informe de métricas, selecciona el mejor
     y lo guarda.
@@ -156,8 +156,8 @@ def report_and_select_best_model(
 
 
 def create_polynomial_features(
-    X_train: pd.DataFrame, X_test: pd.DataFrame, parameters: Dict[str, Any]
-) -> Tuple[pd.DataFrame, pd.DataFrame]:
+    X_train: pd.DataFrame, X_test: pd.DataFrame, parameters: dict[str, Any]
+) -> tuple[pd.DataFrame, pd.DataFrame]:
     """
     Creates polynomial features for the training and testing data.
 
@@ -197,7 +197,7 @@ def create_polynomial_features(
 
 def evaluate_poly_model(
     model: Any, X_test: pd.DataFrame, y_test: pd.Series
-) -> Dict[str, float]:
+) -> dict[str, float]:
     """
     Evaluates a single regression model and returns its metrics.
 
@@ -229,8 +229,8 @@ def select_top_features(
     X_train: pd.DataFrame,
     y_train: pd.Series,
     X_test: pd.DataFrame,
-    params: Dict[str, Any],
-) -> Tuple[pd.DataFrame, pd.DataFrame]:
+    params: dict[str, Any],
+) -> tuple[pd.DataFrame, pd.DataFrame]:
     """
     Selects the top K features based on correlation with the target variable.
 

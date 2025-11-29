@@ -1,5 +1,7 @@
-"""Analisis_Lenguajes_Programacion file for ensuring the package is executable
-as `analisis-lenguajes-programacion` and `python -m analisis_lenguajes_programacion`
+"""ML_Analisis_Ecosistema_Dev package entry point.
+
+Ensures the package is executable as `ml-analisis-ecosistema-dev`
+and `python -m ml_analisis_ecosistema_dev`.
 """
 
 import sys

@@ -42,7 +42,7 @@ exclude = [
 
 # ============ CONFIGURACIÓN DE ISORT (imports) ============
 [lint.isort]
-known-first-party = ["analisis_lenguajes_programacion"]
+known-first-party = ["ml_analisis_ecosistema_dev"]
 section-order = ["future", "standard-library", "third-party", "first-party", "local-folder"]
 
 # ============ CONFIGURACIÓN DE FORMATO ============

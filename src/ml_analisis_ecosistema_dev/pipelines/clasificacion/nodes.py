@@ -3,7 +3,7 @@ Nodos para el pipeline de clasificación.
 """
 
 import logging
-from typing import Any, Dict
+from typing import Any
 
 import pandas as pd
 from imblearn.over_sampling import SMOTE
@@ -26,7 +26,7 @@ from xgboost import XGBClassifier
 logger = logging.getLogger(__name__)
 
 
-def create_target_variable(data: pd.DataFrame, params: Dict[str, Any]) -> pd.DataFrame:
+def create_target_variable(data: pd.DataFrame, params: dict[str, Any]) -> pd.DataFrame:
     """Crea la variable objetivo binaria basada en un umbral de salario."""
     data_copy = data.copy()
     data_copy[params["target_col"]] = (
@@ -39,7 +39,7 @@ def create_target_variable(data: pd.DataFrame, params: Dict[str, Any]) -> pd.Dat
     return data_copy
 
 
-def split_data(data: pd.DataFrame, params: Dict[str, Any]) -> Dict[str, Any]:
+def split_data(data: pd.DataFrame, params: dict[str, Any]) -> dict[str, Any]:
     """Divide los datos en conjuntos de entrenamiento y prueba."""
     X = data.drop(columns=[params["target_col"]])
 
@@ -60,7 +60,7 @@ def split_data(data: pd.DataFrame, params: Dict[str, Any]) -> Dict[str, Any]:
     return {"X_train": X_train, "X_test": X_test, "y_train": y_train, "y_test": y_test}
 
 
-def _get_model_instance(model_name: str, params: Dict[str, Any]):
+def _get_model_instance(model_name: str, params: dict[str, Any]):
     """Retorna una instancia del modelo de clasificación."""
     model_map = {
         "LogisticRegression": LogisticRegression(
@@ -86,7 +86,7 @@ def _get_model_instance(model_name: str, params: Dict[str, Any]):
 
 
 def train_classifier_with_grid_search(
-    X_train: pd.DataFrame, y_train: pd.Series, model_name: str, params: Dict[str, Any]
+    X_train: pd.DataFrame, y_train: pd.Series, model_name: str, params: dict[str, Any]
 ) -> Any:
     """Entrena un clasificador usando un pipeline con SMOTE y GridSearchCV."""
     model = _get_model_instance(model_name, params)
@@ -121,7 +121,7 @@ def train_classifier_with_grid_search(
 
 def report_and_select_best_classifier(
     X_test: pd.DataFrame, y_test: pd.Series, **models
-) -> Dict[str, Any]:
+) -> dict[str, Any]:
     """
     Evalúa, reporta y selecciona el mejor modelo de clasificación.
     Guarda las matrices de confusión numéricas.

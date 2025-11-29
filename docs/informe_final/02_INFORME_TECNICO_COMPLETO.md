@@ -4,7 +4,7 @@
 > **Autor**: Héctor Aguila V.  
 > **Institución**: DuocUC  
 > **Fecha**: Noviembre 2025  
-> **Versión**: 3.0 (Actualizada con datos 2023-2025 e IA)
+> **Versión**: Actualizada con datos 2023-2025 e IA
 
 ---
 
@@ -550,7 +550,7 @@ ML_Analisis_Ecosistema_Dev/
 ├── pyproject.toml                  # Metadata del proyecto
 ├── requirements.txt                # Dependencias Python
 ├── Dockerfile                      # Imagen Docker
-├── docker-compose.yml              # Orquestación
+├── docker-compose.yaml             # Orquestación
 └── README.md                       # Documentación principal
 ```
 
@@ -1394,6 +1394,65 @@ Error Absoluto > $50K:     2.1% de predicciones (outliers)
 
 **Conclusión**: El modelo es más preciso en rangos salariales típicos ($50K-$100K) donde hay más datos de entrenamiento. Desarrolladores con salarios extremos (>$150K) son más difíciles de predecir por variabilidad intrínseca (bonos, equity, etc.).
 
+### 8.5 Resultados de Clustering (Modelos No Supervisados)
+
+Además de los modelos supervisados, se implementaron **modelos de clustering** para segmentar desarrolladores según su perfil tecnológico y de experiencia (Notebook `04_clustering_analisis.ipynb`). Se trabajó principalmente con Stack Overflow 2025 como dataset central, utilizando una muestra estratificada de **15,000 desarrolladores** (≈33% del total) para balancear precisión y tiempo de cómputo.
+
+#### 8.5.1 Modelos Evaluados
+
+Se evaluaron los siguientes algoritmos de clustering:
+
+- **K-Means** (modelo base de segmentación)
+- **Hierarchical Clustering (Agglomerative)**: análisis jerárquico con dendrograma
+- **Gaussian Mixture Models (GMM)**: modelo probabilístico (soft clustering)
+- **DBSCAN**: clustering basado en densidad (foco en outliers)
+
+Para cada modelo se calcularon métricas internas de validación:
+
+- **Silhouette Score** (–1 a 1, mayor es mejor): cohesión/separación entre clusters
+- **Davies-Bouldin Index** (≥0, menor es mejor): ratio intra/inter‑cluster
+- **Calinski-Harabasz Index** (≥0, mayor es mejor): varianza inter vs intra‑cluster
+
+#### 8.5.2 Comparación de Métricas
+
+Resumen de métricas para los modelos principales (2 clusters, 15,000 muestras):
+
+| Modelo         | Silhouette | Davies-Bouldin | Calinski-Harabasz | Comentario                         |
+|----------------|-----------:|---------------:|------------------:|------------------------------------|
+| **K-Means**    | **0.302**  | 1.62           | **4341.11**       | Mejor balance global               |
+| Hierarchical   | 0.251      | **1.44**       | 3645.92           | Ligera mejora en DB, peor Silhouette |
+| GMM            | 0.285      | 1.66           | 3993.90           | Similar a K-Means, sin mejora clara |
+| DBSCAN         | –          | –              | –                 | 1 solo cluster útil + outliers     |
+
+> **Conclusión técnica**:  
+> - **K-Means** ofrece el mejor compromiso entre cohesión de clusters (Silhouette), separación (Calinski-Harabasz) y simplicidad del modelo.  
+> - **Hierarchical** y **GMM** no mejoran de forma consistente las métricas frente a K-Means, por lo que se usan principalmente como contraste metodológico.  
+> - **DBSCAN** es útil para detectar outliers, pero no genera una segmentación estable del universo completo (predomina un solo cluster grande).
+
+#### 8.5.3 Interpretación de Clusters (Resumen)
+
+Con el modelo K-Means (2 clusters sobre 15,000 desarrolladores) se identificaron los siguientes segmentos:
+
+**Cluster 0 - Perfil Web/Generalista** (48.6%, 7,289 desarrolladores):
+- **Experiencia promedio**: 13.7 años
+- **Lenguajes principales**: JavaScript, HTML/CSS, SQL
+- **Roles predominantes**: Developer full-stack, Developer back-end, Architect
+- **Características**: Perfil orientado a desarrollo web tradicional, alta presencia de tecnologías frontend/backend estándar
+
+**Cluster 1 - Perfil Técnico-Especializado** (51.4%, 7,711 desarrolladores):
+- **Experiencia promedio**: 12.9 años
+- **Lenguajes principales**: Python, Bash/Shell, C++
+- **Roles predominantes**: Developer full-stack, Developer back-end, Student
+- **Características**: Mayor presencia de lenguajes de sistemas, herramientas de automatización y perfiles en formación o especialización técnica
+
+**Aplicaciones Prácticas**:
+
+- **Para desarrolladores**: Los clusters permiten identificar **perfiles objetivo** (por ejemplo, "perfil data/IA + cloud" en Cluster 1) hacia los cuales orientar el roadmap de aprendizaje. Un desarrollador web (Cluster 0) puede evolucionar hacia Cluster 1 aprendiendo Python, herramientas cloud y DevOps.
+- **Para empresas**: La segmentación entrega **tipos de perfiles tecnológicos** que pueden guiar estrategias de contratación y capacitación. Cluster 0 para proyectos web tradicionales, Cluster 1 para proyectos que requieren especialización técnica o data science.
+- **Para el ecosistema**: Combinando esta segmentación con análisis Chile vs Global, se pueden detectar **brechas de skills** (por ejemplo, menor presencia relativa de perfiles Cluster 1 en la muestra chilena).
+
+En síntesis, los modelos no supervisados complementan los modelos supervisados: mientras estos últimos responden *"cuánto puede ganar un desarrollador dado su perfil"*, el clustering responde *"a qué tipo de perfil pertenece y qué rutas de evolución existen entre segmentos"*.
+
 #### **Errores por País**
 
 | País | RMSE | MAE | Muestra |
@@ -1466,7 +1525,7 @@ Total           3,330 4,357   4,199 1,937  13,723
 
 **Conclusión**: Errores son **mayoritariamente en categorías adyacentes**, indicando que el modelo captura bien la progresión de carrera. Errores Junior → Lead o Lead → Junior son casi inexistentes (solo 2+3 = 5 casos).
 
-### 8.5 Curvas de Aprendizaje
+### 8.6 Curvas de Aprendizaje
 
 **Regresión (LightGBM)**:
 
@@ -1501,7 +1560,7 @@ Tamaño Train   Train Acc   Val Acc   Gap
 - Con 100% de datos: **0.17% de gap** = casi perfecto
 - Modelo extremadamente robusto
 
-### 8.6 Feature Importance Detallada
+### 8.7 Feature Importance Detallada
 
 #### **Top 30 Features para Predicción Salarial (LightGBM)**
 

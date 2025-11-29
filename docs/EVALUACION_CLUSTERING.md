@@ -28,7 +28,7 @@ Estas son las métricas que usaremos porque **NO tenemos etiquetas verdaderas** 
 - **Ventaja**: Bueno para comparar diferentes k
 
 #### **Inertia (WCSS - Within-Cluster Sum of Squares)**
-- **Solo para K-Means y K-Medoids**
+- **Solo para K-Means**
 - **Rango**: 0 a ∞ (menor es mejor)
 - **Uso**: Elbow Method para seleccionar k
 - **Limitación**: Solo funciona con métodos de partición
@@ -86,37 +86,30 @@ nmi = normalized_mutual_info_score(y_experience, labels)
 
 ---
 
-## 3. Compatibilidad K-Means vs K-Medoids
+## 3. Algoritmos de Clustering Implementados
 
-### ✅ SÍ, son totalmente compatibles
+### Algoritmos Evaluados en el Proyecto:
 
-Ambos son **algoritmos de partición** y comparten:
+#### **K-Means** ⭐ Principal
+- ✅ Requiere especificar `k` (número de clusters)
+- ✅ Usa métricas: Silhouette Score, Inertia (WCSS), Davies-Bouldin, Calinski-Harabasz
+- ✅ Puede usar **Elbow Method** para seleccionar k
+- ✅ Rápido y eficiente: O(n)
+- ✅ Centroide: Media (puede no existir en espacios no euclidianos)
+- ✅ Sensible a outliers
+- ✅ Distancia: Euclidiana
 
-#### Características Comunes:
-- ✅ Requieren especificar `k` (número de clusters)
-- ✅ Usan las **mismas métricas de evaluación**:
-  - Silhouette Score
-  - Inertia (WCSS)
-  - Davies-Bouldin
-  - Calinski-Harabasz
-- ✅ Pueden usar **Elbow Method** para seleccionar k
-- ✅ Mismo tipo de visualización (scatter plots, heatmaps)
-
-#### Diferencias Clave:
-
-| Aspecto | K-Means | K-Medoids |
-|---------|---------|-----------|
-| **Centroide** | Media (puede no existir) | Medoide (punto real) |
-| **Robustez a outliers** | ❌ Sensible | ✅ Robusto |
-| **Costo computacional** | O(n) | O(n²) |
-| **Distancia** | Euclidiana | Cualquier métrica |
-| **Uso** | Datos limpios, rápidos | Datos con outliers |
+#### **DBSCAN** (Detección de Outliers)
+- ✅ No requiere especificar número de clusters
+- ✅ Identifica outliers automáticamente
+- ✅ Flexible para formas irregulares
+- ✅ Basado en densidad
 
 ### Estrategia Recomendada:
 
-1. **Empezar con K-Means** (más rápido)
-2. **Comparar con K-Medoids** (más robusto)
-3. **Si hay outliers**: K-Medoids puede dar mejores resultados
+1. **Empezar con K-Means** (más rápido y interpretable)
+2. **Si hay outliers**: DBSCAN puede identificarlos automáticamente
+3. **Para datos con forma irregular**: DBSCAN es más flexible que K-Means
 4. **Si no hay outliers**: K-Means es suficiente y más rápido
 
 ---
@@ -130,7 +123,6 @@ Ambos son **algoritmos de partición** y comparten:
 #### **Fase 1: Exploración (Demostrar Conocimiento)**
 Implementar y comparar brevemente:
 - ✅ K-Means
-- ✅ K-Medoids
 - ✅ Clustering Jerárquico
 - ✅ DBSCAN
 - ✅ GMM
@@ -139,7 +131,7 @@ Implementar y comparar brevemente:
 
 #### **Fase 2: Selección (Adaptación al Proyecto)**
 Elegir 2-3 algoritmos que mejor se adapten:
-- **K-Means o K-Medoids**: Para segmentación por perfil tecnológico
+- **K-Means**: Para segmentación por perfil tecnológico
 - **Clustering Jerárquico**: Para entender estructura jerárquica
 - **GMM**: Si quieres soft clustering (probabilidades)
 
@@ -154,17 +146,17 @@ Usar el mejor algoritmo para:
 ### Criterios de Selección:
 
 1. **Tipo de datos**:
-   - Datos numéricos normalizados → K-Means, K-Medoids, GMM
-   - Datos con outliers → K-Medoids, DBSCAN
+   - Datos numéricos normalizados → K-Means, GMM
+   - Datos con outliers → DBSCAN
    - Necesitas jerarquía → Clustering Jerárquico
 
 2. **Objetivo del negocio**:
-   - Segmentación clara → K-Means/K-Medoids
+   - Segmentación clara → K-Means
    - Perfiles con probabilidades → GMM
    - Detectar outliers → DBSCAN
 
 3. **Interpretabilidad**:
-   - K-Means/K-Medoids: Fácil de interpretar
+   - K-Means: Fácil de interpretar
    - GMM: Más complejo pero más rico
    - DBSCAN: Útil para detección de anomalías
 
@@ -173,10 +165,9 @@ Usar el mejor algoritmo para:
 **Para segmentación de desarrolladores por perfil tecnológico:**
 
 1. **K-Means** (principal): Rápido, interpretable, bueno para perfiles tecnológicos
-2. **K-Medoids** (comparación): Si hay outliers en salarios o tecnologías
+2. **DBSCAN** (comparación): Si hay outliers en salarios o tecnologías
 3. **GMM** (opcional): Si quieres probabilidades de pertenencia
 4. **Clustering Jerárquico** (opcional): Para entender jerarquía de perfiles
-5. **DBSCAN** (opcional): Solo si quieres detectar desarrolladores "raros" o nichos
 
 **Estrategia**: Implementar todos, comparar métricas, elegir el mejor para análisis final.
 
@@ -269,14 +260,14 @@ def create_pipeline(**kwargs) -> Pipeline:
 ### Métricas de Evaluación:
 - ✅ **Principal**: Silhouette Score (para todos los algoritmos)
 - ✅ **Secundarias**: Davies-Bouldin, Calinski-Harabasz
-- ✅ **Específicas**: Inertia (K-Means/K-Medoids), AIC/BIC (GMM)
+- ✅ **Específicas**: Inertia (K-Means), AIC/BIC (GMM)
 - ✅ **Opcionales**: ARI, NMI (si tienes etiquetas de referencia)
 
 ### Algoritmos:
 - ✅ **Implementar todos** para demostrar conocimiento
 - ✅ **Profundizar en 2-3** que mejor se adapten
 - ✅ **K-Means como principal** (rápido, interpretable)
-- ✅ **K-Medoids para comparación** (robusto a outliers)
+- ✅ **DBSCAN para detección de outliers** (robusto a anomalías)
 
 ### Pipeline:
 - ❌ **NO crear pipeline nuevo**

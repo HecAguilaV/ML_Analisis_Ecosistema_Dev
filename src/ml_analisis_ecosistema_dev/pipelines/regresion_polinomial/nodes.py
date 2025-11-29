@@ -4,7 +4,7 @@ generated using Kedro 0.19.12
 """
 
 import logging
-from typing import Any, Dict, Tuple
+from typing import Any
 
 import numpy as np
 import pandas as pd
@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 
 def create_polynomial_features(
     X_train: pd.DataFrame, X_test: pd.DataFrame, parameters: dict
-) -> Tuple[pd.DataFrame, pd.DataFrame]:
+) -> tuple[pd.DataFrame, pd.DataFrame]:
     """
     Creates polynomial features for the training and testing data.
 
@@ -56,7 +56,7 @@ def create_polynomial_features(
 
 def evaluate_poly_model(
     model: Any, X_test: pd.DataFrame, y_test: pd.Series
-) -> Dict[str, float]:
+) -> dict[str, float]:
     """
     Evaluates a single regression model and returns its metrics.
 

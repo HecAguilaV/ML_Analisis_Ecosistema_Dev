@@ -1,6 +1,5 @@
 """Project pipelines."""
 
-from typing import Dict
 from kedro.pipeline import Pipeline
 
 from ml_analisis_ecosistema_dev.pipelines.analisis_chile.pipeline import (
@@ -20,7 +19,7 @@ from ml_analisis_ecosistema_dev.pipelines.regresion.pipeline import (
 )
 
 
-def register_pipelines() -> Dict[str, Pipeline]:
+def register_pipelines() -> dict[str, Pipeline]:
     """Register the project's pipelines.
 
     Returns:

@@ -3,14 +3,14 @@ Nodos de análisis de datos para el pipeline
 """
 
 import logging
-from typing import Any, Dict
+from typing import Any
 
 import pandas as pd
 
 logger = logging.getLogger(__name__)
 
 
-def load_and_inspect_survey(survey_data: pd.DataFrame) -> Dict[str, Any]:
+def load_and_inspect_survey(survey_data: pd.DataFrame) -> dict[str, Any]:
     """
     Inspecciona el dataset y genera estadísticas básicas.
 

@@ -4,9 +4,7 @@ Extrae, normaliza y consolida información sobre IA de los 3 datasets.
 """
 
 import logging
-from typing import Dict, List
 
-import numpy as np
 import pandas as pd
 
 logger = logging.getLogger(__name__)
@@ -340,11 +338,10 @@ def consolidar_datos_ia(
         f"Datos de IA consolidados: {len(df_consolidado):,} registros, "
         f"{len(df_consolidado.columns)} columnas"
     )
-    logger.info(f"  - Registros por dataset:")
+    logger.info("  - Registros por dataset:")
     if "Dataset" in df_consolidado.columns:
         for dataset in df_consolidado["Dataset"].unique():
             count = (df_consolidado["Dataset"] == dataset).sum()
             logger.info(f"    • {dataset}: {count:,} registros")
 
     return df_consolidado
-

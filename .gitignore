@@ -189,7 +189,7 @@ mlruns/*
 
 ##########################
 # AIRFLOW TEMPORAL FILES
-[airflow-*
+# [airflow-*  # Comentado: sintaxis problemática
 [auth]
 [internal]
 CACHED
@@ -205,3 +205,12 @@ config/
 ##########################
 # RUFF (Code Formatter)
 .ruff_cache/
+
+##########################
+# CHALLA - Archivos Personales (solo local)
+CHALLA/
+
+##########################
+# ARCHIVOS TEMPORALES ACCIDENTALES
+# Archivos que empiezan con "=" (salidas de IPython/Python guardadas por error)
+=*

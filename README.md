@@ -31,12 +31,14 @@ scripts\start_production.bat
 **Mac/Linux**: **[`scripts/start_production.sh`](./scripts/start_production.sh)**
 ```bash
 chmod +x scripts/start_production.sh
-./scripts/setup-and-run.sh
+./scripts/start_production.sh
 ```
 
 **Acceso a servicios en Docker**:
 - Airflow UI: http://localhost:8081 (usuario: `airflow` / contraseña: `airflow`)
 - Kedro Viz: http://localhost:4141
+
+> **Nota**: Docker **NO ejecuta Jupyter Lab**. Para usar Jupyter, sigue las instrucciones en la sección [Jupyter Lab (Análisis Interactivo)](#jupyter-lab-análisis-interactivo) más abajo.
 
 ---
 
@@ -53,8 +55,9 @@ Estos scripts automatizan todo:
 ## Documentación Principal
 
 - **[Informe Técnico Completo](./docs/informe_final/02_INFORME_TECNICO_COMPLETO.md)** - ~100 páginas con toda la metodología, resultados y análisis
-- **[Análisis de Resultados](./notebooks/02_analisis_de_resultados.ipynb)** - Evaluación de 10 modelos ML
-- **[Análisis Ecosistema](./notebooks/03_ecosystem_analysis.ipynb)** - Tendencias tecnológicas y salarios
+- **[Análisis de Resultados](./notebooks/02_analisis_de_resultados.ipynb)** - Evaluación de 10 modelos ML (regresión y clasificación)
+- **[Análisis Ecosistema](./notebooks/03_ecosystem_analysis.ipynb)** - Tendencias tecnológicas, salarios y adopción de IA
+- **[Análisis de Clustering](./notebooks/04_clustering_analisis.ipynb)** - Segmentación de desarrolladores con modelos no supervisados (K-Means, Hierarchical, DBSCAN, GMM)
 - **[Licencias de Datos](./docs/DATA_LICENSES.md)** - Stack Overflow ODbL
 
 ---
@@ -117,7 +120,8 @@ Estos scripts automatizan todo:
 
 ### Datasets
 - **Stack Overflow 2023**: 89,184 desarrolladores, 185 países
-- **JetBrains 2025**: Pendiente integración
+- **Stack Overflow 2025**: 49,123 desarrolladores (análisis temporal y adopción de IA)
+- **JetBrains 2025**: 24,534 desarrolladores (comparativa inter-comunidad)
 
 ---
 
@@ -159,23 +163,53 @@ kedro run --pipeline=data_science_regresion
 
 ### Jupyter Lab (Análisis Interactivo)
 
-Para explorar los notebooks interactivamente:
+**Jupyter Lab NO se ejecuta en Docker**. Debes iniciarlo localmente en tu entorno virtual.
+
+#### Iniciar Jupyter Lab
 
 ```bash
-# Activar entorno virtual primero
-.venv\Scripts\activate  # Windows
-# o
-source .venv/bin/activate  # Mac/Linux
+# 1. Activar entorno virtual primero
+# Windows:
+.venv\Scripts\activate
 
-# Iniciar Jupyter Lab
+# Mac/Linux:
+source .venv/bin/activate
+
+# 2. Iniciar Jupyter Lab
 jupyter lab
 ```
 
 Luego abre en tu navegador: **http://localhost:8888**
 
-**Notebooks disponibles**:
-- [`notebooks/02_analisis_de_resultados.ipynb`](./notebooks/02_analisis_de_resultados.ipynb) - Evaluación completa de modelos
-- [`notebooks/03_ecosystem_analysis.ipynb`](./notebooks/03_ecosystem_analysis.ipynb) - Análisis del ecosistema tecnológico
+> **Tip**: Si el puerto 8888 está ocupado, Jupyter usará automáticamente el siguiente disponible (8889, 8890, etc.) y te mostrará la URL en la terminal.
+
+#### Notebooks Disponibles
+
+Una vez que Jupyter Lab esté corriendo, encontrarás estos notebooks en la carpeta `notebooks/`:
+
+- **[`02_analisis_de_resultados.ipynb`](./notebooks/02_analisis_de_resultados.ipynb)** - Evaluación completa de modelos (regresión y clasificación)
+- **[`03_ecosystem_analysis.ipynb`](./notebooks/03_ecosystem_analysis.ipynb)** - Análisis del ecosistema tecnológico y adopción de IA
+- **[`04_clustering_analisis.ipynb`](./notebooks/04_clustering_analisis.ipynb)** - Segmentación de desarrolladores con clustering (K-Means, Hierarchical, DBSCAN, GMM)
+
+#### Solución de Problemas
+
+**Si Jupyter no inicia:**
+```bash
+# Verificar que jupyterlab esté instalado
+pip list | grep jupyterlab
+
+# Si no está, instalar
+pip install jupyterlab
+
+# O reinstalar todas las dependencias
+pip install -r requirements.txt
+```
+
+**Si el puerto está ocupado:**
+```bash
+# Iniciar Jupyter en un puerto específico
+jupyter lab --port 8889
+```
 
 ### Apache Airflow (Orquestación Opcional)
 
