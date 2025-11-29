@@ -1,0 +1,5 @@
+outs:
+- md5: 3d0472805180e5302ec15fee3d3e1fac
+  size: 62071
+  hash: md5
+  path: clustering_kmeans_model.pkl

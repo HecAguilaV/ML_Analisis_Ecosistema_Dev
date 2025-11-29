@@ -1,0 +1,5 @@
+outs:
+- md5: ee70340050b670207d91b6dd413f94f6
+  size: 2247
+  hash: md5
+  path: clustering_scaler.pkl
