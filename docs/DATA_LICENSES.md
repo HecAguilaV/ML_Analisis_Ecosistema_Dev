@@ -33,7 +33,7 @@ Este repositorio **separa la licencia del código** (ver `LICENSE` en la raíz) 
 
 ---
 
-## ✅ Recomendaciones Prácticas de Atribución
+## Recomendaciones Prácticas de Atribución
 
 - Mantén los archivos de licencia originales junto a los datasets en la carpeta `data/` (ya incluidos en este repositorio).
 - En el `README.md` principal y en cualquier informe público, incluye al menos la atribución mínima (ver ejemplos arriba) y enlaza a este archivo (`DATA_LICENSES.md`) para más detalles.
@@ -41,7 +41,7 @@ Este repositorio **separa la licencia del código** (ver `LICENSE` en la raíz) 
 
 ---
 
-## ⚠️ Notas Legales y de Privacidad
+## Notas Legales y de Privacidad
 
 - La licencia ODbL (Stack Overflow) puede imponer obligaciones adicionales para bases de datos derivadas (*share‑alike*). Si piensas publicar un dataset derivado públicamente, revisa las obligaciones de ODbL en detalle.
 - Revisa y asegúrate de eliminar cualquier dato que pueda identificar a personas antes de publicar resultados si existiera riesgo de fuga de información personal. Aunque este repositorio utiliza datasets públicos anonimizados, es responsabilidad del publicador verificar el cumplimiento de las normativas de privacidad y protección de datos aplicables.

@@ -54,11 +54,13 @@ Estos scripts automatizan todo:
 
 ## Documentación Principal
 
-- **[Informe Técnico Completo](./docs/informe_final/02_INFORME_TECNICO_COMPLETO.md)** - ~100 páginas con toda la metodología, resultados y análisis
-- **[Análisis de Resultados](./notebooks/02_analisis_de_resultados.ipynb)** - Evaluación de 10 modelos ML (regresión y clasificación)
+- **[Informe Técnico Completo](./docs/informe_final/02_INFORME_TECNICO_COMPLETO.md)** - Con toda la metodología, resultados y análisis
+- **[Análisis Exploratorio](./notebooks/01_analisis_exploratorio.ipynb)** - Exploración inicial de datos, distribuciones y patrones
+- **[Análisis de Resultados](./notebooks/02_analisis_resultados.ipynb)** - Evaluación de 10 modelos ML (regresión y clasificación)
 - **[Análisis Ecosistema](./notebooks/03_ecosystem_analysis.ipynb)** - Tendencias tecnológicas, salarios y adopción de IA
 - **[Análisis de Clustering](./notebooks/04_clustering_analisis.ipynb)** - Segmentación de desarrolladores con modelos no supervisados (K-Means, Hierarchical, DBSCAN, GMM)
 - **[Licencias de Datos](./docs/DATA_LICENSES.md)** - Stack Overflow ODbL
+- **[Documentación Técnica Docker](./docs/referencias/docker_SUMMARY.md)** - Resumen ejecutivo sobre productividad y containerización
 
 ---
 
@@ -187,7 +189,8 @@ Luego abre en tu navegador: **http://localhost:8888**
 
 Una vez que Jupyter Lab esté corriendo, encontrarás estos notebooks en la carpeta `notebooks/`:
 
-- **[`02_analisis_de_resultados.ipynb`](./notebooks/02_analisis_de_resultados.ipynb)** - Evaluación completa de modelos (regresión y clasificación)
+- **[`01_analisis_exploratorio.ipynb`](./notebooks/01_analisis_exploratorio.ipynb)** - Exploración inicial de datos, distribuciones y patrones
+- **[`02_analisis_resultados.ipynb`](./notebooks/02_analisis_resultados.ipynb)** - Evaluación completa de modelos (regresión y clasificación)
 - **[`03_ecosystem_analysis.ipynb`](./notebooks/03_ecosystem_analysis.ipynb)** - Análisis del ecosistema tecnológico y adopción de IA
 - **[`04_clustering_analisis.ipynb`](./notebooks/04_clustering_analisis.ipynb)** - Segmentación de desarrolladores con clustering (K-Means, Hierarchical, DBSCAN, GMM)
 
@@ -213,7 +216,7 @@ jupyter lab --port 8889
 
 ### Apache Airflow (Orquestación Opcional)
 
-Si ejecutaste los scripts de producción con Docker, Airflow ya está corriendo:
+Si ejecutó los scripts de producción con Docker, Airflow ya está corriendo:
 
 ```bash
 # Ejecuta el script de producción
@@ -233,8 +236,11 @@ scripts\start_production.bat  # Windows
 jupyter lab
 
 # Abrir notebooks de análisis
-# - notebooks/02_analisis_de_resultados.ipynb
+# - notebooks/01_analisis_exploratorio.ipynb
+# - notebooks/01_analisis_exploratorio.ipynb
+# - notebooks/02_analisis_resultados.ipynb
 # - notebooks/03_ecosystem_analysis.ipynb
+# - notebooks/04_clustering_analisis.ipynb
 ```
 
 ### Docker (Opcional)
@@ -247,6 +253,8 @@ docker build -t ml-ecosistema-dev .
 docker-compose up
 ```
 
+> **Documentación técnica**: Para más información sobre los beneficios de Docker y containerización en este proyecto, ver [Documentación Técnica Docker](./docs/referencias/docker_SUMMARY.md).
+
 ---
 
 ## Outputs del Proyecto
@@ -256,16 +264,18 @@ Después de ejecutar `scripts/setup-and-run.sh`:
 - **`data/06_models/`**: Modelos entrenados (.pkl)
   - `regresion_model.pkl` (LightGBM)
   - `clasificacion_model.pkl` (XGBoost)
+  - `ridge_poly_model.pkl` (Ridge Polinomial)
+  - `clustering_kmeans_model.pkl` (K-Means)
+  - `clustering_scaler.pkl` (Scaler para clustering)
   
-- **`data/07_model_output/`**: Métricas (.json)
-  - `regresion_metrics.json`
-  - `clasificacion_metrics.json`
+- **`data/07_model_output/`**: Resultados y datos procesados
+  - `datos_con_clusters.parquet` (Datos con asignación de clusters)
   
-- **`data/08_reporting/`**: Visualizaciones (.png)
-  - Comparación de modelos
-  - Feature importance
-  - Confusion matrices
-  - Distribuciones salariales
+- **`data/08_reporting/`**: Métricas y visualizaciones
+  - **Métricas (.json)**: `metrics.json`, `metrics_clf.json`, `metrics_clustering.json`, `metrics_ridge_poly.json`
+  - **Visualizaciones de modelos**: Comparación de modelos, Feature importance, Confusion matrices
+  - **Visualizaciones de clustering**: PCA, dendrogramas, comparación de algoritmos
+  - **Visualizaciones de ecosistema**: Tendencias tecnológicas, adopción de IA, análisis temporal
 
 ---
 
@@ -291,14 +301,14 @@ Después de ejecutar `scripts/setup-and-run.sh`:
 ## Trabajo Futuro
 
 ### Mejoras de Modelos
-- [ ] Hyperparameter tuning con Optuna
+- [ ] Hyperparameter tuning con Optuna o Ray Tune
 - [ ] Ensemble stacking (LightGBM + XGBoost)
-- [ ] Deep learning (TabNet, FT-Transformer)
+- [ ] Validación cruzada más robusta y análisis de varianza
 
 ### Expansión de Datos
-- [ ] Integración JetBrains 2025
-- [ ] Dataset LATAM (Chile, Argentina, Colombia)
-- [ ] Serie temporal 2020-2025
+- [x] Integración JetBrains 2025 (Completado)
+- [ ] Dataset LATAM (Chile, Argentina, Colombia) - Datasets específicos no encontrados
+- [ ] Serie temporal 2020-2025 - Limitado por falta de datos de IA en años anteriores
 
 ### Dashboard Interactivo
 ---

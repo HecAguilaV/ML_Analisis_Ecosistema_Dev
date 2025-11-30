@@ -518,7 +518,7 @@ ML_Analisis_Ecosistema_Dev/
 │   └── 08_reporting/               # Visualizaciones, reportes
 │
 ├── notebooks/                      # Análisis exploratorio
-│   ├── 01_exploratory_analysis.ipynb
+│   ├── 01_analisis_exploratorio.ipynb
 │   ├── 02_analisis_de_resultados.ipynb
 │   └── 03_ecosystem_analysis.ipynb
 │
