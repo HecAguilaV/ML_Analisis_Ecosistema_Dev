@@ -2,6 +2,30 @@
 from the Kedro defaults. For further information, including these default values, see
 https://docs.kedro.org/en/stable/kedro_project_setup/settings.html."""
 
+import os
+from pathlib import Path
+
+from dotenv import load_dotenv
+
+# Cargar variables de entorno desde archivo .env
+# Buscar .env en el directorio raíz del proyecto
+project_root = Path(__file__).parent.parent.parent
+env_path = project_root / ".env"
+
+if env_path.exists():
+    load_dotenv(env_path)
+    print(f"✓ Variables de entorno cargadas desde: {env_path}")
+else:
+    print(f"⚠ Archivo .env no encontrado en: {env_path}")
+    print("  Usando variables de entorno del sistema o valores por defecto.")
+
+# Variables de entorno disponibles globalmente
+# Acceder con: os.getenv("VARIABLE_NAME")
+GCS_CREDENTIALS_PATH = os.getenv("GCS_CREDENTIALS_PATH", "")
+GCS_BUCKET_NAME = os.getenv("GCS_BUCKET_NAME", "")
+LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO")
+ENVIRONMENT = os.getenv("ENVIRONMENT", "development")
+
 # Instantiated project hooks.
 # For example, after creating a hooks.py and defining a ProjectHooks class there, do
 # from ml_analisis_ecosistema_dev.hooks import ProjectHooks

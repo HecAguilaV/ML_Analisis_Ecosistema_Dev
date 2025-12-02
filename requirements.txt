@@ -15,3 +15,4 @@ gcsfs
 google-cloud-storage
 apache-airflow==2.7.3
 toposort
+python-dotenv>=1.0.0
