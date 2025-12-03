@@ -1,9 +1,9 @@
+import json
+from datetime import datetime, timedelta
+
 from airflow import DAG
 from airflow.operators.bash import BashOperator
 from airflow.operators.python import PythonOperator
-from datetime import datetime, timedelta
-import json
-import os
 
 # Define la ruta base de tu proyecto Kedro
 # Asegúrate de que esta ruta sea la correcta en tu entorno
@@ -31,21 +31,21 @@ def consolidate_results():
 
     # Leer métricas de regresión
     try:
-        with open(f"{metrics_path}/metrics.json", "r") as f:
+        with open(f"{metrics_path}/metrics.json") as f:
             results["pipelines"]["regresion"] = json.load(f)
     except FileNotFoundError:
         results["pipelines"]["regresion"] = "No disponible"
 
     # Leer métricas de clasificación
     try:
-        with open(f"{metrics_path}/metrics_clf.json", "r") as f:
+        with open(f"{metrics_path}/metrics_clf.json") as f:
             results["pipelines"]["clasificacion"] = json.load(f)
     except FileNotFoundError:
         results["pipelines"]["clasificacion"] = "No disponible"
 
     # Leer métricas polinomiales
     try:
-        with open(f"{metrics_path}/metrics_ridge_poly.json", "r") as f:
+        with open(f"{metrics_path}/metrics_ridge_poly.json") as f:
             results["pipelines"]["regresion_polinomial"] = json.load(f)
     except FileNotFoundError:
         results["pipelines"]["regresion_polinomial"] = "No disponible"
