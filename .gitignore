@@ -8,6 +8,7 @@ conf/local/**
 # ignore potentially sensitive credentials files
 conf/**/*credentials*
 conf/bucket-dvc.json
+conf/dvc-ml-ecosistema-dev-407237e49303.json
 
 # ignore everything in the following folders
 logs/
@@ -42,7 +43,9 @@ data/08_reporting/**
 !conf/**/*.json
 !docs/**/*.json
 # Excluir explícitamente las credenciales de DVC (después de la excepción para tener prioridad)
+# Nota: Ya están listadas arriba, pero se repiten aquí para claridad
 conf/bucket-dvc.json
+conf/dvc-ml-ecosistema-dev-407237e49303.json
 
 # also keep all .gitkeep files
 !.gitkeep

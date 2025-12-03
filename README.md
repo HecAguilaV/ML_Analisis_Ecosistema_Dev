@@ -54,11 +54,19 @@ Estos scripts automatizan todo:
 
 ## Documentación Principal
 
-- **[Informe Técnico Completo](./docs/informe_final/02_INFORME_TECNICO_COMPLETO.md)** - Con toda la metodología, resultados y análisis
+### Informes Finales (PDF)
+
+- **[Informe Técnico Completo (PDF)](./INFORME_ECOSISTEMA_DEV.pdf)** - Versión PDF del informe técnico completo con toda la metodología, resultados y análisis
+- **[Guía de Stack Tecnológico para Chile (PDF)](./GUIA_STACK_TECNOLOGICO_CHILE.pdf)** - Versión PDF de la guía consolidada con 467 desarrolladores chilenos: decisiones informadas sobre stack, demanda, especializaciones y mercados exclusivos
+
+### Informes Finales (Markdown)
+
+- **[Informe Técnico Completo](./docs/informe_final/INFORME_ECOSISTEMA_DEV.md)** - Con toda la metodología, resultados y análisis
+- **[Guía de Stack Tecnológico para Chile](./docs/informe_final/GUIA_STACK_TECNOLOGICO_CHILE.md)** - Análisis consolidado con 467 desarrolladores chilenos: decisiones informadas sobre stack, demanda, especializaciones y mercados exclusivos
 - **[Análisis Exploratorio](./notebooks/01_analisis_exploratorio.ipynb)** - Exploración inicial de datos, distribuciones y patrones
 - **[Análisis de Resultados](./notebooks/02_analisis_resultados.ipynb)** - Evaluación de 10 modelos ML (regresión y clasificación)
-- **[Análisis Ecosistema](./notebooks/03_ecosystem_analysis.ipynb)** - Tendencias tecnológicas, salarios y adopción de IA
-- **[Análisis de Clustering](./notebooks/04_clustering_analisis.ipynb)** - Segmentación de desarrolladores con modelos no supervisados (K-Means, Hierarchical, DBSCAN, GMM)
+- **[Análisis Ecosistema](./notebooks/03_analisis_ecosistema.ipynb)** - Tendencias tecnológicas, salarios y adopción de IA
+- **[Análisis de Clustering](./notebooks/04_analisis_clustering.ipynb)** - Segmentación de desarrolladores con modelos no supervisados (K-Means, Hierarchical, DBSCAN, GMM)
 - **[Licencias de Datos](./docs/DATA_LICENSES.md)** - Stack Overflow ODbL
 - **[Documentación Técnica Docker](./docs/referencias/docker_SUMMARY.md)** - Resumen ejecutivo sobre productividad y containerización
 
@@ -191,8 +199,8 @@ Una vez que Jupyter Lab esté corriendo, encontrarás estos notebooks en la carp
 
 - **[`01_analisis_exploratorio.ipynb`](./notebooks/01_analisis_exploratorio.ipynb)** - Exploración inicial de datos, distribuciones y patrones
 - **[`02_analisis_resultados.ipynb`](./notebooks/02_analisis_resultados.ipynb)** - Evaluación completa de modelos (regresión y clasificación)
-- **[`03_ecosystem_analysis.ipynb`](./notebooks/03_ecosystem_analysis.ipynb)** - Análisis del ecosistema tecnológico y adopción de IA
-- **[`04_clustering_analisis.ipynb`](./notebooks/04_clustering_analisis.ipynb)** - Segmentación de desarrolladores con clustering (K-Means, Hierarchical, DBSCAN, GMM)
+- **[`03_analisis_ecosistema.ipynb`](./notebooks/03_analisis_ecosistema.ipynb)** - Análisis del ecosistema tecnológico y adopción de IA
+- **[`04_analisis_clustering.ipynb`](./notebooks/04_analisis_clustering.ipynb)** - Segmentación de desarrolladores con clustering (K-Means, Hierarchical, DBSCAN, GMM)
 
 #### Solución de Problemas
 
@@ -237,10 +245,9 @@ jupyter lab
 
 # Abrir notebooks de análisis
 # - notebooks/01_analisis_exploratorio.ipynb
-# - notebooks/01_analisis_exploratorio.ipynb
 # - notebooks/02_analisis_resultados.ipynb
-# - notebooks/03_ecosystem_analysis.ipynb
-# - notebooks/04_clustering_analisis.ipynb
+# - notebooks/03_analisis_ecosistema.ipynb
+# - notebooks/04_analisis_clustering.ipynb
 ```
 
 ### Docker (Opcional)
@@ -298,7 +305,9 @@ Después de ejecutar `scripts/setup-and-run.sh`:
 
 ---
 
-## Trabajo Futuro
+## Trabajo Futuro y Proyecciones Personales
+
+> **Nota**: Las siguientes proyecciones representan ideas personales para continuar desarrollando este proyecto como parte de mi portfolio profesional, aplicando y expandiendo los conocimientos adquiridos durante el desarrollo de este trabajo académico. No constituyen compromisos ni requisitos del proyecto actual.
 
 ### Mejoras de Modelos
 - [ ] Hyperparameter tuning con Optuna o Ray Tune
@@ -310,7 +319,29 @@ Después de ejecutar `scripts/setup-and-run.sh`:
 - [ ] Dataset LATAM (Chile, Argentina, Colombia) - Datasets específicos no encontrados
 - [ ] Serie temporal 2020-2025 - Limitado por falta de datos de IA en años anteriores
 
-### Dashboard Interactivo
+### Dashboard Interactivo (Streamlit App)
+
+**Proyección**: Desarrollo de una aplicación web interactiva usando **Streamlit** (framework de Python para crear dashboards sin necesidad de HTML/CSS/JavaScript) que permita:
+
+1. **Salary Calculator**: Input de skills, experiencia y país → Output de salario estimado
+2. **Tech Roadmap Simulator**: Simulador interactivo que muestre el impacto salarial de aprender nuevas tecnologías (ej: "¿Si aprendo Rust, cuánto aumentaría mi salario?")
+3. **Market Trends Dashboard**: Visualizaciones dinámicas de tecnologías crecientes vs declinantes
+4. **Country Comparison**: Comparador interactivo Chile vs Argentina vs Colombia vs Global
+5. **Brecha Chile vs Global**: Análisis visual de las brechas tecnológicas y salariales identificadas
+
+**Justificación**: Esta aplicación web permitiría hacer accesibles los insights del proyecto a desarrolladores y empresas, transformando los modelos entrenados en una herramienta práctica y visual.
+
+### Extensiones y Análisis Avanzados
+
+#### Análisis Cualitativo
+- [ ] Entrevistas en profundidad con 50+ desarrolladores chilenos
+- [ ] Survey complementario con 500+ desarrolladores (soft skills, satisfacción laboral, work-life balance)
+- [ ] Análisis NLP sobre transcripciones de entrevistas
+
+#### Análisis Causal
+- [ ] Experimento natural: Análisis Difference-in-Differences (DiD) para medir impacto causal de aprender nuevas tecnologías
+- [ ] Propensity Score Matching: Medir efecto causal de skills cloud en salarios
+
 ---
 
 ## Autor
