@@ -2248,8 +2248,8 @@ jobs:
 
 9. **Chile tiene brechas tecnológicas vs global**:
    - PHP sobre-usado: +7.3pp (legacy)
-   - TypeScript sub-adoptado: -7.7pp (retraso modernización)
-   - Rust sub-adoptado: -10.2pp (oportunidad perdida)
+   - TypeScript sub-adoptado: -2.4pp (oportunidad de mercado)
+   - Rust sub-adoptado: -2.8pp (nicho premium)
 
 10. **Gap salarial Chile vs Global crece con experiencia**:
     - Junior: -27% ($32K vs $44K)

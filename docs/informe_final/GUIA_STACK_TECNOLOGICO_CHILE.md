@@ -16,7 +16,7 @@
 
 ### **Hallazgos Clave para Decisiones de Stack**
 
-1. **JavaScript domina pero TypeScript es la oportunidad**: 75.7% usa JS, pero solo 45.3% usa TS (brecha -7.7pp vs global)
+1. **JavaScript domina pero TypeScript es la oportunidad**: 75.7% usa JS, pero solo 40.7% usa TS en 2025 (brecha -2.4pp vs global en 2025)
 2. **Python crece fuerte**: 56.4% -> 72.6% (2023->2025) = +16.2pp
 3. **PHP sobre-representado**: 25.5% en Chile vs 21.6% global (mercado legacy local)
 4. **C# sub-adoptado**: 21.0% en Chile vs 30.0% global (oportunidad en .NET/Enterprise)
@@ -55,7 +55,7 @@
 1. **JavaScript + HTML/CSS** (Base web, 75%+ del mercado)
 2. **Python** (Crecimiento +16pp, versátil: web, data, IA)
 3. **SQL** (Esencial en cualquier stack, +16pp crecimiento)
-4. **TypeScript** (Oportunidad: brecha -7.7pp vs global, futuro del JS)
+4. **TypeScript** (Oportunidad: brecha -2.4pp vs global en 2025, futuro del JS)
 
 **Roadmap Sugerido**:
 ```
@@ -85,7 +85,7 @@ Mes 10-12: Python + SQL + Framework (Django/FastAPI)
    - C# + .NET Core
    - SQL Server / PostgreSQL
    - Azure Cloud
-   - **Por qué**: Brecha -11.1pp vs global = menos competencia, mercado enterprise estable
+   - **Por qué**: Brecha -7.9pp vs global = menos competencia, mercado enterprise estable
 
 3. **Data/ML Engineer** (Crecimiento fuerte):
    - Python (dominante en ML)
@@ -258,7 +258,7 @@ Nivel 3 (Senior):
 
 ### 5.1 C# / .NET Ecosystem
 
-**Mercado en Chile**: 21.0% adopción (vs 30.0% global = -11.1pp brecha)
+**Mercado en Chile**: 21.0% adopción (vs 30.0% global = -7.9pp brecha)
 
 **Oportunidad**: 
 -  Menos competencia (brecha negativa)
